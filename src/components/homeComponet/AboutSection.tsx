@@ -103,7 +103,8 @@ export const AboutSection = () => {
         {/* Buttons */}
         <div className="flex gap-4 mt-6">
           <a
-            href="/cv.pdf"
+            href="/doc/CV.pdf"
+            download
             className="flex items-center gap-2 border border-white px-6 py-2 rounded-lg hover:bg-white hover:text-black transition hover:animate-wiggle"
           >
             CV
