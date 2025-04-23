@@ -1,0 +1,157 @@
+* {
+  scroll-behavior: smooth;
+  font-family: monospace;
+}
+
+.link-nav {
+  @apply text-white text-3xl font-light w-[16rem] flex justify-center 
+  stroke-text rounded-lg py-1 uppercase font-mono gap-2;
+  letter-spacing: 0.3rem;
+
+  --fill-color: #aab2d1;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--fill-color);
+  background: linear-gradient(#fff 0 0) left / 0% 100% no-repeat;
+  background-clip: text;
+  -webkit-background-clip: text;
+  transition: background-size 0.5s linear;
+  letter-spacing: 0.3rem;
+}
+
+.link-nav:hover {
+  background-size: 100% 100%;
+}
+
+.nav-bg{
+backdrop-filter: blur(8px);
+}
+
+.link-nav-lg {
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+  color: #aab2d1;
+  text-decoration: none;
+  padding: 2px 1em;
+  transition: color 0.3s ease;
+  overflow: visible;
+  z-index: 10;
+  font-weight: bold;
+}
+
+.link-nav-lg::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%) translateY(50%);
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, #001c9b 0%, transparent 70%);
+  opacity: 0;
+  transition: width 0.3s ease-in-out, height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  z-index: -1;
+}
+
+.link-nav-lg:hover {
+  color: #3658f1;
+}
+
+.link-nav-lg:hover::before {
+  width: 120%;    /* ancho del glow */
+  height: 0.5em;  /* alto del glow */
+  opacity: 0.6;   /* intensidad */
+}
+
+
+.title-h1 {
+  @apply font-normal text-white text-5xl md:text-5xl md:font-normal;
+}
+
+.span-title {
+  @apply text-white text-[5rem] md:text-[6.5rem] font-extrabold;
+}
+
+.button-home {
+  @apply text-black border border-white w-20 rounded-lg bg-white md:ml-2 shadow-md shadow-black;
+}
+
+.stroke-text {
+  color: transparent;
+  -webkit-text-stroke: 1.5px #aab2d1;
+  font-weight: 800;
+  letter-spacing: 0.05rem;
+  text-transform: uppercase;
+}
+.stroke-text {
+  color: transparent;
+  -webkit-text-stroke: 1.5px #aab2d1;
+  font-weight: 800;
+  letter-spacing: 0.05rem;
+  text-transform: uppercase;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* 👇 Solo typing sin cursor */
+.typing1,
+.typing2,
+.typing3 {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  animation: typing 2s steps(20, end) forwards;
+}
+
+.typing2 {
+  animation: typing 2s steps(20, end) 1s forwards;
+}
+
+.typing3 {
+  animation: typing 2s steps(20, end) 1.5s forwards;
+}
+.fade-in-late {
+  opacity: 0;
+  animation: fadeIn 0.5s ease 10s forwards;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-slide {
+  animation: slide 20s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 10s linear infinite;
+}
