@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Marquee from "react-fast-marquee";
+// import Marquee from "react-fast-marquee";
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
 
 // Categorías para filtro
