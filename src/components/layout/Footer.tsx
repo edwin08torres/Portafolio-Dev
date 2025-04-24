@@ -10,7 +10,7 @@ export const Footer = () => {
             Escríbeme.
           </p>
           <a
-            href="mailto:tuemail@dominio.com?subject=Contacto%20desde%20Portfolio"
+            href="mailto:at2899743@gmail.com?subject=Contacto%20desde%20Portfolio"
             className="mt-4 inline-flex items-center bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg transition"
           >
             <i className="fa fa-envelope mr-2"></i>
@@ -46,7 +46,7 @@ export const Footer = () => {
           <h3 className="text-xl font-bold text-white mb-2">Sígueme</h3>
           <div className="flex space-x-4 text-2xl mt-2">
             <a
-              href="https://github.com/tuusuario"
+              href="https://github.com/edwin08torres"
               target="_blank"
               className="hover:text-white transition"
               aria-label="GitHub"
@@ -54,7 +54,7 @@ export const Footer = () => {
               <i className="fab fa-github"></i>
             </a>
             <a
-              href="https://linkedin.com/in/tuusuario"
+              href="https://linkedin.com/in/edwintorrez"
               target="_blank"
               className="hover:text-blue-500 transition"
               aria-label="LinkedIn"
@@ -62,7 +62,8 @@ export const Footer = () => {
               <i className="fab fa-linkedin"></i>
             </a>
             <a
-              href="https://twitter.com/tuusuario"
+              href="https://twitter.com/VillegasAlex505
+"
               target="_blank"
               className="hover:text-blue-400 transition"
               aria-label="Twitter"

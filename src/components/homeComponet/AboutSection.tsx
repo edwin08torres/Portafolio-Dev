@@ -1,4 +1,5 @@
 import Marquee from "react-fast-marquee";
+import { StatsBlock } from "../layout/StatsBlock";
 
 const techStack = [
   "/assets/javascript.svg",
@@ -71,24 +72,14 @@ export const AboutSection = () => {
           el primer día.
         </p>
 
-        {/* Stats highlight */}
-        <div className="flex justify-center gap-8">
-          {stats.map((s) => (
-            <div key={s.label} className="flex flex-col items-center">
-              <span className="text-4xl font-extrabold text-blue-400">
-                {s.value}+
-              </span>
-              <span>{s.label}</span>
-            </div>
-          ))}
-        </div>
+        <StatsBlock />
 
         {/* Skills bars */}
         <div className="w-full space-y-4 mt-4">
           {skills.map((skill) => (
             <div key={skill.name}>
-              <div className="flex mb-1">
-                <span>{skill.name}</span> --- <span>{skill.lvlstring}</span>
+              <div className="flex mb-1 justify-between">
+                <span>{skill.name}</span> <span>{skill.lvlstring}</span>
               </div>
               <div className="w-full bg-slate-700 rounded-full h-2 overflow-hidden">
                 <div
