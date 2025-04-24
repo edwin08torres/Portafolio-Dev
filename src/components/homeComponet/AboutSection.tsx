@@ -42,7 +42,7 @@ export const AboutSection = () => {
   return (
     <section
       id="about"
-      className="bg-gradient-to-b from-slate-900 via-slate-950 to-black text-white py-20 px-4 flex flex-col items-center"
+      className="bg-gradient-to-b from-slate-900 via-slate-950 to-black text-white pt-20 pb-4 md:pb-6 px-4 flex flex-col items-center"
     >
       <div className="relative group max-w-3xl w-full bg-slate-800 bg-opacity-50 backdrop-blur-md rounded-2xl p-8 shadow-xl flex flex-col items-center text-center space-y-6">
         <h1 className="text-5xl font-bold uppercase">Sobre mí</h1>
