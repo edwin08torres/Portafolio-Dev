@@ -1,6 +1,6 @@
 export const HomeHeroSection = () => {
   return (
-    <section className="relative w-full bg-slate-950 text-white h-[100vh] flex flex-col justify-center items-center md:items-start md:pl-20 gap-6 overflow-hidden">
+    <section className="relative w-full bg-slate-950 text-white h-[100vh] flex flex-col justify-center items-center md:items-center gap-6 overflow-hidden">
       {/* Fondo animado waves con gradiente y blur */}
       {/* Wave */}
       <svg
@@ -25,23 +25,23 @@ export const HomeHeroSection = () => {
       <div className="absolute inset-0 bg-black bg-opacity-60 z-0"></div>
 
       {/* Contenido principal */}
-      <div className="flex flex-col justify-center items-center md:items-start relative z-10 text-center md:text-left">
-        <h2 className="text-blue-300 text-lg md:text-xl font-semibold stroke-text typing1">
+      <div className="flex flex-col justify-center items-center md:items-center relative z-10 text-center md:text-center">
+        <h2 className="text-blue-300 text-lg md:text-2xl font-semibold stroke-text typing1">
           Hey, I'm
         </h2>
 
-        <h1 className="text-4xl md:text-6xl uppercase stroke-text typing2">
+        <h1 className="text-4xl md:text-[5rem] md:py-2 uppercase stroke-text typing2">
           Edwin Torrez
         </h1>
         <h2
-          className="uppercase text-lg md:text-xl tracking-widest stroke-text font-semibold typing2"
+          className="uppercase text-lg md:text-2xl tracking-widest stroke-text font-semibold typing2"
           style={{ animationDelay: "3s" }}
         >
           But you can call me Alex
         </h2>
 
         <p
-          className="text-white text-sm md:text-base fade-in-late"
+          className="text-white text-sm md:text-xl fade-in-late"
           style={{ animationDelay: "5s" }}
         >
           I'm a systems engineer <br />& front-end web developer

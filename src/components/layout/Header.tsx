@@ -24,7 +24,7 @@ export const Header: React.FC = () => {
         <a href="/#about" className="link-nav-lg">
           About
         </a>
-        <a href="/project" className="link-nav-lg">
+        <a href="#project" className="link-nav-lg">
           Projects
         </a>
       </nav>
@@ -68,7 +68,7 @@ export const Header: React.FC = () => {
           <a href="/#about" className="link-nav" onClick={handleNavClick}>
             <i className="fa-solid fa-code" /> About
           </a>
-          <a href="/project" className="link-nav" onClick={handleNavClick}>
+          <a href="#project" className="link-nav" onClick={handleNavClick}>
             <i className="fa-solid fa-code" /> Projects
           </a>
         </nav>
