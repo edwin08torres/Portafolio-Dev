@@ -100,12 +100,12 @@ export const AboutSection = () => {
           >
             CV
           </a>
-          <a
+          {/* <a
             href="/project"
             className="flex items-center gap-2 bg-blue-600 px-6 py-2 rounded-lg hover:bg-blue-500 transition hover:animate-wiggle"
           >
             Proyectos
-          </a>
+          </a> */}
         </div>
       </div>
 

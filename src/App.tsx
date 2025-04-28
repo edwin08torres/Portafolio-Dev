@@ -5,6 +5,7 @@ import { HomePage } from "./pages/HomePage";
 // import { AboutPage } from "./pages/AboutPage";
 // import { ProjectPage } from "./pages/ProjectPage";
 import { Footer } from "./components/layout/Footer";
+import { ScrollToTopButton } from "./components/common/ScrollToTopButton";
 
 export function App() {
   return (
@@ -15,6 +16,7 @@ export function App() {
         {/* <Route path="/about" element={<AboutPage />} /> */}
         {/* <Route path="/project" element={<ProjectPage />} /> */}
       </Routes>
+      <ScrollToTopButton />
       <Footer />
     </>
   );
