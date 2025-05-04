@@ -67,7 +67,7 @@ const projects = [
     title: "Especificacion de Logic TKL 915",
     description: "Pagina donde podra ver informacion acerca de logic TKL 915",
     techs: ["React", "TailwindCSS", "Javascript", "AOS", "Marquee"],
-    image: "/assets/project-6.png",
+    image: "/assets/project-tkl.png",
     github: "https://magenta-smakager-fead4b.netlify.app/",
     demo: "https://github.com/edwin08torres/TKL",
     note: "",
