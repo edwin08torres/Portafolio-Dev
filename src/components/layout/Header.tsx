@@ -29,7 +29,7 @@ export const Header: React.FC = () => {
         </a>
       </nav>
 
-      {/* Hamburger button (mobile) */}
+      Hamburger button (mobile)
       <button
         className="block md:block lg:hidden text-white focus:outline-none z-50"
         onClick={() => setMenuOpen(!menuOpen)}
