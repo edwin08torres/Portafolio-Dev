@@ -17,7 +17,7 @@ export const Header: React.FC = () => {
   return (
     <header className="bg-neutral h-12 md:h-16 w-full flex items-center justify-between px-4 lg:justify-center lg:items-center text-white fixed top-0 left-0 z-50">
       {/* navegación desktop */}
-      <nav className="hidden nav-bg lg:flex justify-center space-x-6 items-center w-[24rem] fixed shadow-md shadow-black py-2 rounded-lg border-[1px] border-gray-50 lg:text-lg animate-fade-in">
+      <nav className="hidden nav-bg lg:flex justify-center space-x-6 items-center w-[24rem] fixed shadow-md shadow-black py-2 rounded-lg  lg:text-lg animate-fade-in">
         <a href="/" className="link-nav-lg">
           Home
         </a>

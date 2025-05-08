@@ -5,7 +5,7 @@ import { useState } from "react";
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
 
 // Categorías para filtro
-const categories = ["Todos", "React", "CSS", ".NET", "Javascript"];
+const categories = ["Todos", "React", "CSS", ".NET", "Javascript", "typescript"];
 
 const projects = [
   {
@@ -27,33 +27,15 @@ const projects = [
     demo: "https://shimmering-lebkuchen-346495.netlify.app/",
     note: "",
   },
-  // {
-  //   title: "DBZ Power Ranking",
-  //   description: "App divertida para listar y comparar personajes de DBZ.",
-  //   techs: ["Angular", "CSS", "Javascript"],
-  //   image: "/assets/project-3.png",
-  //   github: "https://github.com/edwin08torres/angular-personaje",
-  //   demo: "https://candid-conkies-68a5a1.netlify.app/",
-  //   note: "",
-  // },
-  // {
-  //   title: "Finanzas App",
-  //   description: "Panel financiero para registrar gastos e ingresos.",
-  //   techs: ["React", "CSS", "JWT", "Javascript"],
-  //   image: "/assets/project-4-1.png",
-  //   github: "https://github.com/edwin08torres/inventario-app",
-  //   demo: "https://glowing-cactus-6eb93d.netlify.app/login",
-  //   note: "Para ingresar, user: admin, pass:123",
-  // },
-  // {
-  //   title: "Markdown Blog CMS",
-  //   description: "Plantilla para Blogs",
-  //   techs: ["Html", "CSS"],
-  //   image: "/assets/project-5.png",
-  //   github: "https://github.com/edwin08torres/fourCard.github.io",
-  //   demo: "https://fourcardedwin.netlify.app/",
-  //   note: "",
-  // },
+  {
+    title: "Loomcraft Shop",
+    description: "Tienda de ropa",
+    techs: ["React", "TailwindCSS", "typescript", "Marquee", "UI"],
+    image: "/assets/loomcraft.png",
+    github: "https://github.com/edwin08torres/clothingshop",
+    demo: "https://loomcraft.netlify.app/",
+    note: "en construccion",
+  },
   {
     title: "Lista de tareas",
     description: "Pagina donde puedes ingresar tareas de tu dia a dia",
@@ -66,7 +48,7 @@ const projects = [
   {
     title: "Especificacion de Logic TKL 915",
     description: "Pagina donde podra ver informacion acerca de logic TKL 915",
-    techs: ["React", "TailwindCSS", "Javascript", "AOS", "Marquee"],
+    techs: ["React", "TailwindCSS", "typescript", "AOS", "Marquee"],
     image: "/assets/project-tkl.png",
     github: "https://github.com/edwin08torres/TKL",
     demo: "https://magenta-smakager-fead4b.netlify.app/",
