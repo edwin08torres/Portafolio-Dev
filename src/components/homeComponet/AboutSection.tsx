@@ -48,17 +48,19 @@ export const AboutSection = () => {
         <h1 className="text-5xl font-bold uppercase">Sobre mí</h1>
 
         {/* Chips */}
-        <div className="flex flex-wrap justify-center gap-3">
-          <span className="px-3 py-1 border rounded-full">
+        <div className="flex flex-wrap justify-center gap-3 ">
+          <span className="px-3 py-1 border rounded-full hover:bg-white cursor-pointer hover:text-black  transition-all ease-in">
             💼 {stats[0].value}+ Proyectos
           </span>
-          <span className="px-3 py-1 border rounded-full">
+          <span className="px-3 py-1 border rounded-full hover:bg-white cursor-pointer hover:text-black  transition-all ease-in">
             ⚡️ {stats[1].value}+ Años Exp.
           </span>
-          <span className="px-3 py-1 border rounded-full">
+          <span className="px-3 py-1 border rounded-full hover:bg-white cursor-pointer hover:text-black  transition-all ease-in">
             🤝 {stats[2].value}+ Clientes
           </span>
-          <span className="px-3 py-1 border rounded-full">🚀 Mobile First</span>
+          <span className="px-3 py-1 border rounded-full hover:bg-white cursor-pointer hover:text-black  transition-all ease-in">
+            🚀 Mobile First
+          </span>
         </div>
 
         <p className="text-lg leading-relaxed max-w-xl">
