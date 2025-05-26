@@ -1,18 +1,18 @@
-import React, { useState, MouseEvent } from "react";
+// import React, { useState, MouseEvent } from "react";
 
 export const Header: React.FC = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
+  // const [menuOpen, setMenuOpen] = useState(false);
 
   // Le damos tipo al parámetro e
-  const handleNavClick = (e: MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const href = e.currentTarget.getAttribute("href")!; // “!” porque sabemos que always habrá href
+  // const handleNavClick = (e: MouseEvent<HTMLAnchorElement>) => {
+  //   e.preventDefault();
+  //   const href = e.currentTarget.getAttribute("href")!; // “!” porque sabemos que always habrá href
 
-    setTimeout(() => {
-      setMenuOpen(false);
-      window.location.href = href;
-    }, 200);
-  };
+  //   setTimeout(() => {
+  //     setMenuOpen(false);
+  //     window.location.href = href;
+  //   }, 200);
+  // };
 
   return (
     <header className="bg-neutral h-12 md:h-16 w-full flex items-center justify-between px-4 lg:justify-center lg:items-center text-white fixed top-0 left-0 z-50">

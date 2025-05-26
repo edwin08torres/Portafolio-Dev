@@ -1,5 +1,5 @@
 import Marquee from "react-fast-marquee";
-import { StatsBlock } from "../layout/StatsBlock";
+// import { StatsBlock } from "../layout/StatsBlock";
 
 const techStack = [
   "/assets/javascript.svg",
