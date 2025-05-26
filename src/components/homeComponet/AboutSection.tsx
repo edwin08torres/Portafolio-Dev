@@ -26,14 +26,14 @@ const techStack = [
 
 const stats = [
   { label: "Proyectos", value: 10 },
-  { label: "Años Exp.", value: 3 },
+  { label: "Años Exp.", value: 5 },
   { label: "Clientes", value: 5 },
 ];
 
 const skills = [
   { name: "React", level: 80, lvlstring: "Intermedio" },
   { name: "Next.js", level: 65, lvlstring: "Intermedio" },
-  { name: "TailwindCSS", level: 75, lvlstring: "Itermedio" },
+  { name: "TailwindCSS", level: 75, lvlstring: "Intermedio" },
   { name: "Typescript", level: 70, lvlstring: "Intermedio" },
   { name: ".NET", level: 65, lvlstring: "Intermedio" },
 ];
@@ -55,26 +55,25 @@ export const AboutSection = () => {
           <span className="px-3 py-1 border rounded-full hover:bg-white cursor-pointer hover:text-black  transition-all ease-in">
             ⚡️ {stats[1].value}+ Años Exp.
           </span>
-          <span className="px-3 py-1 border rounded-full hover:bg-white cursor-pointer hover:text-black  transition-all ease-in">
+          {/* <span className="px-3 py-1 border rounded-full hover:bg-white cursor-pointer hover:text-black  transition-all ease-in">
             🤝 {stats[2].value}+ Clientes
-          </span>
+          </span> */}
           <span className="px-3 py-1 border rounded-full hover:bg-white cursor-pointer hover:text-black  transition-all ease-in">
             🚀 Mobile First
           </span>
         </div>
 
         <p className="text-lg leading-relaxed max-w-xl">
-          Soy desarrollador web con experiencia en tecnologías modernas tanto
-          frontend como backend. Me especializo en crear aplicaciones limpias,
-          responsivas y escalables con herramientas como React, Next.js, Blazor,
-          .NET y TailwindCSS.
-          <br /> <br />
-          Me enfoco en entender las necesidades del proyecto, comunicarme de
-          forma clara y entregar soluciones de calidad que generen valor desde
-          el primer día.
+          I’m a web developer with experience in modern frontend and backend
+          technologies. I specialize in building clean, responsive, and scalable
+          applications using tools like React, Next.js, Blazor, .NET, and
+          TailwindCSS.
+          <br /> <br />I focus on understanding project needs, communicating
+          clearly, and delivering high-quality solutions that add value from day
+          one.
         </p>
 
-        <StatsBlock />
+        {/* <StatsBlock /> */}
 
         {/* Skills bars */}
         <div className="w-full space-y-4 mt-4">

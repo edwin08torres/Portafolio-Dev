@@ -18,10 +18,10 @@ export const Header: React.FC = () => {
     <header className="bg-neutral h-12 md:h-16 w-full flex items-center justify-between px-4 lg:justify-center lg:items-center text-white fixed top-0 left-0 z-50">
       {/* navegación desktop */}
       <nav className="hidden nav-bg lg:flex justify-center space-x-6 items-center w-[24rem] fixed shadow-md shadow-black py-2 rounded-lg  lg:text-lg animate-fade-in">
-        <a href="/" className="link-nav-lg">
+        <a href="#home" className="link-nav-lg">
           Home
         </a>
-        <a href="/#about" className="link-nav-lg">
+        <a href="#about" className="link-nav-lg">
           About
         </a>
         <a href="#project" className="link-nav-lg">
@@ -30,7 +30,7 @@ export const Header: React.FC = () => {
       </nav>
 
       {/* Hamburger button (mobile) */}
-      <button
+      {/* <button
         className="block md:block lg:hidden text-white focus:outline-none z-50"
         onClick={() => setMenuOpen(!menuOpen)}
       >
@@ -47,10 +47,10 @@ export const Header: React.FC = () => {
             d={menuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
           />
         </svg>
-      </button>
+      </button> */}
 
       {/* Menu Mobile */}
-      <div
+      {/* <div
         className={`
           block lg:hidden fixed top-0 left-0 w-full h-[100vh] bg-slate-950 z-40
           transform transition-all duration-700 delay-200 ease-in-out
@@ -72,7 +72,7 @@ export const Header: React.FC = () => {
             <i className="fa-solid fa-code" /> Projects
           </a>
         </nav>
-      </div>
+      </div> */}
     </header>
   );
 };

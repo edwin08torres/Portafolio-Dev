@@ -5,7 +5,14 @@ import { useState } from "react";
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
 
 // Categorías para filtro
-const categories = ["Todos", "React", "CSS", ".NET", "Javascript", "typescript"];
+const categories = [
+  "All",
+  "React",
+  "CSS",
+  ".NET",
+  "Javascript",
+  "typescript",
+];
 
 const projects = [
   {
@@ -27,15 +34,15 @@ const projects = [
     demo: "https://shimmering-lebkuchen-346495.netlify.app/",
     note: "",
   },
-  {
-    title: "Loomcraft Shop",
-    description: "Tienda de ropa",
-    techs: ["React", "TailwindCSS", "typescript", "Marquee", "UI"],
-    image: "/assets/loomcraft.png",
-    github: "https://github.com/edwin08torres/clothingshop",
-    demo: "https://loomcraft.netlify.app/",
-    note: "en construccion",
-  },
+  // {
+  //   title: "Loomcraft Shop",
+  //   description: "Tienda de ropa",
+  //   techs: ["React", "TailwindCSS", "typescript", "Marquee", "UI"],
+  //   image: "/assets/loomcraft.png",
+  //   github: "https://github.com/edwin08torres/clothingshop",
+  //   demo: "https://loomcraft.netlify.app/",
+  //   note: "en construccion",
+  // },
   // {
   //   title: "Lista de tareas",
   //   description: "Pagina donde puedes ingresar tareas de tu dia a dia",
@@ -57,9 +64,9 @@ const projects = [
 ];
 
 export const ProjectSection = () => {
-  const [filter, setFilter] = useState("Todos");
+  const [filter, setFilter] = useState("All");
   const filtered = projects.filter((p) =>
-    filter === "Todos" ? true : p.techs.includes(filter)
+    filter === "All" ? true : p.techs.includes(filter)
   );
 
   return (
@@ -71,17 +78,15 @@ export const ProjectSection = () => {
         {/* Intro */}
         <div className="text-center max-w-3xl px-4 space-y-4">
           <h2 className="text-3xl md:text-4xl font-bold" data-aos="fade-down">
-            Proyectos Destacados
+            Featured Projects
           </h2>
           <p className="text-slate-300 text-lg text-justify" data-aos="fade-up">
-            A lo largo de mi trayectoria he desarrollado soluciones web
-            modernas, tanto para empresas como para proyectos personales. Aquí
-            te muestro algunos de los trabajos que representan mi estilo,
-            habilidades técnicas y enfoque en la experiencia de usuario.
+            Throughout my career, I’ve developed modern web solutions for both
+            businesses and personal projects. Here are some of the works that
+            showcase my style, technical skills, and focus on user experience.
           </p>
         </div>
 
-        {/* Filtros */}
         <div
           className="flex gap-3 flex-wrap justify-center"
           data-aos="fade-up"
@@ -111,7 +116,10 @@ export const ProjectSection = () => {
           data-aos-delay="300"
         >
           {filtered.map((project, i) => (
-            <CardContainer key={i} className="inter-var cursor-pointer">
+            <CardContainer
+              key={i}
+              className="inter-var cursor-pointer md:h-[30rem]"
+            >
               <CardBody className="bg-slate-900 border border-slate-800 rounded-xl p-6 w-full h-full flex flex-col justify-between transition-transform hover:-translate-y-2 hover:shadow-2xl">
                 <CardItem translateZ="80" rotateX={5} rotateZ={-3}>
                   <div className="aspect-video w-full overflow-hidden rounded-md">

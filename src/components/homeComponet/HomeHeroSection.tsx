@@ -1,6 +1,6 @@
 export const HomeHeroSection = () => {
   return (
-    <section className="relative w-full bg-slate-950 text-white h-[100vh] flex flex-col justify-center items-center md:items-center gap-6 overflow-hidden">
+    <section id="home" className="relative w-full bg-slate-950 text-white h-[100vh] flex flex-col justify-center items-center md:items-center gap-6 overflow-hidden">
       {/* Fondo animado waves con gradiente y blur */}
       {/* Wave */}
       <svg
