@@ -1,5 +1,7 @@
 import Marquee from "react-fast-marquee";
 // import { StatsBlock } from "../layout/StatsBlock";
+import TechStackGrid from "../ui/TechStackGrid";
+import GitHubCalendar from "react-github-calendar";
 
 const techStack = [
   "/assets/javascript.svg",
@@ -24,19 +26,31 @@ const techStack = [
   "/assets/hostinger.svg",
 ];
 
+// AboutSection.tsx
+const featuredStack = [
+  "/assets/react.svg",
+  "/assets/nextdotjs.svg",
+  "/assets/tailwindcss.svg",
+  "/assets/typescript.svg",
+  "/assets/dotnet.svg",
+];
+
+// En lugar de techStack ⬇️
+<TechStackGrid items={featuredStack} />;
+
 const stats = [
   { label: "Proyectos", value: 10 },
   { label: "Años Exp.", value: 5 },
   { label: "Clientes", value: 5 },
 ];
 
-const skills = [
-  { name: "React", level: 80, lvlstring: "Intermedio" },
-  { name: "Next.js", level: 65, lvlstring: "Intermedio" },
-  { name: "TailwindCSS", level: 75, lvlstring: "Intermedio" },
-  { name: "Typescript", level: 70, lvlstring: "Intermedio" },
-  { name: ".NET", level: 65, lvlstring: "Intermedio" },
-];
+// const skills = [
+//   { name: "React", level: 80, lvlstring: "Intermedio" },
+//   { name: "Next.js", level: 65, lvlstring: "Intermedio" },
+//   { name: "TailwindCSS", level: 75, lvlstring: "Intermedio" },
+//   { name: "Typescript", level: 70, lvlstring: "Intermedio" },
+//   { name: ".NET", level: 65, lvlstring: "Intermedio" },
+// ];
 
 export const AboutSection = () => {
   return (
@@ -47,7 +61,6 @@ export const AboutSection = () => {
       <div className="relative group max-w-3xl w-full bg-slate-800 bg-opacity-50 backdrop-blur-md rounded-2xl p-8 shadow-xl flex flex-col items-center text-center space-y-6">
         <h1 className="text-5xl font-bold uppercase">Sobre mí</h1>
 
-        {/* Chips */}
         <div className="flex flex-wrap justify-center gap-3 ">
           <span className="px-3 py-1 border rounded-full hover:bg-white cursor-pointer hover:text-black  transition-all ease-in">
             💼 {stats[0].value}+ Proyectos
@@ -76,7 +89,7 @@ export const AboutSection = () => {
         {/* <StatsBlock /> */}
 
         {/* Skills bars */}
-        <div className="w-full space-y-4 mt-4">
+        {/* <div className="w-full space-y-4 mt-4">
           {skills.map((skill) => (
             <div key={skill.name}>
               <div className="flex mb-1 justify-between">
@@ -90,16 +103,26 @@ export const AboutSection = () => {
               </div>
             </div>
           ))}
-        </div>
+        </div> */}
+
+        {/* <TechStackGrid items={featuredStack} /> */}
+
+        <GitHubCalendar
+          username="edwin08torres"
+          blockSize={14} 
+          blockMargin={5}
+          fontSize={14} 
+          colorScheme="dark" 
+        />
 
         {/* Buttons */}
         <div className="flex gap-4 mt-6">
           <a
             href="/doc/CV.pdf"
             download
-            className="flex items-center gap-2 border border-white px-6 py-2 rounded-lg hover:bg-white hover:text-black transition hover:animate-wiggle"
+            className="flex text-lg font-bold items-center gap-2 border border-white px-6 py-2 rounded-lg hover:bg-white hover:text-black transition hover:animate-wiggle"
           >
-            CV
+            CV <i className="text-sm fa-solid fa-file-pdf"></i>
           </a>
           {/* <a
             href="/project"

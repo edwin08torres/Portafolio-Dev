@@ -2,6 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+
+.react-activity-calendar__scroll-container::-webkit-scrollbar {
+  height: 10px;         
+}
+.react-activity-calendar__scroll-container::-webkit-scrollbar-thumb {
+  background: #9db0cf;  
+  border-radius: 9999px;
+}
+
+.calendar-wrapper {
+  scrollbar-width: thin;                
+  scrollbar-color: #3b82f6 transparent;  
+}
+
+.react-activity-calendar__scroll-container
+{
+  background: #1e293b;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
