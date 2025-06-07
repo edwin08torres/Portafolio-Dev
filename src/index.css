@@ -21,6 +21,23 @@
   background: #1e293b;
 }
 
+/* styles/scrollbar.css o index.css */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #1e293b; /* slate-800 */
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #002d75; /* blue-500 */
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #012166; /* blue-600 */
+}
+
+
 @layer base {
   :root {
     --background: 0 0% 100%;

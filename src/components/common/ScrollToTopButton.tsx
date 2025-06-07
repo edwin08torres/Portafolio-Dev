@@ -24,7 +24,7 @@ export const ScrollToTopButton = () => {
       {isVisible && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-[0%] left-5 bg-blue-600 text-white py-1 px-2 md:p-2 rounded-full shadow-lg hover:bg-blue-900 transition-colors z-50 animate-bounce"
+          className="fixed bottom-[1%] left-5 bg-blue-600 text-white py-1 px-2 md:p-2 rounded-full shadow-lg hover:bg-blue-900 transition-all z-50 transform hover:-translate-y-1 focus-visible:outline-2 fade-in-25"
         >
           <i className="fas fa-arrow-up text-lg"></i>
         </button>

@@ -1,94 +1,49 @@
-"use client";
+import { useState, useMemo } from "react";
+import { projects } from "@/data/projects";
+import type { Project, Tech } from "@/types/Project";
 
-import { useState } from "react";
-// import Marquee from "react-fast-marquee";
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
+import { ProjectModal } from "./modal/ProjectModal";
 
-// Categorías para filtro
-const categories = [
-  "All",
-  "React",
-  "CSS",
-  ".NET",
-  "Javascript",
-  "typescript",
-];
+const allCategories: readonly Tech[] = Array.from(
+  new Set(projects.flatMap((p) => p.techs))
+) as Tech[];
 
-const projects = [
-  {
-    title: "MoPetCo Gromming",
-    description:
-      "Pagina que muestrea los servicios grooming, y reserva de citas",
-    techs: ["React", "TailwindCSS", "typescript", "SQL", ".NET"],
-    image: "/assets/project-1.png",
-    github: "https://github.com/DETDevs/MoPetCo.App",
-    demo: "https://mopetco.com/",
-    note: "",
-  },
-  {
-    title: "Coffee Shop Landing",
-    description: "Landing page elegante para una marca de café premium.",
-    techs: ["Html", "CSS", "Javascript"],
-    image: "/assets/project-2.png",
-    github: "https://github.com/edwin08torres/cafeCub/tree/main",
-    demo: "https://shimmering-lebkuchen-346495.netlify.app/",
-    note: "",
-  },
-  // {
-  //   title: "Loomcraft Shop",
-  //   description: "Tienda de ropa",
-  //   techs: ["React", "TailwindCSS", "typescript", "Marquee", "UI"],
-  //   image: "/assets/loomcraft.png",
-  //   github: "https://github.com/edwin08torres/clothingshop",
-  //   demo: "https://loomcraft.netlify.app/",
-  //   note: "en construccion",
-  // },
-  // {
-  //   title: "Lista de tareas",
-  //   description: "Pagina donde puedes ingresar tareas de tu dia a dia",
-  //   techs: ["React", "CSS", "Javascript"],
-  //   image: "/assets/project-6.png",
-  //   github: "https://github.com/edwin08torres/TODOs/tree/main",
-  //   demo: "https://edwin08torres.github.io/TODOs/",
-  //   note: "",
-  // },
-  {
-    title: "Especificacion de Logic TKL 915",
-    description: "Pagina donde podra ver informacion acerca de logic TKL 915",
-    techs: ["React", "TailwindCSS", "typescript", "AOS", "Marquee"],
-    image: "/assets/project-tkl.png",
-    github: "https://github.com/edwin08torres/TKL",
-    demo: "https://magenta-smakager-fead4b.netlify.app/",
-    note: "",
-  },
-];
+const categories = ["All", ...allCategories] as const;
 
 export const ProjectSection = () => {
-  const [filter, setFilter] = useState("All");
-  const filtered = projects.filter((p) =>
-    filter === "All" ? true : p.techs.includes(filter)
+  const [filter, setFilter] = useState<(typeof categories)[number]>("All");
+
+  const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useState<Project | null>(null);
+
+  const filtered = useMemo(
+    () =>
+      filter === "All"
+        ? projects
+        : projects.filter((p) => p.techs.includes(filter as Tech)),
+    [filter]
   );
 
   return (
     <>
       <section
         id="project"
-        className="bg-slate-950 text-white w-full flex flex-col items-center px-4 py-5 gap-16"
+        className="bg-slate-950 text-white flex flex-col items-center px-4 py-16 gap-12"
       >
-        {/* Intro */}
-        <div className="text-center max-w-3xl px-4 space-y-4">
+        <header className="text-center max-w-3xl space-y-4">
           <h2 className="text-3xl md:text-4xl font-bold" data-aos="fade-down">
             Featured Projects
           </h2>
           <p className="text-slate-300 text-lg text-justify" data-aos="fade-up">
             Throughout my career, I’ve developed modern web solutions for both
-            businesses and personal projects. Here are some of the works that
-            showcase my style, technical skills, and focus on user experience.
+            businesses and personal projects. Here are some works that showcase
+            my technical skills and focus on user experience.
           </p>
-        </div>
+        </header>
 
         <div
-          className="flex gap-3 flex-wrap justify-center"
+          className="flex flex-wrap justify-center gap-3"
           data-aos="fade-up"
           data-aos-delay="100"
         >
@@ -108,18 +63,33 @@ export const ProjectSection = () => {
         </div>
       </section>
 
-      {/* Grid de cards 3D */}
-      <section className="bg-slate-950 text-white w-full flex flex-col items-center px-4 py-20 gap-16">
+      <section className="bg-slate-950 text-white flex justify-center px-4 pb-24">
         <div
           className="grid gap-10 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 w-full max-w-6xl"
           data-aos="fade-up"
           data-aos-delay="300"
         >
-          {filtered.map((project, i) => (
+          {filtered.map((project) => (
             <CardContainer
-              key={i}
-              className="inter-var cursor-pointer md:h-[30rem]"
+              key={project.slug}
+              /* 👇 añade relative group */
+              className="relative group inter-var cursor-pointer md:h-[30rem]"
             >
+              {/* ---------- Botón flotante ---------- */}
+              <button
+                onClick={() => {
+                  setSelected(project);
+                  setOpen(true);
+                }}
+                aria-label={`Ver detalles de ${project.title}`}
+                className={`absolute m-auto -bottom-4 z-10 rounded-full
+                p-2 text-white bg-blue-600 hover:bg-blue-500 transition
+                opacity-100 md:opacity-0 md:translate-y-2
+                md:group-hover:opacity-100 md:group-hover:translate-y-0
+            `}
+              >
+                <i className="fa-solid fa-eye text-sm" />
+              </button>
               <CardBody className="bg-slate-900 border border-slate-800 rounded-xl p-6 w-full h-full flex flex-col justify-between transition-transform hover:-translate-y-2 hover:shadow-2xl">
                 <CardItem translateZ="80" rotateX={5} rotateZ={-3}>
                   <div className="aspect-video w-full overflow-hidden rounded-md">
@@ -144,7 +114,7 @@ export const ProjectSection = () => {
                   {project.description}
                 </CardItem>
 
-                {project.note && (
+                {!!project.note && (
                   <CardItem
                     as="p"
                     translateZ="20"
@@ -155,9 +125,9 @@ export const ProjectSection = () => {
                 )}
 
                 <CardItem translateZ="20" className="flex flex-wrap gap-2 mt-4">
-                  {project.techs.map((tech, idx) => (
+                  {project.techs.map((tech) => (
                     <span
-                      key={idx}
+                      key={tech}
                       className="bg-white/10 text-[#aab2d1] text-xs px-2 py-1 rounded"
                     >
                       {tech}
@@ -166,30 +136,36 @@ export const ProjectSection = () => {
                 </CardItem>
 
                 <div className="flex justify-between mt-6">
-                  <CardItem
-                    as="a"
-                    href={project.github}
-                    target="_blank"
-                    translateZ={10}
-                    className="text-xs underline text-[#aab2d1] hover:text-[#3658f1]"
-                  >
-                    GitHub →
-                  </CardItem>
-                  <CardItem
-                    as="a"
-                    href={project.demo}
-                    target="_blank"
-                    translateZ={10}
-                    className="text-xs px-3 py-1 bg-[#aab2d1] text-black rounded hover:bg-[#3658f1]"
-                  >
-                    Ver Demo
-                  </CardItem>
+                  {project.github && (
+                    <CardItem
+                      as="a"
+                      href={project.github}
+                      target="_blank"
+                      translateZ={10}
+                      className="text-xs underline text-[#aab2d1] hover:text-[#3658f1]"
+                    >
+                      GitHub →
+                    </CardItem>
+                  )}
+                  {project.demo && (
+                    <CardItem
+                      as="a"
+                      href={project.demo}
+                      target="_blank"
+                      translateZ={10}
+                      className="text-xs px-3 py-1 bg-[#aab2d1] text-black rounded hover:bg-[#3658f1]"
+                    >
+                      Ver Demo
+                    </CardItem>
+                  )}
                 </div>
               </CardBody>
             </CardContainer>
           ))}
         </div>
       </section>
+      {/* Modal reutilizable */}
+      <ProjectModal open={open} onOpenChange={setOpen} project={selected} />
     </>
   );
 };

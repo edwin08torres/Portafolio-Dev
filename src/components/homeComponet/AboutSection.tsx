@@ -1,151 +1,99 @@
+import { lazy, Suspense } from "react";
 import Marquee from "react-fast-marquee";
-// import { StatsBlock } from "../layout/StatsBlock";
-import TechStackGrid from "../ui/TechStackGrid";
-import GitHubCalendar from "react-github-calendar";
+import TechStackGrid from "@/components/ui/TechStackGrid";
 
-const techStack = [
-  "/assets/javascript.svg",
-  "/assets/typescript.svg",
-  "/assets/css.svg",
-  "/assets/html5.svg",
-  "/assets/react.svg",
-  "/assets/vite.svg",
-  "/assets/nextdotjs.svg",
-  "/assets/blazor.svg",
-  "/assets/dotnet.svg",
-  "/assets/angular.svg",
-  "/assets/git.svg",
-  "/assets/github.svg",
-  "/assets/pwa.svg",
-  "/assets/mysql.svg",
-  "/assets/redis.svg",
-  "/assets/googlecloud.svg",
-  "/assets/htmx.svg",
-  "/assets/databricks.svg",
-  "/assets/devdotto.svg",
-  "/assets/hostinger.svg",
-];
+import { stats, featuredStack, techStack } from "@/data/aboutData";
 
-// AboutSection.tsx
-const featuredStack = [
-  "/assets/react.svg",
-  "/assets/nextdotjs.svg",
-  "/assets/tailwindcss.svg",
-  "/assets/typescript.svg",
-  "/assets/dotnet.svg",
-];
+const GitHubCalendar = lazy(() => import("react-github-calendar"));
 
-// En lugar de techStack ⬇️
-<TechStackGrid items={featuredStack} />;
-
-const stats = [
-  { label: "Proyectos", value: 10 },
-  { label: "Años Exp.", value: 5 },
-  { label: "Clientes", value: 5 },
-];
-
-// const skills = [
-//   { name: "React", level: 80, lvlstring: "Intermedio" },
-//   { name: "Next.js", level: 65, lvlstring: "Intermedio" },
-//   { name: "TailwindCSS", level: 75, lvlstring: "Intermedio" },
-//   { name: "Typescript", level: 70, lvlstring: "Intermedio" },
-//   { name: ".NET", level: 65, lvlstring: "Intermedio" },
-// ];
-
-export const AboutSection = () => {
-  return (
-    <section
-      id="about"
-      className="bg-gradient-to-b from-slate-900 via-slate-950 to-black text-white pt-20 pb-4 md:pb-6 px-4 flex flex-col items-center"
+export const AboutSection = () => (
+  <section
+    id="about"
+    className="bg-gradient-to-b from-slate-900 via-slate-950 to-black text-white py-20 px-4 flex flex-col items-center"
+  >
+    <article
+      className="relative max-w-3xl w-full bg-slate-800/60 backdrop-blur-md rounded-2xl
+                 p-10 shadow-xl flex flex-col items-center text-center space-y-8"
+      data-aos="zoom-in-up"
     >
-      <div className="relative group max-w-3xl w-full bg-slate-800 bg-opacity-50 backdrop-blur-md rounded-2xl p-8 shadow-xl flex flex-col items-center text-center space-y-6">
-        <h1 className="text-5xl font-bold uppercase">Sobre mí</h1>
+      <h2 className="text-4xl md:text-5xl font-bold uppercase">Sobre mí</h2>
 
-        <div className="flex flex-wrap justify-center gap-3 ">
-          <span className="px-3 py-1 border rounded-full hover:bg-white cursor-pointer hover:text-black  transition-all ease-in">
-            💼 {stats[0].value}+ Proyectos
-          </span>
-          <span className="px-3 py-1 border rounded-full hover:bg-white cursor-pointer hover:text-black  transition-all ease-in">
-            ⚡️ {stats[1].value}+ Años Exp.
-          </span>
-          {/* <span className="px-3 py-1 border rounded-full hover:bg-white cursor-pointer hover:text-black  transition-all ease-in">
-            🤝 {stats[2].value}+ Clientes
-          </span> */}
-          <span className="px-3 py-1 border rounded-full hover:bg-white cursor-pointer hover:text-black  transition-all ease-in">
-            🚀 Mobile First
-          </span>
-        </div>
+      <ul className="flex flex-wrap justify-center gap-3">
+        {stats.map(({ label, value }) => (
+          <li
+            key={label}
+            className="px-3 py-1 border rounded-full transition-colors
+                       hover:bg-white hover:text-black select-none"
+          >
+            {value}+ {label}
+          </li>
+        ))}
+        <li
+          className="px-3 py-1 border rounded-full cursor-pointer transition-colors
+                       hover:bg-white hover:text-black"
+        >
+          🚀 Mobile First
+        </li>
+      </ul>
 
-        <p className="text-lg leading-relaxed max-w-xl">
-          I’m a web developer with experience in modern frontend and backend
-          technologies. I specialize in building clean, responsive, and scalable
-          applications using tools like React, Next.js, Blazor, .NET, and
+      <div className="text-lg leading-relaxed max-w-prose space-y-4 text-start">
+        <p>
+          I’m a web developer focused on building clean, responsive, and
+          scalable applications with React, Next.js, Blazor, .NET, and
           TailwindCSS.
-          <br /> <br />I focus on understanding project needs, communicating
+        </p>
+        <p>
+          My approach centers on understanding project needs, communicating
           clearly, and delivering high-quality solutions that add value from day
           one.
         </p>
+      </div>
 
-        {/* <StatsBlock /> */}
+      <TechStackGrid items={featuredStack} />
 
-        {/* Skills bars */}
-        {/* <div className="w-full space-y-4 mt-4">
-          {skills.map((skill) => (
-            <div key={skill.name}>
-              <div className="flex mb-1 justify-between">
-                <span>{skill.name}</span> <span>{skill.lvlstring}</span>
-              </div>
-              <div className="w-full bg-slate-700 rounded-full h-2 overflow-hidden">
-                <div
-                  className="h-2 rounded-full bg-gradient-to-r from-blue-500 via-blue-300 to-blue-500 bg-[length:200%_100%] animate-shimmer origin-left"
-                  style={{ width: `${skill.level}%` }}
-                />
-              </div>
-            </div>
-          ))}
-        </div> */}
-
-        {/* <TechStackGrid items={featuredStack} /> */}
-
+      <Suspense fallback={<span className="text-sm">Cargando aportes…</span>}>
         <GitHubCalendar
           username="edwin08torres"
-          blockSize={14} 
+          blockSize={14}
           blockMargin={5}
-          fontSize={14} 
-          colorScheme="dark" 
+          fontSize={14}
+          colorScheme="dark"
         />
+      </Suspense>
 
-        {/* Buttons */}
-        <div className="flex gap-4 mt-6">
-          <a
-            href="/doc/CV.pdf"
-            download
-            className="flex text-lg font-bold items-center gap-2 border border-white px-6 py-2 rounded-lg hover:bg-white hover:text-black transition hover:animate-wiggle"
-          >
-            CV <i className="text-sm fa-solid fa-file-pdf"></i>
-          </a>
-          {/* <a
-            href="/project"
-            className="flex items-center gap-2 bg-blue-600 px-6 py-2 rounded-lg hover:bg-blue-500 transition hover:animate-wiggle"
-          >
-            Proyectos
-          </a> */}
-        </div>
-      </div>
+      <a
+        href="/doc/CV.pdf"
+        download
+        className="flex items-center gap-2 border border-white px-6 py-2 rounded-lg
+                   font-bold hover:bg-white hover:text-black transition hover:animate-wiggle"
+      >
+        CV <i className="fa-solid fa-file-pdf text-sm" />
+      </a>
+    </article>
 
-      {/* Carousel tech stack */}
-      <div className="w-full md:w-3/4 py-8">
-        <Marquee gradient={false} speed={40} pauseOnHover>
-          {techStack.map((src, i) => (
-            <img
-              key={i}
-              src={src}
-              alt={src.split("/").pop()?.replace(".svg", "")}
-              className="h-12 mx-4 opacity-80 grayscale invert hover:grayscale-0 hover:invert-0 transition"
-            />
-          ))}
-        </Marquee>
-      </div>
-    </section>
-  );
-};
+    {/* ---------- Marquee completo ---------- */}
+    <div className="w-full md:w-3/4 py-10">
+      <Marquee
+        gradient={false}
+        speed={40}
+        pauseOnHover
+        play={
+          !window.matchMedia("(prefers-reduced-motion: reduce)")
+            .matches /* respeta accesibilidad */
+        }
+      >
+        {techStack.map((src) => (
+          <img
+            key={src}
+            src={src}
+            alt={src.split("/").pop()?.replace(".svg", "")}
+            loading="lazy"
+            aria-hidden="true"
+            className="h-12 mx-5 opacity-80 grayscale invert
+                       hover:grayscale-0 hover:invert-0 transition"
+          />
+        ))}
+      </Marquee>
+    </div>
+  </section>
+);

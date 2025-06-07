@@ -18,6 +18,7 @@ export default {
         wave: "waveMotion 6s ease-in-out infinite",
         shimmer: "shimmer 3s linear infinite",
         loadinglvl: "loadinglvl 1.5s ease-out forwards",
+        popinviolent: "popinviolent 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)",
       },
       keyframes: {
         fadeIn: {
@@ -117,6 +118,22 @@ export default {
         loadinglvl: {
           "0%": { transform: "scaleX(0)" },
           "100%": { transform: "scaleX(1)" },
+        },
+        popinviolent: {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(100%) scale(0.6)",
+          },
+          "60%": {
+            opacity: "1",
+            transform: "translateY(-20px) scale(1.05)",
+          },
+          "80%": {
+            transform: "translateY(10px) scale(0.97)",
+          },
+          "100%": {
+            transform: "translateY(0) scale(1)",
+          },
         },
       },
       borderRadius: {

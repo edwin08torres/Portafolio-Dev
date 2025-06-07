@@ -7,10 +7,10 @@ interface Props {
 export default function TechStackGrid({ items }: Props) {
   return (
     <motion.div
-      className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-6 place-items-center w-full"
+      className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-6 place-items-center w-full cursor-pointer"
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{ once: true, amount: 0.1 }}
       variants={{
         hidden: { opacity: 0, scale: 0.95 },
         visible: {
