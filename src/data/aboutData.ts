@@ -4,7 +4,7 @@ import type { Stat, TechIcon } from "@/types/About";
 export const stats: Stat[] = [
   { label: "Proyectos", value: 10 },
   { label: "Años Exp.", value: 5 },
-  { label: "Clientes", value: 5 },
+  // { label: "Clientes", value: 5 },
 ];
 
 export const featuredStack: TechIcon[] = [
