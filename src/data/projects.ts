@@ -76,19 +76,27 @@ export const projects: Project[] = [
     details: `
       ### 🧩 El reto
       Se necesitaba una aplicación móvil interactiva que permitiera a los usuarios explorar una lista de Pokemones y acceder a sus características, estadísticas y tipos de forma rápida e intuitiva.
-      
+
       ### 🛠️ Solución
       - **Frontend:** React Native + TypeScript + CSS.
       - Integración con la API pública de **PokeAPI** para obtener datos en tiempo real.
       - Diseño optimizado con listas dinámicas y navegación fluida entre pantallas.
       - Implementación de búsqueda y filtrado para encontrar Pokemones específicos.
       - Uso de animaciones y transiciones suaves para mejorar la experiencia del usuario.
-      
+
       ### 🚀 Impacto
       La app ofrece una experiencia amigable y accesible para fanáticos y curiosos, centralizando información oficial de los Pokemones en un solo lugar y en un formato cómodo para dispositivos móviles.
     `,
 
-    techs: ["React Native", "CSS", "typescript", "AOS", "Marquee"],
+    techs: [
+      "React Native",
+      "typescript",
+      "Expo",
+      "React Navigation",
+      "PokeAPI",
+      "Axios",
+      "CSS-in-JS",
+    ],
     image: "/assets/pokedex.jpg",
     github: "https://github.com/edwin08torres/pokeapi-native",
     demo: "",

@@ -9,13 +9,18 @@ export type Tech =
   | "CSS"
   | "Javascript"
   | "AOS"
-  | "Marquee";
+  | "Marquee"
+  | "Expo"
+  | "React Navigation"
+  | "PokeAPI"
+  | "Axios"
+  | "CSS-in-JS";
 
 export interface Project {
   slug: string;
   title: string;
   description: string;
-  details: string; 
+  details: string;
   techs: readonly Tech[];
   image: string;
   github?: string;
