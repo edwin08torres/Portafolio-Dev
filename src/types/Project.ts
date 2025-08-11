@@ -1,5 +1,6 @@
 export type Tech =
   | "React"
+  | "React Native"
   | "TailwindCSS"
   | "typescript"
   | ".NET"
