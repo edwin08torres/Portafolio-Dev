@@ -25,7 +25,7 @@ export const ProjectModal = ({ open, onOpenChange, project }: Props) => (
             <img
               src={project.image}
               alt={project.title}
-              className="rounded-md object-cover w-full max-h-60 md:max-h-[30rem]"
+              className="rounded-md object-contain w-full max-h-60 md:max-h-[50rem] md:w-[10000rem]"
             />
 
             <div className="text-white text-sm md:text-base leading-relaxed break-words whitespace-pre-line w-full ">

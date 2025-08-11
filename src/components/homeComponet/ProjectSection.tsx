@@ -72,10 +72,8 @@ export const ProjectSection = () => {
           {filtered.map((project) => (
             <CardContainer
               key={project.slug}
-              /* 👇 añade relative group */
               className="relative group inter-var cursor-pointer md:h-[30rem]"
             >
-              {/* ---------- Botón flotante ---------- */}
               <button
                 onClick={() => {
                   setSelected(project);
@@ -164,7 +162,6 @@ export const ProjectSection = () => {
           ))}
         </div>
       </section>
-      {/* Modal reutilizable */}
       <ProjectModal open={open} onOpenChange={setOpen} project={selected} />
     </>
   );
