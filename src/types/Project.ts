@@ -11,10 +11,6 @@ export type Tech =
   | "AOS"
   | "Marquee"
   | "Expo"
-  | "React Navigation"
-  | "PokeAPI"
-  | "Axios"
-  | "CSS-in-JS";
 
 export interface Project {
   slug: string;
