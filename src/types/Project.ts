@@ -8,8 +8,6 @@ export type Tech =
   | "Html"
   | "CSS"
   | "Javascript"
-  | "AOS"
-  | "Marquee"
   | "Expo"
 
 export interface Project {

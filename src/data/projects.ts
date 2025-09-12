@@ -63,7 +63,7 @@ export const projects: Project[] = [
       Mejoró la percepción del producto en distribuidores minoristas y se convirtió en un recurso útil para usuarios interesados en conocer las especificaciones completas antes de comprar.
     `,
 
-    techs: ["React", "TailwindCSS", "typescript", "AOS", "Marquee"],
+    techs: ["React", "TailwindCSS", "typescript"],
     image: "/assets/project-tkl.png",
     github: "https://github.com/edwin08torres/TKL",
     demo: "https://magenta-smakager-fead4b.netlify.app/",
