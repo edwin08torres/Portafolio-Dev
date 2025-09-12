@@ -1,13 +1,11 @@
 import { lazy, Suspense, useMemo } from "react";
 import Marquee from "react-fast-marquee";
 import TechStackGrid from "@/components/ui/TechStackGrid";
-import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { stats, featuredStack, techStack } from "@/data/aboutData";
 
 const GitHubCalendar = lazy(() => import("react-github-calendar"));
 
 export const AboutSection = () => {
-  const reduced = usePrefersReducedMotion();
   const statItems = useMemo(() => stats, []);
 
   matchMedia("(prefers-reduced-motion: reduce)").matches;

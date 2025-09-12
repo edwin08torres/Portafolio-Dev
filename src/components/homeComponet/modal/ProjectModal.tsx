@@ -1,5 +1,4 @@
 // src/components/homeComponent/modal/ProjectModal.tsx
-import React from "react";
 import {
   Dialog,
   DialogContent,
