@@ -16,7 +16,7 @@ export const projects: Project[] = [
       - **Integración:** Email + Medios de contacto + Reservaciones 
         
       ### Impacto
-      Aumento del *80 %* de reservas online en el primer mes.
+      Aumento considerablemente las reservas online en el primer mes.
     `,
     techs: ["React", "TailwindCSS", "typescript", "SQL", ".NET"],
     image: "/assets/project-1.png",
@@ -35,9 +35,7 @@ export const projects: Project[] = [
         - **Frontend:** HTML, CSS y JavaScript puros, enfocados en rendimiento y estética.
         - Se diseñó una landing page minimalista con enfoque visual en las imágenes y la experiencia del usuario.
         - Se incorporó un menú interactivo y secciones informativas de fácil navegación.
-
-        ### 🚀 Impacto
-        Incremento del *70 %* en visitas desde redes sociales y mayor retención gracias al diseño visual coherente con la marca.
+        
       `,
 
     techs: ["Html", "CSS", "Javascript"],
@@ -45,6 +43,8 @@ export const projects: Project[] = [
     github: "https://github.com/edwin08torres/cafeCub",
     demo: "https://shimmering-lebkuchen-346495.netlify.app/",
   },
+  //  ### 🚀 Impacto
+  //       Incremento del *70 %* en visitas desde redes sociales y mayor retención gracias al diseño visual coherente con la marca.
   {
     slug: "logic-tkl-915",
     title: "Especificación de Logic TKL 915",
