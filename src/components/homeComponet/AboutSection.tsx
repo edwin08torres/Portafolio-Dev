@@ -69,7 +69,7 @@ export const AboutSection = () => {
         </Suspense>
 
         <a
-          href="/doc/CV.pdf"
+          href="/doc/EdwinTorrezCV.pdf"
           download
           className="inline-flex items-center gap-2 border border-white px-6 py-2 rounded-lg font-bold hover:bg-white hover:text-black transition"
         >
