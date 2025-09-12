@@ -25,7 +25,6 @@ export default function ProjectModal({ open, onOpenChange, project }: Props) {
     Array.isArray((project as any)?.impact) &&
     (project as any).impact.length > 0;
 
-  // Tipado TS sin errores (usamos `any` solo para la prop especial `inline`)
   const markdownComponents: Components = {
     a: (props) => (
       <a
@@ -80,7 +79,7 @@ export default function ProjectModal({ open, onOpenChange, project }: Props) {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/25 to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-6 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-            <div className="min-w-0">
+            {/* <div className="min-w-0">
               <DialogHeader className="p-0">
                 <DialogTitle className="text-white font-semibold leading-tight text-[clamp(1.25rem,2.2vw,2rem)] text-balance">
                   {project.title}
@@ -91,7 +90,7 @@ export default function ProjectModal({ open, onOpenChange, project }: Props) {
                   {(project as any).subtitle}
                 </p>
               )}
-            </div>
+            </div> */}
 
             {project.techs?.length ? (
               <div className="flex flex-wrap gap-2">
@@ -109,10 +108,7 @@ export default function ProjectModal({ open, onOpenChange, project }: Props) {
         </header>
 
         <ScrollArea className="min-h-0 overflow-x-hidden">
-          <div
-            className="pt-6 pb-2 text-slate-200 w-full max-w-full"
-            lang="es"
-          >
+          <div className="pt-6 pb-2 text-slate-200 w-full max-w-full" lang="es">
             <section
               className={`min-w-0 ${
                 hasImpact
