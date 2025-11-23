@@ -1,61 +1,75 @@
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+
 export const HomeHeroSection = () => {
-  const reduced =
-    typeof window !== "undefined" &&
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const ref = useRef<HTMLElement | null>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+
+  const textY = useTransform(scrollYProgress, [0, 1], [0, -120]);
+  const textScale = useTransform(scrollYProgress, [0, 1], [1, 0.2]);
+  const textOpacity = useTransform(scrollYProgress, [0, 1], [1, 0.85]);
+
+  const glowTopY = useTransform(scrollYProgress, [0, 1], [40, -420]);
+  const glowBottomY = useTransform(scrollYProgress, [0, 1], [-40, 120]);
+
+  const noiseOpacity = useTransform(scrollYProgress, [0, 1], [0.08, 0.02]);
+
   return (
     <section
       id="home"
-      className="relative w-full bg-slate-950 text-white h-[100vh] flex flex-col justify-center items-center md:items-center gap-6 overflow-hidden"
+      ref={ref}
+      className="relative flex h-[100vh] w-full flex-col items-center justify-center gap-6 overflow-hidden bg-slate-950 text-white"
     >
-      {/* Fondo animado waves con gradiente y blur */}
-      {/* Wave */}
-      <svg
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 1420 320"
-        className={`pointer-events-none absolute left-0 w-[120%] md:w-[130%] xl:w-[115%] 2xl:w-[105%] h-[26rem] -bottom-32 md:-bottom-28 z-0 ${
-          reduced ? "" : "animate-wave"
-        }`}
-      >
-        <path
-          fill="#1f2f57"
-          d="M0,64L30,80C60,96,120,128,180,128C240,128,300,96,360,74.7C420,53,480,43,540,58.7C600,75,660,117,720,128C780,139,840,117,900,128C960,139,1020,181,1080,186.7C1140,192,1200,160,1260,138.7C1320,117,1380,107,1410,101.3L1440,96L1440,320L0,320Z"
-        />
-      </svg>
-
-      {/* Overlay noise */}
-      <img
+      <motion.img
         src="/assets/noise.png"
         alt="noise"
-        className="absolute opacity-5 w-full h-full object-cover"
+        className="absolute h-full w-full object-cover"
+        style={{ opacity: noiseOpacity }}
       />
 
-      {/* Overlay oscuro */}
-      <div className="absolute inset-0 bg-black bg-opacity-60 z-0"></div>
+      <div className="absolute inset-0 bg-black bg-opacity-60 z-0" />
 
-      {/* Contenido principal */}
-      <div className="flex flex-col justify-center items-center md:items-center relative z-10 text-center md:text-center">
-        <h2 className="text-blue-300 text-lg md:text-2xl font-semibold stroke-text typing1">
+      <motion.div
+        style={{ y: glowTopY }}
+        className="pointer-events-none absolute -left-32 -top-24 h-64 w-64 rounded-full bg-blue-500/15 blur-3xl"
+      />
+
+      <motion.div
+        style={{ y: glowBottomY }}
+        className="pointer-events-none absolute -right-40 bottom-0 h-72 w-72 rounded-full bg-indigo-500/15 blur-3xl"
+      />
+
+      <motion.div
+        style={{ y: textY, scale: textScale, opacity: textOpacity }}
+        className="relative z-10 flex flex-col items-center justify-center text-center md:items-center md:text-center"
+      >
+        <h2 className="typing1 text-lg font-semibold text-blue-300 md:text-2xl stroke-text">
           Hey, I'm
         </h2>
 
-        <h1 className="text-4xl md:text-[5rem] md:py-2 uppercase stroke-text typing2">
+        <h1 className="typing2 text-4xl uppercase md:py-2 md:text-[5rem] stroke-text">
           Edwin Torrez
         </h1>
+
         <h2
-          className="uppercase text-lg md:text-2xl tracking-widest stroke-text font-semibold typing2"
+          className="typing2 uppercase text-lg tracking-widest font-semibold md:text-2xl stroke-text"
           style={{ animationDelay: "3s" }}
         >
           But you can call me Alex
         </h2>
 
         <p
-          className="text-white text-sm md:text-xl fade-in-late"
+          className="fade-in-late text-sm text-white md:text-xl"
           style={{ animationDelay: "5s" }}
         >
-          I'm a systems engineer <br />& front-end web developer
+          Systems Engineer <br />
+          &amp; front-end web developer
         </p>
-      </div>
+      </motion.div>
     </section>
   );
 };

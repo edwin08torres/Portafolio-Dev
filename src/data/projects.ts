@@ -43,8 +43,6 @@ export const projects: Project[] = [
     github: "https://github.com/edwin08torres/cafeCub",
     demo: "https://shimmering-lebkuchen-346495.netlify.app/",
   },
-  //  ### 🚀 Impacto
-  //       Incremento del *70 %* en visitas desde redes sociales y mayor retención gracias al diseño visual coherente con la marca.
   {
     slug: "logic-tkl-915",
     title: "Especificación de Logic TKL 915",
@@ -97,4 +95,35 @@ export const projects: Project[] = [
     github: "https://github.com/edwin08torres/pokeapi-native",
     demo: "",
   },
+  {
+    slug: "WeatherBit",
+    title: "Consulta el clima actual en USA y su pronóstico a 5 días",
+    description:
+      "Aplicación web que permite consultar el clima actual y el pronóstico a 5 días en cualquier ciudad de Estados Unidos ingresando únicamente el código postal.",
+    details: `
+      ### 🧩 El reto
+      Desarrollar una aplicación web ligera, rápida y accesible que ofreciera información meteorológica confiable basada en un código postal, mostrando datos actuales y un pronóstico extendido de forma clara y visual.
+
+      ### 🛠️ Solución
+      - **Frontend:** Angular + TypeScript, con diseño responsivo en **Bootstrap**.
+      - Consumo directo de la API pública **WeatherBit** para obtener clima en tiempo real.
+      - Implementación de búsqueda por ZIP Code con manejo de estados (cargando, error, datos).
+      - Componentes reutilizables y arquitectura modular para facilitar escalabilidad.
+      - UI limpia y moderna, optimizada para desktop y mobile.
+
+      ### 🚀 Impacto
+      La aplicación entrega una experiencia simple pero poderosa: permite obtener información meteorológica precisa en segundos, con una interfaz clara y profesional, ideal para usuarios generales o entornos donde se requiera una consulta rápida del clima.
+  `,
+
+    techs: [
+      "Angular",
+      "typescript",
+      "Bootstrap",
+      "WeatherBit API",
+    ],
+    image: "/assets/project-7.png",
+    github: "https://github.com/edwin08torres/WeatherBit",
+    demo: "https://weatherbittesting.netlify.app/"
+  }
+
 ];

@@ -9,6 +9,9 @@ export type Tech =
   | "CSS"
   | "Javascript"
   | "Expo"
+  | "Angular"
+  | "Bootstrap"
+  | "WeatherBit API";
 
 export interface Project {
   slug: string;
