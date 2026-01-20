@@ -68,9 +68,7 @@ export const AboutSection = () => {
 
         <Suspense
           fallback={
-            <span className="text-sm opacity-80">
-              Loading contributions…
-            </span>
+            <span className="text-sm opacity-80">Loading contributions…</span>
           }
         >
           <GitHubCalendar
@@ -83,11 +81,11 @@ export const AboutSection = () => {
         </Suspense>
 
         <a
-          href="/doc/EdwinTorrezCV.pdf"
+          href="/doc/EdwinTorrez_Resumen.pdf"
           download
           className="inline-flex items-center gap-2 border border-white px-6 py-2 rounded-lg font-bold hover:bg-white hover:text-black transition"
         >
-          Download CV{" "}
+          Download CV
           <i className="fa-solid fa-file-pdf text-sm" aria-hidden="true" />
         </a>
       </motion.article>
