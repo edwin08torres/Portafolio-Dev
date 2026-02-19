@@ -11,6 +11,11 @@ export const featuredStack = [
   { src: "/assets/tailwindcss.svg", name: "Tailwind" },
   { src: "/assets/typescript.svg", name: "TypeScript" },
   { src: "/assets/dotnet.svg", name: ".NET" },
+  { src: "/assets/javascript.svg", name: "JavaScript" },
+  { src: "/assets/vite.svg", name: "Vite" },
+  { src: "/assets/blazor.svg", name: "Blazor" },
+  { src: "/assets/git.svg", name: "Git" },
+  { src: "/assets/mysql.svg", name: "MySQL" },
 ];
 
 export const techStack = [

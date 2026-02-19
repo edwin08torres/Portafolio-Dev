@@ -216,7 +216,7 @@ export const HomeHeroSection = () => {
               </svg>
             </a>
             <a
-              href="/doc/EdwinTorrez_Resumen.pdf"
+              href="/doc/EdwinTorres_CV.pdf"
               download
               className="btn-outline px-8 py-3.5 text-white rounded-xl font-semibold text-sm tracking-wide text-center"
             >
