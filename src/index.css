@@ -2,41 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .react-activity-calendar__scroll-container::-webkit-scrollbar {
-  height: 10px;         
+  height: 10px;
 }
 .react-activity-calendar__scroll-container::-webkit-scrollbar-thumb {
-  background: #9db0cf;  
+  background: #9db0cf;
   border-radius: 9999px;
 }
 
 .calendar-wrapper {
-  scrollbar-width: thin;                
-  scrollbar-color: #3b82f6 transparent;  
+  scrollbar-width: thin;
+  scrollbar-color: #3b82f6 transparent;
 }
 
-.react-activity-calendar__scroll-container
-{
+.react-activity-calendar__scroll-container {
   background: #1e293b;
 }
 
-/* styles/scrollbar.css o index.css */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #1e293b; /* slate-800 */
+  background: #1e293b;
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #002d75; /* blue-500 */
+  background: #002d75;
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #012166; /* blue-600 */
+  background: #012166;
 }
-
 
 @layer base {
   :root {
@@ -64,7 +60,7 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-    --radius: 0.5rem
+    --radius: 0.5rem;
   }
   .dark {
     --background: 222.2 84% 4.9%;
@@ -90,7 +86,7 @@
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%
+    --chart-5: 340 75% 55%;
   }
 }
 

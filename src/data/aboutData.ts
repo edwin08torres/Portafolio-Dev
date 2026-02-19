@@ -1,39 +1,37 @@
-// src/data/aboutData.ts
-import type { Stat, TechIcon } from "@/types/About";
+import type { Stat } from "@/types/About";
 
 export const stats: Stat[] = [
   { label: "Proyectos", value: 10 },
   { label: "Años Exp.", value: 5 },
-  // { label: "Clientes", value: 5 },
 ];
 
-export const featuredStack: TechIcon[] = [
-  "/assets/react.svg",
-  "/assets/nextdotjs.svg",
-  "/assets/tailwindcss.svg",
-  "/assets/typescript.svg",
-  "/assets/dotnet.svg",
+export const featuredStack = [
+  { src: "/assets/react.svg", name: "React" },
+  { src: "/assets/nextdotjs.svg", name: "Next.js" },
+  { src: "/assets/tailwindcss.svg", name: "Tailwind" },
+  { src: "/assets/typescript.svg", name: "TypeScript" },
+  { src: "/assets/dotnet.svg", name: ".NET" },
 ];
 
-export const techStack: TechIcon[] = [
-  "/assets/javascript.svg",
-  "/assets/typescript.svg",
-  "/assets/css.svg",
-  "/assets/html5.svg",
-  "/assets/react.svg",
-  "/assets/vite.svg",
-  "/assets/nextdotjs.svg",
-  "/assets/blazor.svg",
-  "/assets/dotnet.svg",
-  "/assets/angular.svg",
-  "/assets/git.svg",
-  "/assets/github.svg",
-  "/assets/pwa.svg",
-  "/assets/mysql.svg",
-  "/assets/redis.svg",
-  "/assets/googlecloud.svg",
-  "/assets/htmx.svg",
-  "/assets/databricks.svg",
-  "/assets/devdotto.svg",
-  "/assets/hostinger.svg",
+export const techStack = [
+  { src: "/assets/javascript.svg", name: "JavaScript" },
+  { src: "/assets/typescript.svg", name: "TypeScript" },
+  { src: "/assets/css.svg", name: "CSS" },
+  { src: "/assets/html5.svg", name: "HTML" },
+  { src: "/assets/react.svg", name: "React" },
+  { src: "/assets/vite.svg", name: "Vite" },
+  { src: "/assets/nextdotjs.svg", name: "Next.js" },
+  { src: "/assets/blazor.svg", name: "Blazor" },
+  { src: "/assets/dotnet.svg", name: ".NET" },
+  { src: "/assets/angular.svg", name: "Angular" },
+  { src: "/assets/git.svg", name: "Git" },
+  { src: "/assets/github.svg", name: "GitHub" },
+  { src: "/assets/pwa.svg", name: "PWA" },
+  { src: "/assets/mysql.svg", name: "MySQL" },
+  { src: "/assets/redis.svg", name: "Redis" },
+  { src: "/assets/googlecloud.svg", name: "GCP" },
+  { src: "/assets/htmx.svg", name: "HTMX" },
+  { src: "/assets/databricks.svg", name: "Databricks" },
+  { src: "/assets/devdotto.svg", name: "Dev.to" },
+  { src: "/assets/hostinger.svg", name: "Hostinger" },
 ];

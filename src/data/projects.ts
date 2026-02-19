@@ -18,8 +18,8 @@ export const projects: Project[] = [
       ### Impacto
       Aumento considerablemente las reservas online en el primer mes.
     `,
-    techs: ["React", "TailwindCSS", "typescript", "SQL", ".NET"],
-    image: "/assets/project-1.png",
+    techs: ["React", "TailwindCSS", "TypeScript", "SQL", ".NET"],
+    image: "/assets/project-1.webp",
     github: "https://github.com/DETDevs/MoPetCo.App",
     demo: "https://mopetco.com/",
   },
@@ -38,8 +38,8 @@ export const projects: Project[] = [
         
       `,
 
-    techs: ["Html", "CSS", "Javascript"],
-    image: "/assets/project-2.png",
+    techs: ["HTML", "CSS", "JavaScript"],
+    image: "/assets/project-2.webp",
     github: "https://github.com/edwin08torres/cafeCub",
     demo: "https://shimmering-lebkuchen-346495.netlify.app/",
   },
@@ -61,8 +61,8 @@ export const projects: Project[] = [
       Mejoró la percepción del producto en distribuidores minoristas y se convirtió en un recurso útil para usuarios interesados en conocer las especificaciones completas antes de comprar.
     `,
 
-    techs: ["React", "TailwindCSS", "typescript"],
-    image: "/assets/project-tkl.png",
+    techs: ["React", "TailwindCSS", "TypeScript"],
+    image: "/assets/project-tkl.webp",
     github: "https://github.com/edwin08torres/TKL",
     demo: "https://magenta-smakager-fead4b.netlify.app/",
   },
@@ -88,10 +88,10 @@ export const projects: Project[] = [
 
     techs: [
       "React Native",
-      "typescript",
+      "TypeScript",
       "Expo",
     ],
-    image: "/assets/pokedex.jpg",
+    image: "/assets/pokedex.webp",
     github: "https://github.com/edwin08torres/pokeapi-native",
     demo: "",
   },
@@ -117,11 +117,11 @@ export const projects: Project[] = [
 
     techs: [
       "Angular",
-      "typescript",
+      "TypeScript",
       "Bootstrap",
       "WeatherBit API",
     ],
-    image: "/assets/project-7.png",
+    image: "/assets/project-7.webp",
     github: "https://github.com/edwin08torres/WeatherBit",
     demo: "https://weatherbittesting.netlify.app/"
   }

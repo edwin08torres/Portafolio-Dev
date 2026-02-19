@@ -3,4 +3,7 @@ export interface Stat {
   value: number;
 }
 
-export type TechIcon = string;
+export interface TechItem {
+  src: string;
+  name: string;
+}

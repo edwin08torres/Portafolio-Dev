@@ -1,159 +1,152 @@
-import { useState, useMemo } from "react";
+import { useState, useRef } from "react";
 import { projects } from "@/data/projects";
-import type { Project, Tech } from "@/types/Project";
+import type { Project } from "@/types/Project";
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
-import ProjectModal  from "./modal/ProjectModal";
-
-const allCategories: Tech[] = Array.from(
-  new Set(projects.flatMap((p) => p.techs))
-) as Tech[];
-const categories = ["All", ...allCategories] as const;
+import ProjectModal from "./modal/ProjectModal";
+import { Eye, Code2, ExternalLink } from "lucide-react";
+import { motion, useInView } from "framer-motion";
 
 export const ProjectSection = () => {
-  const [filter, setFilter] = useState<(typeof categories)[number]>("All");
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<Project | null>(null);
 
-  const filtered = useMemo(
-    () =>
-      filter === "All"
-        ? projects
-        : projects.filter((p) => p.techs.includes(filter as Tech)),
-    [filter]
-  );
+  const ref = useRef<HTMLElement | null>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   return (
     <>
       <section
         id="project"
-        className="bg-slate-950 text-white flex flex-col items-center px-4 py-16 gap-12"
+        ref={ref}
+        className="relative bg-[#020617] text-white flex flex-col items-center px-4 pt-24 pb-8 overflow-hidden"
       >
-        <header className="text-center max-w-3xl space-y-4">
-          <h2 className="text-3xl md:text-4xl font-bold">Featured Projects</h2>
-          <p className="text-slate-300 text-lg text-justify">
+        <div className="pointer-events-none absolute left-0 top-1/4 h-[400px] w-[400px] rounded-full bg-blue-600/5 blur-[100px]" />
+        <div className="pointer-events-none absolute right-0 bottom-1/4 h-[350px] w-[350px] rounded-full bg-violet-600/5 blur-[100px]" />
+
+        <motion.header
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7 }}
+          className="text-center max-w-2xl space-y-4"
+        >
+          <div className="flex items-center justify-center gap-2 mb-3">
+            <Code2 size={16} className="text-blue-400" />
+            <span className="text-xs tracking-[0.2em] uppercase text-blue-400 font-medium">
+              My work
+            </span>
+            <Code2 size={16} className="text-blue-400" />
+          </div>
+          <h2 className="section-title text-4xl md:text-5xl">
+            Featured Projects
+          </h2>
+          <p className="text-slate-400 text-sm md:text-base max-w-lg mx-auto leading-relaxed">
             A selection of web work for businesses and personal projects,
             focused on UX and performance.
           </p>
-        </header>
-
-        <div
-          className="flex flex-wrap justify-center gap-3"
-          role="toolbar"
-          aria-label="Project filters"
-        >
-          {categories.map((cat) => {
-            const selected = filter === cat;
-            return (
-              <button
-                key={cat}
-                type="button"
-                onClick={() => setFilter(cat)}
-                aria-pressed={selected}
-                className={`px-4 py-1 rounded-full outline-offset-2 transition ${
-                  selected
-                    ? "bg-blue-600 text-white"
-                    : "bg-gray-700 text-gray-300 hover:bg-gray-600"
-                }`}
-              >
-                {cat}
-              </button>
-            );
-          })}
-        </div>
+        </motion.header>
       </section>
 
-      <section className="bg-slate-950 text-white flex justify-center px-4 pb-24">
-        <div className="grid gap-10 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 w-full max-w-6xl">
-          {filtered.map((project) => (
-            <CardContainer
+      <section className="bg-[#020617] text-white flex justify-center px-4 pb-24">
+        <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 w-full max-w-6xl">
+          {projects.map((project, i) => (
+            <motion.div
               key={project.slug}
-              className="relative group inter-var cursor-pointer md:h-[30rem]"
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.1 * i }}
             >
-              <button
-                onClick={() => {
-                  setSelected(project);
-                  setOpen(true);
-                }}
-                aria-label={`Open details for ${project.title}`}
-                className="absolute m-auto -bottom-4 z-10 rounded-full p-2 text-white bg-blue-600 hover:bg-blue-500 transition opacity-100 md:opacity-0 md:translate-y-2 md:group-hover:opacity-100 md:group-hover:translate-y-0"
-              >
-                <i className="fa-solid fa-eye text-sm" aria-hidden="true" />
-              </button>
-
-              <CardBody className="bg-slate-900 border border-slate-800 rounded-xl p-6 w-full h-full flex flex-col justify-between transition-transform hover:-translate-y-2 hover:shadow-2xl">
-                <CardItem translateZ="80" rotateX={5} rotateZ={-3}>
-                  <div className="aspect-video w-full overflow-hidden rounded-md">
-                    <img
-                      src={project.image}
-                      alt={`${project.title} preview`}
-                      loading="lazy"
-                      decoding="async"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </CardItem>
-
-                <CardItem translateZ="40" className="mt-4 text-xl font-bold">
-                  {project.title}
-                </CardItem>
-
-                <CardItem
-                  as="p"
-                  translateZ="30"
-                  className="text-sm text-neutral-400 mt-2 line-clamp-3"
+              <CardContainer className="relative group inter-var cursor-pointer md:h-[30rem]">
+                <button
+                  onClick={() => {
+                    setSelected(project);
+                    setOpen(true);
+                  }}
+                  aria-label={`Open details for ${project.title}`}
+                  className="absolute m-auto -bottom-4 z-10 rounded-xl p-2.5 text-white bg-gradient-to-r from-blue-600 to-violet-600 hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 opacity-100 md:opacity-0 md:translate-y-2 md:group-hover:opacity-100 md:group-hover:translate-y-0"
                 >
-                  {project.description}
-                </CardItem>
+                  <Eye size={16} />
+                </button>
 
-                {project.note && (
+                <CardBody className="glass-card-hover p-5 w-full h-full flex flex-col justify-between">
+                  <CardItem translateZ="80" rotateX={5} rotateZ={-3}>
+                    <div className="aspect-video w-full overflow-hidden rounded-lg">
+                      <img
+                        src={project.image}
+                        alt={`${project.title} preview`}
+                        loading="lazy"
+                        decoding="async"
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </div>
+                  </CardItem>
+
+                  <CardItem
+                    translateZ="40"
+                    className="mt-4 text-lg font-bold text-white"
+                  >
+                    {project.title}
+                  </CardItem>
+
                   <CardItem
                     as="p"
-                    translateZ="20"
-                    className="text-xs text-blue-300 mt-2"
+                    translateZ="30"
+                    className="text-sm text-slate-400 mt-2 line-clamp-3 leading-relaxed"
                   >
-                    {project.note}
+                    {project.description}
                   </CardItem>
-                )}
 
-                <CardItem translateZ="20" className="flex flex-wrap gap-2 mt-4">
-                  {project.techs.map((tech) => (
-                    <span
-                      key={tech}
-                      className="bg-white/10 text-[#aab2d1] text-xs px-2 py-1 rounded"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </CardItem>
-
-                <div className="flex justify-between mt-6">
-                  {project.github && (
+                  {project.note && (
                     <CardItem
-                      as="a"
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      translateZ={10}
-                      className="text-xs underline text-[#aab2d1] hover:text-[#3658f1]"
+                      as="p"
+                      translateZ="20"
+                      className="text-xs text-blue-400/80 mt-2 font-medium"
                     >
-                      GitHub →
+                      {project.note}
                     </CardItem>
                   )}
-                  {project.demo && (
-                    <CardItem
-                      as="a"
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      translateZ={10}
-                      className="text-xs px-3 py-1 bg-[#aab2d1] text-black rounded hover:bg-[#3658f1]"
-                    >
-                      Live Demo
-                    </CardItem>
-                  )}
-                </div>
-              </CardBody>
-            </CardContainer>
+
+                  <CardItem
+                    translateZ="20"
+                    className="flex flex-wrap gap-1.5 mt-4"
+                  >
+                    {project.techs.map((tech) => (
+                      <span key={tech} className="tech-badge">
+                        {tech}
+                      </span>
+                    ))}
+                  </CardItem>
+
+                  <div className="flex items-center justify-between mt-6 pt-4 border-t border-white/5">
+                    {project.github && (
+                      <CardItem
+                        as="a"
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        translateZ={10}
+                        className="flex items-center gap-1.5 text-xs font-medium text-slate-400 hover:text-white transition-colors"
+                      >
+                        <Code2 size={13} />
+                        Source Code
+                      </CardItem>
+                    )}
+                    {project.demo && (
+                      <CardItem
+                        as="a"
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        translateZ={10}
+                        className="flex items-center gap-1.5 text-xs font-medium px-3 py-1 rounded-lg bg-gradient-to-r from-blue-600/20 to-violet-600/20 text-blue-300 hover:from-blue-600/30 hover:to-violet-600/30 transition-all"
+                      >
+                        <ExternalLink size={13} />
+                        Live Demo
+                      </CardItem>
+                    )}
+                  </div>
+                </CardBody>
+              </CardContainer>
+            </motion.div>
           ))}
         </div>
       </section>

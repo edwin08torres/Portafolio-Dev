@@ -1,13 +1,8 @@
-// src/components/homeComponent/modal/ProjectModal.tsx
-import {
-  Dialog,
-  DialogContent,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Separator } from "@/components/ui/separator";
 import ReactMarkdown from "react-markdown";
 import type { Components } from "react-markdown";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, X, ArrowUpRight } from "lucide-react";
 import type { Project } from "@/types/Project";
 
 interface Props {
@@ -16,197 +11,157 @@ interface Props {
   project: Project | null;
 }
 
+function dedent(text: string): string {
+  const lines = text.split("\n");
+  const nonEmpty = lines.filter((l) => l.trim().length > 0);
+  const indent = nonEmpty.reduce((min, l) => {
+    const match = l.match(/^(\s*)/);
+    return match ? Math.min(min, match[1].length) : min;
+  }, Infinity);
+  return lines
+    .map((l) => l.slice(indent))
+    .join("\n")
+    .trim();
+}
+
 export default function ProjectModal({ open, onOpenChange, project }: Props) {
   if (!project) return null;
-
-  const hasImpact =
-    Array.isArray((project as any)?.impact) &&
-    (project as any).impact.length > 0;
 
   const markdownComponents: Components = {
     a: (props) => (
       <a
-        className="break-all underline decoration-slate-500 hover:decoration-slate-300"
+        className="text-blue-400 underline decoration-blue-500/30 underline-offset-2 hover:decoration-blue-400 transition-colors"
+        target="_blank"
+        rel="noopener noreferrer"
         {...props}
       />
+    ),
+    h3: (props) => (
+      <h3
+        className="text-lg font-bold text-white mt-8 mb-3 first:mt-0"
+        {...props}
+      />
+    ),
+    p: (props) => (
+      <p className="text-sm leading-relaxed text-slate-300 my-3" {...props} />
+    ),
+    li: (props) => (
+      <li className="text-sm leading-relaxed text-slate-300 ml-1" {...props} />
+    ),
+    ul: (props) => <ul className="space-y-2 my-3 list-none" {...props} />,
+    strong: (props) => (
+      <strong className="text-blue-300 font-semibold" {...props} />
     ),
     code: (props) => {
       const { inline, ...rest } = props as any;
       return inline ? (
         <code
-          className="break-all whitespace-pre-wrap px-1 py-0.5 rounded bg-slate-900/60"
+          className="px-1.5 py-0.5 rounded-md bg-blue-500/10 text-blue-300 text-[0.85em] font-mono"
           {...rest}
         />
       ) : (
-        <pre className="max-w-full overflow-x-auto whitespace-pre-wrap break-words rounded-lg bg-slate-900/70 p-4">
-          <code {...rest} />
+        <pre className="overflow-x-auto rounded-xl bg-[#0a0f1e] border border-white/[0.06] p-4 my-3">
+          <code className="font-mono text-sm" {...rest} />
         </pre>
       );
     },
-    img: (props) => <img className="max-w-full rounded-lg" {...props} />,
-    table: (props) => (
-      <div className="w-full overflow-x-auto">
-        <table className="w-full" {...props} />
-      </div>
-    ),
-    p: (props) => (
-      <p className="text-[clamp(0.95rem,1.1vw,1rem)] last:mb-0" {...props} />
-    ),
-    li: (props) => (
-      <li className="text-[clamp(0.95rem,1.1vw,1rem)]" {...props} />
-    ),
   };
+
+  const details = dedent(project.details);
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
         className="
-          w-[94vw] md:max-w-[980px]
-          h-[88vh] p-0 overflow-hidden
-          rounded-2xl border border-slate-800
-          bg-slate-950/90 backdrop-blur supports-[backdrop-filter]:bg-slate-950/75
-          grid grid-rows-[auto,1fr,auto] min-h-0
+          w-[94vw] md:max-w-[820px]
+          h-auto max-h-[85vh] p-0 overflow-hidden
+          rounded-2xl
+          border border-white/[0.08]
+          bg-[#0c1222] backdrop-blur-2xl
+          shadow-2xl shadow-blue-950/50
+          flex flex-col
         "
       >
-        <header className="relative w-full aspect-[21/9] max-h-[28vh] min-h-[160px]">
-          <img
-            src={project.image}
-            alt={`Vista previa de ${project.title}`}
-            loading="lazy"
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/25 to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 p-6 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-            {/* <div className="min-w-0">
-              <DialogHeader className="p-0">
-                <DialogTitle className="text-white font-semibold leading-tight text-[clamp(1.25rem,2.2vw,2rem)] text-balance">
-                  {project.title}
-                </DialogTitle>
-              </DialogHeader>
-              {(project as any)?.subtitle && (
-                <p className="text-slate-300/90 mt-1 truncate">
-                  {(project as any).subtitle}
-                </p>
-              )}
-            </div> */}
-
-            {project.techs?.length ? (
-              <div className="flex flex-wrap gap-2">
-                {project.techs.map((t) => (
-                  <span
-                    key={t}
-                    className="rounded-full border border-slate-700 bg-slate-900/70 px-3 py-1 text-xs text-slate-200"
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-            ) : null}
+        <div className="relative w-full shrink-0">
+          <div className="aspect-[2.2/1] w-full overflow-hidden">
+            <img
+              src={project.image}
+              alt={project.title}
+              loading="lazy"
+              className="h-full w-full object-cover"
+            />
           </div>
-        </header>
 
-        <ScrollArea className="min-h-0 overflow-x-hidden">
-          <div className="pt-6 pb-2 text-slate-200 w-full max-w-full" lang="es">
-            <section
-              className={`min-w-0 ${
-                hasImpact
-                  ? "grid gap-8 items-start md:grid-cols-[minmax(0,1fr)_280px]"
-                  : ""
-              }`}
-            >
-              <article className="min-w-0">
-                <div
-                  className="
-                    prose prose-invert md:prose-base
-                    lg:max-w-[140ch] leading-relaxed break-words
-                    prose-headings:tracking-tight
-                    prose-h3:mt-6 prose-h3:mb-2
-                    prose-p:my-2 prose-ul:my-2 prose-ol:my-2
-                    prose-li:my-0 prose-li:marker:text-slate-400
-                    text-sm
-                  "
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0c1222] via-[#0c1222]/50 to-transparent" />
+
+          <button
+            onClick={() => onOpenChange(false)}
+            className="absolute top-3 right-3 z-20 p-2 rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-white/60 hover:text-white hover:bg-black/60 transition-all"
+            aria-label="Close"
+          >
+            <X size={16} />
+          </button>
+
+          <div className="absolute bottom-0 left-0 right-0 px-6 pb-5 z-10">
+            <h2 className="text-xl md:text-2xl font-bold text-white leading-snug mb-2">
+              {project.title}
+            </h2>
+            <div className="flex flex-wrap gap-1.5">
+              {project.techs.map((t) => (
+                <span
+                  key={t}
+                  className="px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-blue-500/15 border border-blue-500/25 text-blue-300"
                 >
-                  <ReactMarkdown components={markdownComponents}>
-                    {project.details}
-                  </ReactMarkdown>
-                </div>
-              </article>
-
-              {/* KPIs / Impacto */}
-              {hasImpact && (
-                <aside className="min-w-0">
-                  <div className="grid grid-cols-2 md:grid-cols-1 gap-3">
-                    {(project as any).impact.map(
-                      (k: { label: string; value: string }) => (
-                        <div
-                          key={k.label}
-                          className="rounded-xl border border-slate-800 bg-slate-900/60 p-4"
-                        >
-                          <div className="text-sm text-slate-400">
-                            {k.label}
-                          </div>
-                          <div className="text-2xl font-semibold">
-                            {k.value}
-                          </div>
-                        </div>
-                      )
-                    )}
-                  </div>
-                </aside>
-              )}
-            </section>
-
-            {project.techs?.length ? (
-              <>
-                <Separator className="my-6 bg-slate-800" />
-                <div className="flex flex-wrap gap-2 items-center justify-center">
-                  {project.techs.map((t) => (
-                    <span
-                      key={`footer-${t}`}
-                      className="rounded-md bg-white/10 px-2 py-1 text-xs"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </>
-            ) : null}
-          </div>
-        </ScrollArea>
-
-        <div className="border-t border-slate-800 bg-slate-950/90 backdrop-blur supports-[backdrop-filter]:bg-slate-950/70">
-          <div className="flex items-center justify-between gap-3 px-6 py-4 flex-col">
-            <span className="text-xs text-slate-400">
-              ¿Quieres ver el proyecto?
-            </span>
-            <div className="flex gap-3">
-              {project.github && (
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-900/70 px-4 py-2 text-sm hover:bg-slate-800 text-white"
-                  aria-label="Abrir código en GitHub"
-                >
-                  <Github className="h-4 w-4" />
-                  Código
-                </a>
-              )}
-              {project.demo && (
-                <a
-                  href={project.demo}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-500"
-                  aria-label="Abrir demo en vivo"
-                >
-                  <ExternalLink className="h-4 w-4" />
-                  Demo en vivo
-                </a>
-              )}
+                  {t}
+                </span>
+              ))}
             </div>
           </div>
         </div>
+
+        <ScrollArea className="flex-1 min-h-0">
+          <div className="px-6 py-5">
+            <p className="text-sm text-slate-400 leading-relaxed mb-4">
+              {project.description}
+            </p>
+
+            <div className="gradient-divider w-full mb-5" />
+
+            <div className="space-y-1">
+              <ReactMarkdown components={markdownComponents}>
+                {details}
+              </ReactMarkdown>
+            </div>
+          </div>
+        </ScrollArea>
+
+        {(project.github || project.demo) && (
+          <div className="shrink-0 border-t border-white/[0.06] px-6 py-4 flex items-center justify-end gap-3">
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium text-slate-300 bg-white/[0.04] border border-white/[0.08] hover:bg-white/[0.08] hover:border-white/[0.15] hover:text-white transition-all"
+              >
+                <Github size={15} />
+                Source Code
+              </a>
+            )}
+            {project.demo && (
+              <a
+                href={project.demo}
+                target="_blank"
+                rel="noreferrer"
+                className="btn-glow inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium text-white"
+              >
+                <ExternalLink size={15} />
+                Live Demo
+                <ArrowUpRight size={13} className="opacity-60" />
+              </a>
+            )}
+          </div>
+        )}
       </DialogContent>
     </Dialog>
   );
