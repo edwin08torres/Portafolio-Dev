@@ -5,18 +5,18 @@ export const projects: Project[] = [
     slug: "mopetco-grooming",
     title: "MoPetCo Grooming",
     description:
-      "Página que muestra los servicios de grooming y permite reservar citas.",
+      "A page showcasing pet grooming services with online appointment booking.",
     details: `
-      ### El reto
-      La veterinaria necesitaba digitalizar la agenda de grooming, y a su vez promocionar sus servicios
+      ### The Challenge
+      The veterinary clinic needed to digitize their grooming schedule while also promoting their services online.
         
-      ### Solución
+      ### Solution
       - **Frontend:** React + TailwindCSS  
       - **Backend:** .NET 7 + SQL Server  
-      - **Integración:** Email + Medios de contacto + Reservaciones 
+      - **Integration:** Email + Contact channels + Reservations 
         
-      ### Impacto
-      Aumento considerablemente las reservas online en el primer mes.
+      ### Impact
+      Online bookings increased significantly in the first month.
     `,
     techs: ["React", "TailwindCSS", "TypeScript", "SQL", ".NET"],
     image: "/assets/project-1.webp",
@@ -26,15 +26,15 @@ export const projects: Project[] = [
   {
     slug: "coffee-shop-landing",
     title: "Coffee Shop Landing",
-    description: "Landing page elegante para una marca de café premium.",
+    description: "An elegant landing page for a premium coffee brand.",
     details: `
-        ### 🧩 El reto
-        La marca buscaba una forma atractiva y moderna de presentar su café premium en línea, transmitiendo identidad visual fuerte y facilitando el acceso a su menú.
+        ### The Challenge
+        The brand needed an attractive and modern way to showcase their premium coffee online, conveying a strong visual identity and providing easy access to their menu.
 
-        ### 🛠️ Solución
-        - **Frontend:** HTML, CSS y JavaScript puros, enfocados en rendimiento y estética.
-        - Se diseñó una landing page minimalista con enfoque visual en las imágenes y la experiencia del usuario.
-        - Se incorporó un menú interactivo y secciones informativas de fácil navegación.
+        ### Solution
+        - **Frontend:** Pure HTML, CSS and JavaScript, focused on performance and aesthetics.
+        - Designed a minimalist landing page with a visual focus on imagery and user experience.
+        - Included an interactive menu and easy-to-navigate informational sections.
         
       `,
 
@@ -45,20 +45,20 @@ export const projects: Project[] = [
   },
   {
     slug: "logic-tkl-915",
-    title: "Especificación de Logic TKL 915",
+    title: "Logitech TKL 915 Specs",
     description:
-      "Página donde se puede consultar la información del teclado Logitech TKL 915.",
+      "A product page to browse the full specifications of the Logitech TKL 915 keyboard.",
     details: `
-      ### 🧩 El reto
-      Se requería una página informativa moderna y clara para resaltar las características del teclado Logitech TKL 915, especialmente su diseño compacto y funcionalidades para gamers.
+      ### The Challenge
+      A modern, clean informational page was needed to highlight the features of the Logitech TKL 915 keyboard, especially its compact design and gamer-oriented functionality.
 
-      ### 🛠️ Solución
+      ### Solution
       - **Frontend:** React + TailwindCSS + AOS + Marquee
-      - Arquitectura modular con animaciones de scroll para destacar cada sección técnica.
-      - Uso de efectos visuales con Marquee y carga rápida optimizada.
+      - Modular architecture with scroll-driven animations to showcase each technical section.
+      - Visual effects with Marquee and optimized fast loading.
 
-      ### 🚀 Impacto
-      Mejoró la percepción del producto en distribuidores minoristas y se convirtió en un recurso útil para usuarios interesados en conocer las especificaciones completas antes de comprar.
+      ### Impact
+      Improved product perception among retail distributors and became a useful resource for users wanting to review full specifications before purchasing.
     `,
 
     techs: ["React", "TailwindCSS", "TypeScript"],
@@ -68,22 +68,22 @@ export const projects: Project[] = [
   },
   {
     slug: "pokedex",
-    title: "Lista de Pokemones y sus características",
+    title: "Pokédex — Browse & Discover Pokémon",
     description:
-      "Puedes encontrar tu pokemones favoritos y conocerlos un poco mas",
+      "Find your favorite Pokémon and learn more about their stats and types.",
     details: `
-      ### 🧩 El reto
-      Se necesitaba una aplicación móvil interactiva que permitiera a los usuarios explorar una lista de Pokemones y acceder a sus características, estadísticas y tipos de forma rápida e intuitiva.
+      ### The Challenge
+      An interactive mobile app was needed to let users explore a list of Pokémon and quickly access their characteristics, stats and types.
 
-      ### 🛠️ Solución
+      ### Solution
       - **Frontend:** React Native + TypeScript + CSS.
-      - Integración con la API pública de **PokeAPI** para obtener datos en tiempo real.
-      - Diseño optimizado con listas dinámicas y navegación fluida entre pantallas.
-      - Implementación de búsqueda y filtrado para encontrar Pokemones específicos.
-      - Uso de animaciones y transiciones suaves para mejorar la experiencia del usuario.
+      - Integration with the public **PokeAPI** for real-time data.
+      - Optimized design with dynamic lists and smooth screen navigation.
+      - Search and filter to find specific Pokémon.
+      - Smooth animations and transitions for a better user experience.
 
-      ### 🚀 Impacto
-      La app ofrece una experiencia amigable y accesible para fanáticos y curiosos, centralizando información oficial de los Pokemones en un solo lugar y en un formato cómodo para dispositivos móviles.
+      ### Impact
+      The app delivers a friendly and accessible experience for fans and newcomers alike, centralizing official Pokémon data in one place in a mobile-friendly format.
     `,
 
     techs: [
@@ -97,22 +97,22 @@ export const projects: Project[] = [
   },
   {
     slug: "WeatherBit",
-    title: "Consulta el clima actual en USA y su pronóstico a 5 días",
+    title: "WeatherBit — US Weather & 5-Day Forecast",
     description:
-      "Aplicación web que permite consultar el clima actual y el pronóstico a 5 días en cualquier ciudad de Estados Unidos ingresando únicamente el código postal.",
+      "A web app that displays current weather and a 5-day forecast for any US city by ZIP code.",
     details: `
-      ### 🧩 El reto
-      Desarrollar una aplicación web ligera, rápida y accesible que ofreciera información meteorológica confiable basada en un código postal, mostrando datos actuales y un pronóstico extendido de forma clara y visual.
+      ### The Challenge
+      Build a lightweight, fast and accessible web app that provides reliable weather data based on a ZIP code, showing current conditions and an extended forecast in a clear, visual format.
 
-      ### 🛠️ Solución
-      - **Frontend:** Angular + TypeScript, con diseño responsivo en **Bootstrap**.
-      - Consumo directo de la API pública **WeatherBit** para obtener clima en tiempo real.
-      - Implementación de búsqueda por ZIP Code con manejo de estados (cargando, error, datos).
-      - Componentes reutilizables y arquitectura modular para facilitar escalabilidad.
-      - UI limpia y moderna, optimizada para desktop y mobile.
+      ### Solution
+      - **Frontend:** Angular + TypeScript with responsive **Bootstrap** design.
+      - Direct consumption of the public **WeatherBit** API for real-time weather.
+      - ZIP Code search with proper state handling (loading, error, data).
+      - Reusable components and modular architecture for easy scalability.
+      - Clean, modern UI optimized for desktop and mobile.
 
-      ### 🚀 Impacto
-      La aplicación entrega una experiencia simple pero poderosa: permite obtener información meteorológica precisa en segundos, con una interfaz clara y profesional, ideal para usuarios generales o entornos donde se requiera una consulta rápida del clima.
+      ### Impact
+      The app delivers a simple yet powerful experience: accurate weather data in seconds, with a clean and professional interface ideal for general users or quick weather lookups.
   `,
 
     techs: [

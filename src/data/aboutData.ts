@@ -1,8 +1,8 @@
 import type { Stat } from "@/types/About";
 
 export const stats: Stat[] = [
-  { label: "Proyectos", value: 10 },
-  { label: "Años Exp.", value: 5 },
+  { label: "Projects", value: 10 },
+  { label: "Years Exp.", value: 5 },
 ];
 
 export const featuredStack = [

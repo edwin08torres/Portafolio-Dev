@@ -24,7 +24,6 @@ const particles = [
 const codeLines = [
   { text: "const developer = {", color: "text-blue-300" },
   { text: '  name: "Edwin Torrez",', color: "text-emerald-300" },
-  { text: '  alias: "Alex",', color: "text-emerald-300" },
   { text: "  skills: [", color: "text-blue-300" },
   { text: '    "React", "TypeScript",', color: "text-amber-300" },
   { text: '    ".NET", "Tailwind CSS"', color: "text-amber-300" },
@@ -160,8 +159,7 @@ export const HomeHeroSection = () => {
             transition={{ delay: 0.3, duration: 0.6 }}
             className="text-sm md:text-base text-slate-400 font-medium tracking-wide mb-2"
           >
-            Hey there! You can call me{" "}
-            <span className="text-blue-400 font-semibold">Alex</span>
+            Hi, I'm
           </motion.p>
 
           <motion.h1
@@ -179,9 +177,9 @@ export const HomeHeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.9, duration: 0.6 }}
-            className="mt-5 flex items-center gap-3"
+            className="mt-5 flex items-center justify-center lg:justify-start gap-3"
           >
-            <div className="h-px w-10 bg-gradient-to-r from-transparent to-blue-500/50" />
+            <div className="hidden lg:block h-px w-10 bg-gradient-to-r from-transparent to-blue-500/50" />
             <p className="text-sm md:text-base text-slate-400">
               Systems Engineer &{" "}
               <span className="gradient-text-blue font-semibold">
