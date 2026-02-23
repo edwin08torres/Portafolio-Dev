@@ -4,12 +4,20 @@
   scroll-behavior: smooth;
 }
 
+@media (min-width: 1024px) {
+  * {
+    cursor: none !important;
+  }
+}
+
 body {
   font-family:
     "Inter",
     system-ui,
     -apple-system,
     sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 code,
@@ -17,47 +25,198 @@ code,
   font-family: "JetBrains Mono", monospace;
 }
 
-/* ─── Desktop Nav Links ─── */
-.link-nav-lg {
-  text-transform: uppercase;
-  position: relative;
-  display: inline-block;
-  color: #94a3b8;
-  text-decoration: none;
-  padding: 4px 1.25em;
-  transition: color 0.3s ease;
-  overflow: visible;
-  z-index: 10;
-  font-weight: 600;
-  font-size: 0.875rem;
-  letter-spacing: 0.08em;
+/* ─── Vertical Sidebar ─── */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 64px;
+  z-index: 50;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 0;
+  background: rgba(3, 7, 18, 0.55);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-right: 1px solid rgba(148, 163, 184, 0.07);
 }
 
-.link-nav-lg::after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-  border-radius: 999px;
-  transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.link-nav-lg:hover {
+/* Logo at top */
+.sidebar-logo {
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
   color: #e2e8f0;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  transition: opacity 0.2s;
+}
+.sidebar-logo:hover {
+  opacity: 0.7;
 }
 
-.link-nav-lg:hover::after {
-  width: 80%;
+/* Nav section */
+.sidebar-nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0;
+  position: relative;
 }
 
-.nav-bg {
-  background: rgba(2, 6, 23, 0.6);
-  backdrop-filter: blur(16px) saturate(180%);
-  border: 1px solid rgba(148, 163, 184, 0.08);
+/* Vertical progress track */
+.sidebar-track {
+  width: 2px;
+  height: 160px;
+  background: rgba(148, 163, 184, 0.1);
+  border-radius: 999px;
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(180deg, #3b82f6, #8b5cf6);
+  border-radius: 999px;
+  transition: height 0.1s linear;
+  box-shadow: 0 0 8px rgba(99, 102, 241, 0.5);
+}
+
+/* Section links column */
+.sidebar-links {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  align-items: flex-start;
+  margin-left: 14px;
+}
+
+/* Single section link */
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.sidebar-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(148, 163, 184, 0.35);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+}
+
+.sidebar-link:hover .sidebar-dot,
+.sidebar-link--active .sidebar-dot {
+  background: #60a5fa;
+  box-shadow: 0 0 8px rgba(96, 165, 250, 0.7);
+  transform: scale(1.5);
+}
+
+.sidebar-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(148, 163, 184, 0.4);
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+  transition: color 0.3s;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.sidebar-link:hover .sidebar-label,
+.sidebar-link--active .sidebar-label {
+  color: #93c5fd;
+}
+
+/* Social icons at bottom */
+.sidebar-socials {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.sidebar-social-link {
+  color: rgba(148, 163, 184, 0.4);
+  transition: all 0.25s;
+}
+
+.sidebar-social-link:hover {
+  color: #93c5fd;
+  transform: scale(1.15);
+}
+
+/* ─── Mobile Hamburger ─── */
+.mobile-hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 22px;
+  height: 22px;
+}
+
+.mobile-hamburger span {
+  display: block;
+  height: 2px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+}
+
+.mobile-hamburger--open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.mobile-hamburger--open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.mobile-hamburger--open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ─── Mobile Nav Link ─── */
+.mobile-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-nav-link:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ─── Tilt card smooth reset ─── */
+.tilt-card {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── Footer big CTA title ─── */
+.footer-cta-title {
+  font-size: clamp(3rem, 8vw, 7.5rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
 }
 
 /* ─── Section titles ─── */
@@ -350,4 +509,23 @@ code,
 
 .perspective-1000 {
   perspective: 1000px;
+}
+
+/* ─── Modal right panel scrollbar ─── */
+.modal-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(99, 102, 241, 0.3) transparent;
+}
+.modal-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.modal-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.modal-scroll::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.3);
+  border-radius: 9999px;
+}
+.modal-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.55);
 }

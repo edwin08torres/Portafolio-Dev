@@ -6,20 +6,10 @@ import {
   useSpring,
   useMotionTemplate,
 } from "framer-motion";
-import { useRef, useEffect, useState, useCallback } from "react";
-
-const particles = [
-  { x: "10%", y: "15%", size: 4, delay: 0, duration: 20, blur: 0 },
-  { x: "85%", y: "20%", size: 6, delay: 2, duration: 25, blur: 1 },
-  { x: "70%", y: "70%", size: 3, delay: 4, duration: 18, blur: 0 },
-  { x: "15%", y: "80%", size: 5, delay: 1, duration: 22, blur: 1 },
-  { x: "50%", y: "10%", size: 3, delay: 3, duration: 20, blur: 0 },
-  { x: "30%", y: "60%", size: 4, delay: 5, duration: 24, blur: 0 },
-  { x: "90%", y: "50%", size: 5, delay: 2, duration: 19, blur: 1 },
-  { x: "40%", y: "85%", size: 3, delay: 6, duration: 21, blur: 0 },
-  { x: "60%", y: "35%", size: 4, delay: 1, duration: 23, blur: 0 },
-  { x: "25%", y: "40%", size: 6, delay: 4, duration: 26, blur: 1 },
-];
+import { useRef, useEffect, useState, useCallback, useMemo } from "react";
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { loadSlim } from "@tsparticles/slim";
+import type { ISourceOptions } from "@tsparticles/engine";
 
 const codeLines = [
   { text: "const developer = {", color: "text-blue-300" },
@@ -34,6 +24,7 @@ const codeLines = [
 
 export const HomeHeroSection = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
+  const [particlesReady, setParticlesReady] = useState(false);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -47,8 +38,7 @@ export const HomeHeroSection = () => {
   const mouseY = useMotionValue(0);
   const smoothX = useSpring(mouseX, { stiffness: 50, damping: 30 });
   const smoothY = useSpring(mouseY, { stiffness: 50, damping: 30 });
-
-  const spotlightBg = useMotionTemplate`radial-gradient(650px circle at ${smoothX}px ${smoothY}px, rgba(59,130,246,0.06), transparent 60%)`;
+  const spotlightBg = useMotionTemplate`radial-gradient(700px circle at ${smoothX}px ${smoothY}px, rgba(59,130,246,0.07), transparent 60%)`;
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent) => {
@@ -74,6 +64,51 @@ export const HomeHeroSection = () => {
     return () => clearInterval(timer);
   }, []);
 
+  useEffect(() => {
+    initParticlesEngine(async (engine) => {
+      await loadSlim(engine);
+    }).then(() => setParticlesReady(true));
+  }, []);
+
+  const particleOptions: ISourceOptions = useMemo(
+    () => ({
+      fpsLimit: 60,
+      interactivity: {
+        events: {
+          onHover: { enable: true, mode: "grab" },
+          resize: { enable: true },
+        },
+        modes: {
+          grab: { distance: 140, links: { opacity: 0.4 } },
+        },
+      },
+      particles: {
+        color: { value: "#3b82f6" },
+        links: {
+          color: "#3b82f6",
+          distance: 150,
+          enable: true,
+          opacity: 0.08,
+          width: 1,
+        },
+        move: {
+          direction: "none",
+          enable: true,
+          outModes: { default: "bounce" },
+          random: true,
+          speed: 0.6,
+          straight: false,
+        },
+        number: { density: { enable: true }, value: 60 },
+        opacity: { value: { min: 0.15, max: 0.5 } },
+        shape: { type: "circle" },
+        size: { value: { min: 1, max: 2.5 } },
+      },
+      detectRetina: true,
+    }),
+    [],
+  );
+
   return (
     <section
       id="home"
@@ -81,44 +116,29 @@ export const HomeHeroSection = () => {
       onMouseMove={handleMouseMove}
       className="relative flex h-screen w-full items-center justify-center overflow-hidden bg-[#020617]"
     >
+      {/* Aurora background */}
       <motion.div className="absolute inset-0" style={{ scale: bgScale }}>
         <div className="aurora-bg absolute inset-0" />
       </motion.div>
 
+      {/* tsParticles interactive mesh */}
+      {particlesReady && (
+        <Particles
+          id="hero-particles"
+          options={particleOptions}
+          className="absolute inset-0 z-[1]"
+        />
+      )}
+
+      {/* Mouse spotlight */}
       <motion.div
-        className="pointer-events-none absolute inset-0 z-[1]"
+        className="pointer-events-none absolute inset-0 z-[2]"
         style={{ background: spotlightBg }}
       />
 
-      <div className="absolute inset-0 z-[2]">
-        {particles.map((p, i) => (
-          <motion.div
-            key={i}
-            className="absolute rounded-full bg-blue-400/30"
-            style={{
-              left: p.x,
-              top: p.y,
-              width: p.size,
-              height: p.size,
-              filter: p.blur ? "blur(1px)" : "none",
-            }}
-            animate={{
-              y: [-20, 20, -20],
-              x: [-10, 10, -10],
-              opacity: [0.2, 0.6, 0.2],
-            }}
-            transition={{
-              duration: p.duration,
-              delay: p.delay,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-        ))}
-      </div>
-
+      {/* Subtle grid */}
       <div
-        className="absolute inset-0 z-[3] opacity-[0.02]"
+        className="absolute inset-0 z-[3] opacity-[0.025]"
         style={{
           backgroundImage:
             "linear-gradient(rgba(148,163,184,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,0.5) 1px, transparent 1px)",
@@ -126,29 +146,32 @@ export const HomeHeroSection = () => {
         }}
       />
 
+      {/* Noise texture */}
       <img
         src="/assets/noise.png"
         alt=""
         role="presentation"
-        className="absolute inset-0 h-full w-full object-cover mix-blend-overlay opacity-[0.04] z-[4]"
+        className="absolute inset-0 h-full w-full object-cover mix-blend-overlay opacity-[0.05] z-[4]"
       />
 
+      {/* Content */}
       <motion.div
         style={{ y: contentY, opacity: contentOpacity }}
-        className="relative z-10 w-full max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center justify-between gap-12"
+        className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:pl-20 flex flex-col lg:flex-row items-center justify-between gap-12"
       >
+        {/* Left: Text */}
         <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-500/20 bg-blue-500/5 mb-6"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/5 mb-6"
           >
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute h-full w-full rounded-full bg-emerald-400 opacity-75" />
               <span className="relative rounded-full h-2 w-2 bg-emerald-400" />
             </span>
-            <span className="text-xs font-medium text-blue-300 tracking-wide">
+            <span className="text-xs font-medium text-emerald-300 tracking-wide">
               Available for work
             </span>
           </motion.div>
@@ -196,11 +219,11 @@ export const HomeHeroSection = () => {
           >
             <a
               href="#project"
-              className="btn-glow px-8 py-3.5 text-white rounded-xl font-semibold text-sm tracking-wide flex items-center justify-center gap-2"
+              className="btn-glow px-8 py-3.5 text-white rounded-xl font-semibold text-sm tracking-wide flex items-center justify-center gap-2 group"
             >
               View Projects
               <svg
-                className="w-4 h-4"
+                className="w-4 h-4 transition-transform group-hover:translate-x-1"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -228,87 +251,79 @@ export const HomeHeroSection = () => {
             transition={{ delay: 1.5, duration: 0.8 }}
             className="flex items-center gap-6 mt-10 text-slate-500 text-xs"
           >
-            <div className="flex items-center gap-2">
-              <span className="font-bold text-white text-lg">10+</span>
-              <span>
-                Projects
-                <br />
-                Delivered
-              </span>
-            </div>
-            <div className="h-8 w-px bg-slate-700" />
-            <div className="flex items-center gap-2">
-              <span className="font-bold text-white text-lg">5+</span>
-              <span>
-                Years
-                <br />
-                Experience
-              </span>
-            </div>
-            <div className="h-8 w-px bg-slate-700" />
-            <div className="flex items-center gap-2">
-              <span className="font-bold text-white text-lg">3</span>
-              <span>
-                Tech
-                <br />
-                Stacks
-              </span>
-            </div>
+            {[
+              { value: "10+", label: "Projects\nDelivered" },
+              { value: "5+", label: "Years\nExperience" },
+              { value: "3", label: "Tech\nStacks" },
+            ].map((stat, i) => (
+              <div key={i} className="flex items-center gap-2">
+                {i > 0 && <div className="h-8 w-px bg-slate-700 mr-2" />}
+                <span className="font-bold text-white text-lg">
+                  {stat.value}
+                </span>
+                <span className="whitespace-pre-line">{stat.label}</span>
+              </div>
+            ))}
           </motion.div>
         </div>
 
+        {/* Right: Code terminal */}
         <motion.div
           initial={{ opacity: 0, x: 60, rotateY: -10 }}
           animate={{ opacity: 1, x: 0, rotateY: 0 }}
           transition={{ delay: 0.6, duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="flex-1 hidden md:block max-w-md w-full perspective-1000"
         >
-          <div className="code-terminal relative rounded-2xl overflow-hidden border border-white/[0.06] shadow-2xl shadow-blue-900/20">
-            <div className="flex items-center gap-2 px-4 py-3 bg-white/[0.03] border-b border-white/[0.06]">
-              <div className="flex gap-1.5">
-                <div className="w-3 h-3 rounded-full bg-red-400/70" />
-                <div className="w-3 h-3 rounded-full bg-amber-400/70" />
-                <div className="w-3 h-3 rounded-full bg-emerald-400/70" />
-              </div>
-              <span className="text-xs text-slate-500 font-mono ml-2">
-                developer.ts
-              </span>
-            </div>
-
-            <div className="p-5 bg-[#0a0f1e]/80 backdrop-blur-md font-mono text-sm leading-relaxed min-h-[280px]">
-              {codeLines.slice(0, visibleLines).map((line, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="flex"
-                >
-                  <span className="text-slate-600 select-none w-6 text-right mr-4 text-xs leading-relaxed">
-                    {i + 1}
-                  </span>
-                  <span className={line.color}>{line.text}</span>
-                </motion.div>
-              ))}
-              {visibleLines < codeLines.length && (
-                <div className="flex items-center mt-1">
-                  <span className="text-slate-600 select-none w-6 text-right mr-4 text-xs">
-                    {visibleLines + 1}
-                  </span>
-                  <motion.span
-                    animate={{ opacity: [1, 0] }}
-                    transition={{ duration: 0.6, repeat: Infinity }}
-                    className="w-2 h-5 bg-blue-400"
-                  />
+          <div className="relative">
+            <div className="code-terminal relative rounded-2xl overflow-hidden border border-white/[0.06] shadow-2xl shadow-blue-900/20">
+              <div className="flex items-center gap-2 px-4 py-3 bg-white/[0.03] border-b border-white/[0.06]">
+                <div className="flex gap-1.5">
+                  <div className="w-3 h-3 rounded-full bg-red-400/70" />
+                  <div className="w-3 h-3 rounded-full bg-amber-400/70" />
+                  <div className="w-3 h-3 rounded-full bg-emerald-400/70" />
                 </div>
-              )}
-            </div>
+                <span className="text-xs text-slate-500 font-mono ml-2">
+                  developer.ts
+                </span>
+              </div>
 
+              <div className="p-5 bg-[#0a0f1e]/80 backdrop-blur-md font-mono text-sm leading-relaxed min-h-[280px]">
+                {codeLines.slice(0, visibleLines).map((line, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="flex"
+                  >
+                    <span className="text-slate-600 select-none w-6 text-right mr-4 text-xs leading-relaxed">
+                      {i + 1}
+                    </span>
+                    <span className={line.color}>{line.text}</span>
+                  </motion.div>
+                ))}
+                {visibleLines < codeLines.length && (
+                  <div className="flex items-center mt-1">
+                    <span className="text-slate-600 select-none w-6 text-right mr-4 text-xs">
+                      {visibleLines + 1}
+                    </span>
+                    <motion.span
+                      animate={{ opacity: [1, 0] }}
+                      transition={{ duration: 0.6, repeat: Infinity }}
+                      className="w-2 h-5 bg-blue-400"
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
+            {/* Glow reflection under terminal */}
+            <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-4/5 h-12 bg-blue-500/20 blur-2xl rounded-full pointer-events-none" />
             <div className="absolute -inset-1 -z-10 rounded-2xl bg-gradient-to-br from-blue-600/20 via-violet-600/10 to-transparent blur-xl" />
           </div>
         </motion.div>
       </motion.div>
 
+      {/* Scroll indicator */}
       <motion.a
         href="#about"
         onClick={(e) => {

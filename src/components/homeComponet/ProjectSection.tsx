@@ -6,10 +6,42 @@ import ProjectModal from "./modal/ProjectModal";
 import { Eye, Code2, ExternalLink } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 
+const accentColors = [
+  {
+    border: "rgba(59,130,246,0.5)",
+    glow: "rgba(59,130,246,0.15)",
+    text: "#60a5fa",
+    label: "Web App",
+  },
+  {
+    border: "rgba(251,191,36,0.5)",
+    glow: "rgba(251,191,36,0.12)",
+    text: "#fbbf24",
+    label: "Landing Page",
+  },
+  {
+    border: "rgba(139,92,246,0.5)",
+    glow: "rgba(139,92,246,0.15)",
+    text: "#a78bfa",
+    label: "Web App",
+  },
+  {
+    border: "rgba(236,72,153,0.5)",
+    glow: "rgba(236,72,153,0.12)",
+    text: "#f472b6",
+    label: "Mobile App",
+  },
+  {
+    border: "rgba(20,184,166,0.5)",
+    glow: "rgba(20,184,166,0.12)",
+    text: "#2dd4bf",
+    label: "Web App",
+  },
+];
+
 export const ProjectSection = () => {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<Project | null>(null);
-
   const ref = useRef<HTMLElement | null>(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
@@ -48,106 +80,136 @@ export const ProjectSection = () => {
 
       <section className="bg-[#020617] text-white flex justify-center px-4 pb-24">
         <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 w-full max-w-6xl">
-          {projects.map((project, i) => (
-            <motion.div
-              key={project.slug}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.1 * i }}
-            >
-              <CardContainer className="relative group inter-var cursor-pointer md:h-[30rem]">
-                <button
-                  onClick={() => {
-                    setSelected(project);
-                    setOpen(true);
-                  }}
-                  aria-label={`Open details for ${project.title}`}
-                  className="absolute m-auto -bottom-4 z-10 rounded-xl p-2.5 text-white bg-gradient-to-r from-blue-600 to-violet-600 hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 opacity-100 md:opacity-0 md:translate-y-2 md:group-hover:opacity-100 md:group-hover:translate-y-0"
-                >
-                  <Eye size={16} />
-                </button>
+          {projects.map((project, i) => {
+            const accent = accentColors[i % accentColors.length];
+            return (
+              <motion.div
+                key={project.slug}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.1 * i }}
+              >
+                <CardContainer className="relative group inter-var cursor-pointer md:h-[30rem]">
+                  <button
+                    onClick={() => {
+                      setSelected(project);
+                      setOpen(true);
+                    }}
+                    aria-label={`Open details for ${project.title}`}
+                    className="absolute m-auto -bottom-4 z-10 rounded-xl p-2.5 text-white bg-gradient-to-r from-blue-600 to-violet-600 hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 opacity-100 md:opacity-0 md:translate-y-2 md:group-hover:opacity-100 md:group-hover:translate-y-0"
+                  >
+                    <Eye size={16} />
+                  </button>
 
-                <CardBody className="glass-card-hover p-5 w-full h-full flex flex-col justify-between">
-                  <CardItem translateZ="80" rotateX={5} rotateZ={-3}>
-                    <div className="aspect-video w-full overflow-hidden rounded-lg">
-                      <img
-                        src={project.image}
-                        alt={`${project.title} preview`}
-                        loading="lazy"
-                        decoding="async"
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
+                  {/* Accent glow ring on hover */}
+                  <div
+                    className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none"
+                    style={{
+                      boxShadow: `0 0 0 1px ${accent.border}, 0 8px 32px ${accent.glow}`,
+                    }}
+                  />
+
+                  <CardBody className="p-5 w-full h-full flex flex-col justify-between rounded-2xl border border-white/[0.06] bg-white/[0.02] transition-all duration-500 group-hover:border-transparent">
+                    {/* Category pill */}
+                    <div className="flex items-center justify-between mb-3">
+                      <span
+                        className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border"
+                        style={{
+                          color: accent.text,
+                          borderColor: accent.border,
+                          background: accent.glow,
+                        }}
+                      >
+                        {accent.label}
+                      </span>
                     </div>
-                  </CardItem>
 
-                  <CardItem
-                    translateZ="40"
-                    className="mt-4 text-lg font-bold text-white"
-                  >
-                    {project.title}
-                  </CardItem>
+                    <CardItem translateZ="80" rotateX={5} rotateZ={-3}>
+                      <div className="aspect-video w-full overflow-hidden rounded-lg">
+                        <img
+                          src={project.image}
+                          alt={`${project.title} preview`}
+                          loading="lazy"
+                          decoding="async"
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                      </div>
+                    </CardItem>
 
-                  <CardItem
-                    as="p"
-                    translateZ="30"
-                    className="text-sm text-slate-400 mt-2 line-clamp-3 leading-relaxed"
-                  >
-                    {project.description}
-                  </CardItem>
+                    <CardItem
+                      translateZ="40"
+                      className="mt-4 text-lg font-bold text-white"
+                    >
+                      {project.title}
+                    </CardItem>
 
-                  {project.note && (
                     <CardItem
                       as="p"
-                      translateZ="20"
-                      className="text-xs text-blue-400/80 mt-2 font-medium"
+                      translateZ="30"
+                      className="text-sm text-slate-400 mt-2 line-clamp-3 leading-relaxed"
                     >
-                      {project.note}
+                      {project.description}
                     </CardItem>
-                  )}
 
-                  <CardItem
-                    translateZ="20"
-                    className="flex flex-wrap gap-1.5 mt-4"
-                  >
-                    {project.techs.map((tech) => (
-                      <span key={tech} className="tech-badge">
-                        {tech}
-                      </span>
-                    ))}
-                  </CardItem>
-
-                  <div className="flex items-center justify-between mt-6 pt-4 border-t border-white/5">
-                    {project.github && (
+                    {project.note && (
                       <CardItem
-                        as="a"
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        translateZ={10}
-                        className="flex items-center gap-1.5 text-xs font-medium text-slate-400 hover:text-white transition-colors"
+                        as="p"
+                        translateZ="20"
+                        className="text-xs text-blue-400/80 mt-2 font-medium"
                       >
-                        <Code2 size={13} />
-                        Source Code
+                        {project.note}
                       </CardItem>
                     )}
-                    {project.demo && (
-                      <CardItem
-                        as="a"
-                        href={project.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        translateZ={10}
-                        className="flex items-center gap-1.5 text-xs font-medium px-3 py-1 rounded-lg bg-gradient-to-r from-blue-600/20 to-violet-600/20 text-blue-300 hover:from-blue-600/30 hover:to-violet-600/30 transition-all"
-                      >
-                        <ExternalLink size={13} />
-                        Live Demo
-                      </CardItem>
-                    )}
-                  </div>
-                </CardBody>
-              </CardContainer>
-            </motion.div>
-          ))}
+
+                    <CardItem
+                      translateZ="20"
+                      className="flex flex-wrap gap-1.5 mt-4"
+                    >
+                      {project.techs.map((tech) => (
+                        <span key={tech} className="tech-badge">
+                          {tech}
+                        </span>
+                      ))}
+                    </CardItem>
+
+                    <div className="flex items-center justify-between mt-6 pt-4 border-t border-white/5">
+                      {project.github && (
+                        <CardItem
+                          as="a"
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          translateZ={10}
+                          className="flex items-center gap-1.5 text-xs font-medium text-slate-400 hover:text-white transition-colors"
+                        >
+                          <Code2 size={13} />
+                          Source Code
+                        </CardItem>
+                      )}
+                      {project.demo && (
+                        <CardItem
+                          as="a"
+                          href={project.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          translateZ={10}
+                          className="flex items-center gap-1.5 text-xs font-medium px-3 py-1 rounded-lg transition-all"
+                          style={{
+                            color: accent.text,
+                            background: accent.glow,
+                            border: `1px solid ${accent.border}`,
+                          }}
+                        >
+                          <ExternalLink size={13} />
+                          Live Demo
+                        </CardItem>
+                      )}
+                    </div>
+                  </CardBody>
+                </CardContainer>
+              </motion.div>
+            );
+          })}
         </div>
       </section>
 
