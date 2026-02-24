@@ -1,7 +1,14 @@
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import ReactMarkdown from "react-markdown";
 import type { Components } from "react-markdown";
-import { ExternalLink, Github, X, ArrowUpRight, Layers } from "lucide-react";
+import {
+  ExternalLink,
+  Github,
+  X,
+  ArrowUpRight,
+  Layers,
+  ChevronLeft,
+} from "lucide-react";
 import type { Project } from "@/types/Project";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -120,10 +127,31 @@ export default function ProjectModal({ open, onOpenChange, project }: Props) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="w-[96vw] max-w-[900px] h-[90vh] p-0 overflow-hidden rounded-3xl border border-white/[0.07] bg-[#080d1a] shadow-2xl shadow-black/60 flex flex-col [&>button]:hidden">
+      <DialogContent className="w-[94vw] max-w-[900px] h-[88vh] max-h-[calc(100vh-env(safe-area-inset-top,0px)-env(safe-area-inset-bottom,0px)-2rem)] p-0 overflow-hidden rounded-2xl md:rounded-3xl border border-white/[0.07] bg-[#080d1a] shadow-2xl shadow-black/60 flex flex-col [&>button]:hidden">
+        <div className="md:hidden shrink-0 flex items-center gap-3 px-4 py-3 border-b border-white/[0.06] bg-[#080d1a]/95 backdrop-blur-xl">
+          <button
+            onClick={() => onOpenChange(false)}
+            className="p-1.5 rounded-lg bg-white/[0.06] border border-white/[0.08] text-slate-400 active:bg-white/[0.12] transition-all"
+            aria-label="Go back"
+          >
+            <ChevronLeft size={18} />
+          </button>
+          <div className="flex-1 flex items-center gap-2 min-w-0">
+            <div
+              className="w-2 h-2 rounded-full shrink-0"
+              style={{
+                background: `linear-gradient(135deg, ${accent.from}, ${accent.to})`,
+              }}
+            />
+            <span className="text-sm font-semibold text-white truncate">
+              {project.title}
+            </span>
+          </div>
+        </div>
+
         <button
           onClick={() => onOpenChange(false)}
-          className="absolute top-4 right-4 z-50 p-2 rounded-full bg-white/[0.06] border border-white/[0.08] text-white/50 hover:text-white hover:bg-white/[0.12] transition-all backdrop-blur-md"
+          className="hidden md:flex absolute top-4 right-4 z-50 p-2 rounded-full bg-white/[0.06] border border-white/[0.08] text-white/50 hover:text-white hover:bg-white/[0.12] transition-all backdrop-blur-md"
           aria-label="Close"
         >
           <X size={15} />
