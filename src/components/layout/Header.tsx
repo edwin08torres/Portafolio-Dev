@@ -1,9 +1,11 @@
 import { useState, useEffect, useRef } from "react";
-import { Home, User, FolderOpen } from "lucide-react";
+import { Home, User, Briefcase, Wrench, FolderOpen } from "lucide-react";
 
 const links = [
   { href: "#home", label: "Home", icon: Home },
   { href: "#about", label: "About", icon: User },
+  { href: "#experience", label: "Experience", icon: Briefcase },
+  { href: "#services", label: "Services", icon: Wrench },
   { href: "#project", label: "Projects", icon: FolderOpen },
 ];
 
@@ -24,7 +26,7 @@ export const Header: React.FC = () => {
 
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
-    ["home", "about", "project"].forEach((id) => {
+    ["home", "about", "experience", "services", "project"].forEach((id) => {
       const el = document.getElementById(id);
       if (!el) return;
       const obs = new IntersectionObserver(
@@ -55,18 +57,14 @@ export const Header: React.FC = () => {
         Skip to content
       </a>
 
-      {/* ── DESKTOP VERTICAL SIDEBAR ── */}
       <aside className="sidebar hidden lg:flex">
-        {/* Top: Logo */}
         <a href="#home" className="sidebar-logo" aria-label="Go to top">
           <span>E</span>
           <span className="text-blue-400">T</span>
           <span className="text-blue-400 text-xs">.</span>
         </a>
 
-        {/* Center: nav + progress line */}
         <nav className="sidebar-nav" aria-label="Main navigation">
-          {/* progress line track */}
           <div className="sidebar-track">
             <div
               ref={lineRef}
@@ -75,7 +73,6 @@ export const Header: React.FC = () => {
             />
           </div>
 
-          {/* section dots + labels */}
           <div className="sidebar-links">
             {links.map(({ href, label }) => {
               const isCurrent = active === href;
@@ -94,7 +91,6 @@ export const Header: React.FC = () => {
           </div>
         </nav>
 
-        {/* Bottom: socials */}
         <div className="sidebar-socials">
           <a
             href="https://github.com/edwin08torres"
@@ -121,7 +117,6 @@ export const Header: React.FC = () => {
         </div>
       </aside>
 
-      {/* ── MOBILE TOP BAR ── */}
       <header className="lg:hidden fixed top-0 left-0 w-full z-50 flex items-center justify-between px-5 h-14 text-white bg-slate-950/70 backdrop-blur-md border-b border-white/5">
         <a href="#home" className="text-lg font-bold tracking-wide">
           ET<span className="text-blue-400">.</span>
@@ -144,7 +139,6 @@ export const Header: React.FC = () => {
         </button>
       </header>
 
-      {/* ── MOBILE FULL SCREEN MENU ── */}
       <div
         className={`fixed inset-0 z-[60] lg:hidden transition-all duration-500 ${
           mobileOpen

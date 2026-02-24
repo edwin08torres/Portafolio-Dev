@@ -101,7 +101,6 @@ export const ProjectSection = () => {
                     <Eye size={16} />
                   </button>
 
-                  {/* Accent glow ring on hover */}
                   <div
                     className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none"
                     style={{
@@ -110,7 +109,6 @@ export const ProjectSection = () => {
                   />
 
                   <CardBody className="p-5 w-full h-full flex flex-col justify-between rounded-2xl border border-white/[0.06] bg-white/[0.02] transition-all duration-500 group-hover:border-transparent">
-                    {/* Category pill */}
                     <div className="flex items-center justify-between mb-3">
                       <span
                         className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border"

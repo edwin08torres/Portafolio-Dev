@@ -129,7 +129,6 @@ export const AboutSection = () => {
       />
       <div className="pointer-events-none absolute -left-32 bottom-0 h-[400px] w-[400px] rounded-full bg-violet-600/5 blur-[100px]" />
 
-      {/* Section header */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -148,9 +147,7 @@ export const AboutSection = () => {
         </h2>
       </motion.div>
 
-      {/* Bento Grid */}
       <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-6 gap-4 auto-rows-auto">
-        {/* Bio card */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -166,20 +163,25 @@ export const AboutSection = () => {
             </div>
             <div className="text-sm md:text-[15px] leading-relaxed space-y-4 text-slate-300">
               <p>
-                I'm a web developer focused on building{" "}
+                Software Engineer with{" "}
                 <span className="text-white font-medium">
-                  clean, responsive and scalable
+                  5+ years building production apps
                 </span>{" "}
-                applications with{" "}
-                <span className="text-blue-400 font-medium">React</span>,{" "}
-                <span className="text-blue-400 font-medium">.NET</span> and{" "}
-                <span className="text-blue-400 font-medium">Tailwind CSS</span>.
+                at{" "}
+                <span className="text-blue-400 font-medium">Grupo Monge</span>,
+                where I ship modular{" "}
+                <span className="text-blue-400 font-medium">React</span> and{" "}
+                <span className="text-blue-400 font-medium">Blazor</span>{" "}
+                interfaces for AI assistants and real-time features with{" "}
+                <span className="text-blue-400 font-medium">SignalR</span>.
               </p>
               <p>
-                On the frontend I like simple state patterns and clear component
-                APIs; on the platform side I'm comfortable integrating REST
-                backends and shipping with CI/CD. I care about accessibility,
-                performance and maintainability—{" "}
+                I also build cross-platform mobile apps with{" "}
+                <span className="text-blue-400 font-medium">React Native</span>{" "}
+                at LogaCode, handle{" "}
+                <span className="text-blue-400 font-medium">.NET</span> APIs
+                with Azure DevOps CI/CD, and empower non-technical teams through
+                headless CMS strategies—{" "}
                 <span className="text-white font-medium">
                   shipping value from day one
                 </span>
@@ -189,7 +191,6 @@ export const AboutSection = () => {
           </TiltCard>
         </motion.div>
 
-        {/* Stats cards */}
         <div className="md:col-span-2 grid grid-cols-2 md:grid-cols-1 gap-4">
           {stats.map(({ label, value }, i) => (
             <motion.div
@@ -210,7 +211,6 @@ export const AboutSection = () => {
           ))}
         </div>
 
-        {/* Principles row */}
         {principles.map((p, i) => (
           <motion.div
             key={p.title}
@@ -231,7 +231,6 @@ export const AboutSection = () => {
           </motion.div>
         ))}
 
-        {/* Tech Stack card — colorful icons, no grayscale */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -262,7 +261,6 @@ export const AboutSection = () => {
           </TiltCard>
         </motion.div>
 
-        {/* GitHub Activity card */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -292,9 +290,7 @@ export const AboutSection = () => {
         </motion.div>
       </div>
 
-      {/* Tech Marquee */}
       <div className="w-full max-w-5xl mt-14 space-y-3">
-        <div className="gradient-divider w-full mb-5" />
         <Marquee gradient={false} speed={35} pauseOnHover play>
           {techStack.slice(0, 10).map((item) => (
             <div

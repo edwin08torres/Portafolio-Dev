@@ -121,7 +121,6 @@ export default function ProjectModal({ open, onOpenChange, project }: Props) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="w-[96vw] max-w-[900px] h-[90vh] p-0 overflow-hidden rounded-3xl border border-white/[0.07] bg-[#080d1a] shadow-2xl shadow-black/60 flex flex-col [&>button]:hidden">
-        {/* ── CLOSE BUTTON ── */}
         <button
           onClick={() => onOpenChange(false)}
           className="absolute top-4 right-4 z-50 p-2 rounded-full bg-white/[0.06] border border-white/[0.08] text-white/50 hover:text-white hover:bg-white/[0.12] transition-all backdrop-blur-md"
@@ -139,9 +138,7 @@ export default function ProjectModal({ open, onOpenChange, project }: Props) {
             transition={{ duration: 0.3 }}
             className="flex flex-col md:flex-row w-full h-full overflow-hidden"
           >
-            {/* ──────────── LEFT PANEL ──────────── */}
             <div className="relative md:w-[42%] shrink-0 flex flex-col overflow-hidden">
-              {/* Portrait image */}
               <div className="relative h-52 md:h-full overflow-hidden">
                 <img
                   src={project.image}
@@ -150,7 +147,6 @@ export default function ProjectModal({ open, onOpenChange, project }: Props) {
                   style={{ filter: "brightness(0.55)" }}
                 />
 
-                {/* Gradient overlays */}
                 <div
                   className="absolute inset-0"
                   style={{
@@ -164,9 +160,7 @@ export default function ProjectModal({ open, onOpenChange, project }: Props) {
                   }}
                 />
 
-                {/* Left panel content (pinned to bottom) */}
                 <div className="absolute bottom-0 left-0 right-0 p-6 flex flex-col gap-4">
-                  {/* Accent line */}
                   <div
                     className="w-10 h-0.5 rounded-full"
                     style={{
@@ -178,7 +172,6 @@ export default function ProjectModal({ open, onOpenChange, project }: Props) {
                     {project.title}
                   </h2>
 
-                  {/* Tech badges */}
                   <div className="flex flex-wrap gap-1.5">
                     {project.techs.map((t) => (
                       <span
@@ -195,7 +188,6 @@ export default function ProjectModal({ open, onOpenChange, project }: Props) {
                     ))}
                   </div>
 
-                  {/* CTA buttons in left panel for desktop */}
                   <div className="hidden md:flex flex-col gap-2 mt-2">
                     {project.demo && (
                       <a
@@ -229,9 +221,7 @@ export default function ProjectModal({ open, onOpenChange, project }: Props) {
               </div>
             </div>
 
-            {/* ──────────── RIGHT PANEL ──────────── */}
             <div className="flex-1 flex flex-col min-h-0 border-l border-white/[0.05]">
-              {/* Header stripe */}
               <div className="shrink-0 px-6 py-4 border-b border-white/[0.05] flex items-center gap-2">
                 <Layers size={14} style={{ color: accent.text }} />
                 <span
@@ -242,7 +232,6 @@ export default function ProjectModal({ open, onOpenChange, project }: Props) {
                 </span>
               </div>
 
-              {/* Scrollable content */}
               <div className="flex-1 overflow-y-auto px-6 py-5 space-y-1 modal-scroll">
                 <p className="text-sm text-slate-400 leading-relaxed pb-3 border-b border-white/[0.05] mb-4">
                   {project.description}
@@ -253,7 +242,6 @@ export default function ProjectModal({ open, onOpenChange, project }: Props) {
                 </ReactMarkdown>
               </div>
 
-              {/* Footer (mobile CTAs) */}
               <div className="md:hidden shrink-0 border-t border-white/[0.05] px-6 py-4 flex gap-3">
                 {project.github && (
                   <a

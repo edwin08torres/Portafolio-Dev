@@ -1,18 +1,16 @@
 import { motion } from "framer-motion";
-import { Mail, Github, Linkedin, Twitter } from "lucide-react";
+import { Mail, Github, Linkedin } from "lucide-react";
 
 export const Footer = () => {
   return (
     <footer className="relative bg-[#020617] text-white overflow-hidden">
       <div className="gradient-divider w-full" />
 
-      {/* Big ambient glow */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
         <div className="w-[600px] h-[300px] rounded-full bg-blue-600/5 blur-[120px]" />
       </div>
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 py-20 flex flex-col items-center text-center gap-8">
-        {/* Big CTA headline */}
         <motion.h2
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -51,7 +49,6 @@ export const Footer = () => {
           Send me an Email
         </motion.a>
 
-        {/* Social links */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -70,11 +67,6 @@ export const Footer = () => {
               label: "LinkedIn",
               icon: Linkedin,
             },
-            {
-              href: "https://twitter.com/VillegasAlex505",
-              label: "Twitter",
-              icon: Twitter,
-            },
           ].map(({ href, label, icon: Icon }) => (
             <motion.a
               key={label}
@@ -90,7 +82,6 @@ export const Footer = () => {
           ))}
         </motion.div>
 
-        {/* Divider + copyright */}
         <div className="w-full pt-6 border-t border-white/5 text-xs text-slate-600">
           © {new Date().getFullYear()} Edwin Torrez — Built with React & ❤️
         </div>

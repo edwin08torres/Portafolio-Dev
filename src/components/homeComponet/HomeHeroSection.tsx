@@ -116,12 +116,10 @@ export const HomeHeroSection = () => {
       onMouseMove={handleMouseMove}
       className="relative flex h-screen w-full items-center justify-center overflow-hidden bg-[#020617]"
     >
-      {/* Aurora background */}
       <motion.div className="absolute inset-0" style={{ scale: bgScale }}>
         <div className="aurora-bg absolute inset-0" />
       </motion.div>
 
-      {/* tsParticles interactive mesh */}
       {particlesReady && (
         <Particles
           id="hero-particles"
@@ -130,13 +128,11 @@ export const HomeHeroSection = () => {
         />
       )}
 
-      {/* Mouse spotlight */}
       <motion.div
         className="pointer-events-none absolute inset-0 z-[2]"
         style={{ background: spotlightBg }}
       />
 
-      {/* Subtle grid */}
       <div
         className="absolute inset-0 z-[3] opacity-[0.025]"
         style={{
@@ -146,7 +142,6 @@ export const HomeHeroSection = () => {
         }}
       />
 
-      {/* Noise texture */}
       <img
         src="/assets/noise.png"
         alt=""
@@ -154,12 +149,10 @@ export const HomeHeroSection = () => {
         className="absolute inset-0 h-full w-full object-cover mix-blend-overlay opacity-[0.05] z-[4]"
       />
 
-      {/* Content */}
       <motion.div
         style={{ y: contentY, opacity: contentOpacity }}
         className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:pl-20 flex flex-col lg:flex-row items-center justify-between gap-12"
       >
-        {/* Left: Text */}
         <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -267,7 +260,6 @@ export const HomeHeroSection = () => {
           </motion.div>
         </div>
 
-        {/* Right: Code terminal */}
         <motion.div
           initial={{ opacity: 0, x: 60, rotateY: -10 }}
           animate={{ opacity: 1, x: 0, rotateY: 0 }}
@@ -316,14 +308,12 @@ export const HomeHeroSection = () => {
                 )}
               </div>
             </div>
-            {/* Glow reflection under terminal */}
             <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-4/5 h-12 bg-blue-500/20 blur-2xl rounded-full pointer-events-none" />
             <div className="absolute -inset-1 -z-10 rounded-2xl bg-gradient-to-br from-blue-600/20 via-violet-600/10 to-transparent blur-xl" />
           </div>
         </motion.div>
       </motion.div>
 
-      {/* Scroll indicator */}
       <motion.a
         href="#about"
         onClick={(e) => {

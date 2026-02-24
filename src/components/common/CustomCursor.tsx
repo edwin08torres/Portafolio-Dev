@@ -58,7 +58,6 @@ export const CustomCursor = () => {
 
   return (
     <>
-      {/* Outer ring */}
       <motion.div
         className="fixed top-0 left-0 pointer-events-none z-[9999] hidden lg:block"
         style={{
@@ -74,7 +73,6 @@ export const CustomCursor = () => {
           border: "1.5px solid rgba(99,102,241,0.7)",
         }}
       />
-      {/* Inner dot */}
       <motion.div
         className="fixed top-0 left-0 pointer-events-none z-[9999] hidden lg:block"
         style={{

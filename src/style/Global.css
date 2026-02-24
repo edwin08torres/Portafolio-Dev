@@ -25,7 +25,6 @@ code,
   font-family: "JetBrains Mono", monospace;
 }
 
-/* ─── Vertical Sidebar ─── */
 .sidebar {
   position: fixed;
   left: 0;
@@ -42,7 +41,6 @@ code,
   border-right: 1px solid rgba(148, 163, 184, 0.07);
 }
 
-/* Logo at top */
 .sidebar-logo {
   font-size: 1.1rem;
   font-weight: 800;
@@ -58,7 +56,6 @@ code,
   opacity: 0.7;
 }
 
-/* Nav section */
 .sidebar-nav {
   display: flex;
   flex-direction: row;
@@ -67,7 +64,6 @@ code,
   position: relative;
 }
 
-/* Vertical progress track */
 .sidebar-track {
   width: 2px;
   height: 160px;
@@ -88,7 +84,6 @@ code,
   box-shadow: 0 0 8px rgba(99, 102, 241, 0.5);
 }
 
-/* Section links column */
 .sidebar-links {
   display: flex;
   flex-direction: column;
@@ -97,7 +92,6 @@ code,
   margin-left: 14px;
 }
 
-/* Single section link */
 .sidebar-link {
   display: flex;
   align-items: center;
@@ -140,7 +134,6 @@ code,
   color: #93c5fd;
 }
 
-/* Social icons at bottom */
 .sidebar-socials {
   display: flex;
   flex-direction: column;
@@ -158,7 +151,6 @@ code,
   transform: scale(1.15);
 }
 
-/* ─── Mobile Hamburger ─── */
 .mobile-hamburger {
   display: flex;
   flex-direction: column;
@@ -190,7 +182,6 @@ code,
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* ─── Mobile Nav Link ─── */
 .mobile-nav-link {
   display: flex;
   align-items: center;
@@ -207,19 +198,16 @@ code,
   background: rgba(255, 255, 255, 0.05);
 }
 
-/* ─── Tilt card smooth reset ─── */
 .tilt-card {
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ─── Footer big CTA title ─── */
 .footer-cta-title {
   font-size: clamp(3rem, 8vw, 7.5rem);
   line-height: 1;
   letter-spacing: -0.03em;
 }
 
-/* ─── Section titles ─── */
 .section-title {
   background: linear-gradient(135deg, #e2e8f0 0%, #94a3b8 100%);
   -webkit-background-clip: text;
@@ -228,7 +216,6 @@ code,
   font-weight: 800;
 }
 
-/* ─── Hero stroke text ─── */
 .stroke-text {
   color: transparent;
   -webkit-text-stroke: 1.5px rgba(148, 163, 184, 0.7);
@@ -237,7 +224,6 @@ code,
   text-transform: uppercase;
 }
 
-/* ─── Gradient text utility ─── */
 .gradient-text {
   background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #f472b6 100%);
   -webkit-background-clip: text;
@@ -252,7 +238,6 @@ code,
   -webkit-text-fill-color: transparent;
 }
 
-/* ─── Glass card ─── */
 .glass-card {
   background: rgba(15, 23, 42, 0.6);
   backdrop-filter: blur(16px) saturate(180%);
@@ -277,7 +262,6 @@ code,
   transform: translateY(-2px);
 }
 
-/* ─── Glow button ─── */
 .btn-glow {
   position: relative;
   overflow: hidden;
@@ -306,7 +290,6 @@ code,
   box-shadow: 0 8px 32px rgba(59, 130, 246, 0.35);
 }
 
-/* ─── Outline button ─── */
 .btn-outline {
   border: 1px solid rgba(148, 163, 184, 0.3);
   transition: all 0.3s ease;
@@ -319,7 +302,6 @@ code,
   box-shadow: 0 4px 16px rgba(59, 130, 246, 0.15);
 }
 
-/* ─── Typing animations ─── */
 @keyframes typing {
   from {
     width: 0;
@@ -363,7 +345,6 @@ code,
   animation: fadeInUp 0.8s ease forwards;
 }
 
-/* ─── Gradient divider ─── */
 .gradient-divider {
   height: 1px;
   background: linear-gradient(
@@ -374,7 +355,6 @@ code,
   );
 }
 
-/* ─── Pulsing glow orb ─── */
 @keyframes pulse-glow {
   0%,
   100% {
@@ -391,7 +371,6 @@ code,
   animation: pulse-glow 6s ease-in-out infinite;
 }
 
-/* ─── Tech badge ─── */
 .tech-badge {
   background: rgba(59, 130, 246, 0.1);
   border: 1px solid rgba(59, 130, 246, 0.15);
@@ -407,7 +386,6 @@ code,
   border-color: rgba(59, 130, 246, 0.35);
 }
 
-/* ─── Marquee slide ─── */
 @keyframes slide {
   0% {
     transform: translateX(0%);
@@ -421,7 +399,6 @@ code,
   animation: slide 20s linear infinite;
 }
 
-/* ─── Hero aurora background ─── */
 @keyframes aurora {
   0% {
     background-position:
@@ -475,7 +452,6 @@ code,
   animation: aurora 20s ease-in-out infinite;
 }
 
-/* ─── Hero name shimmer gradient ─── */
 @keyframes shimmer {
   0% {
     background-position: -200% center;
@@ -501,7 +477,6 @@ code,
   animation: shimmer 4s linear infinite;
 }
 
-/* ─── Code terminal ─── */
 .code-terminal {
   background: rgba(10, 15, 30, 0.6);
   backdrop-filter: blur(20px) saturate(180%);
@@ -511,7 +486,6 @@ code,
   perspective: 1000px;
 }
 
-/* ─── Modal right panel scrollbar ─── */
 .modal-scroll {
   scrollbar-width: thin;
   scrollbar-color: rgba(99, 102, 241, 0.3) transparent;
