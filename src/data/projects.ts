@@ -2,6 +2,38 @@ import { Project } from "@/types/Project";
 
 export const projects: Project[] = [
   {
+    slug: "silent-hill-tribute",
+    title: "Silent Hill — Interactive Tribute",
+    description:
+      "A cinematic web experience exploring the lore and horror of Silent Hill through immersive scroll-driven animations and atmospheric design.",
+    details: `
+      ### The Challenge
+      Create a visually rich, interactive web tribute to Silent Hill that feels like navigating through the game itself — with fog, tension, and narrative depth baked into every scroll interaction.
+
+      ### Solution
+      - **Frontend:** React + TypeScript + TailwindCSS
+      - **Animations:** GSAP ScrollTrigger for pinned sections, parallax, zoom transitions, and stacking card reveals
+      - **Cinematic Preloader:** Custom timeline animation with skip functionality
+      - **Immersive Audio:** Web Audio API for ambient pink noise, drone, and hover sound effects
+      - **3D Tilt Cards:** Cursor-following perspective transforms with radial shine overlay on desktop
+      - **Mobile Carousel:** Touch-swipeable character cards with dot navigation
+      - **Bestiary Scrollytelling:** Scroll-driven creature reveals with pinned viewport and animated overlays
+      - **Film Grain Overlay:** SVG fractalNoise texture for VHS atmosphere
+      - **Fog & Vignette:** Layered video fog (desktop) and radial gradient vignette
+      - **Section Navigation:** Lateral dot nav with labels and smooth scroll-to
+      - **Scroll Progress Bar:** Real-time scroll position indicator
+
+      ### Impact
+      A showcase project demonstrating advanced GSAP animation techniques, immersive UI design, and mobile-responsive storytelling — built to impress in a developer portfolio.
+    `,
+    techs: ["React", "TypeScript", "TailwindCSS", "GSAP"],
+    image: "/assets/proyecto-SH-Card.png",
+    detailImage: "/assets/proyecto-SH.png",
+    github: "https://github.com/edwin08torres/SilentHill",
+    demo: "https://silent-hill.vercel.app/",
+  },
+
+  {
     slug: "mopetco-grooming",
     title: "MoPetCo Grooming",
     description:

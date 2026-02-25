@@ -36,30 +36,36 @@ const accentColors: Record<
   { from: string; to: string; text: string; badge: string }
 > = {
   0: {
+    from: "#dc2626",
+    to: "#991b1b",
+    text: "#f87171",
+    badge: "rgba(220,38,38,0.15)",
+  },
+  1: {
     from: "#3b82f6",
     to: "#6366f1",
     text: "#60a5fa",
     badge: "rgba(59,130,246,0.15)",
   },
-  1: {
+  2: {
     from: "#f59e0b",
     to: "#ef4444",
     text: "#fbbf24",
     badge: "rgba(251,191,36,0.12)",
   },
-  2: {
+  3: {
     from: "#8b5cf6",
     to: "#ec4899",
     text: "#a78bfa",
     badge: "rgba(139,92,246,0.15)",
   },
-  3: {
+  4: {
     from: "#ec4899",
     to: "#f43f5e",
     text: "#f472b6",
     badge: "rgba(236,72,153,0.12)",
   },
-  4: {
+  5: {
     from: "#14b8a6",
     to: "#3b82f6",
     text: "#2dd4bf",
@@ -116,6 +122,7 @@ export default function ProjectModal({ open, onOpenChange, project }: Props) {
   const details = dedent(project.details);
   const projectIndex = project.slug
     ? [
+        "silent-hill-tribute",
         "mopetco-grooming",
         "coffee-shop-landing",
         "logic-tkl-915",
@@ -169,7 +176,7 @@ export default function ProjectModal({ open, onOpenChange, project }: Props) {
             <div className="relative md:w-[42%] shrink-0 flex flex-col overflow-hidden">
               <div className="relative h-52 md:h-full overflow-hidden">
                 <img
-                  src={project.image}
+                  src={project.detailImage || project.image}
                   alt={project.title}
                   className="w-full h-full object-cover object-top scale-105"
                   style={{ filter: "brightness(0.55)" }}

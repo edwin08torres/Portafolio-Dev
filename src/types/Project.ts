@@ -11,7 +11,8 @@ export type Tech =
   | "Expo"
   | "Angular"
   | "Bootstrap"
-  | "WeatherBit API";
+  | "WeatherBit API"
+  | "GSAP";
 
 export interface Project {
   slug: string;
@@ -20,7 +21,9 @@ export interface Project {
   details: string;
   techs: readonly Tech[];
   image: string;
+  detailImage?: string;
   github?: string;
   demo?: string;
   note?: string;
 }
+

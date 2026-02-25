@@ -8,6 +8,12 @@ import { motion, useInView } from "framer-motion";
 
 const accentColors = [
   {
+    border: "rgba(220,38,38,0.5)",
+    glow: "rgba(220,38,38,0.15)",
+    text: "#f87171",
+    label: "Interactive Experience",
+  },
+  {
     border: "rgba(59,130,246,0.5)",
     glow: "rgba(59,130,246,0.15)",
     text: "#60a5fa",
