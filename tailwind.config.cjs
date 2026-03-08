@@ -17,6 +17,7 @@ export default {
         shimmer: "shimmer 3s linear infinite",
         loadinglvl: "loadinglvl 1.5s ease-out forwards",
         popinviolent: "popinviolent 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)",
+        float: "float 6s ease-in-out infinite",
       },
       keyframes: {
         fadeIn: {
@@ -132,6 +133,10 @@ export default {
           "100%": {
             transform: "translateY(0) scale(1)",
           },
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-20px)" },
         },
       },
       borderRadius: {

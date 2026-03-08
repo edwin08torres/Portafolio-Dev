@@ -117,7 +117,7 @@ export const Header: React.FC = () => {
         </div>
       </aside>
 
-      <header className="lg:hidden fixed top-0 left-0 w-full z-50 flex items-center justify-between px-5 h-14 text-white bg-slate-950/70 backdrop-blur-md border-b border-white/5">
+      <header className="lg:hidden fixed top-0 left-0 w-full z-[70] flex items-center justify-between px-5 h-14 text-white bg-slate-950/70 backdrop-blur-md border-b border-white/5">
         <a href="#home" className="text-lg font-bold tracking-wide">
           ET<span className="text-blue-400">.</span>
         </a>

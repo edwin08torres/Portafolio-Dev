@@ -27,8 +27,15 @@ export const projects: Project[] = [
       A showcase project demonstrating advanced GSAP animation techniques, immersive UI design, and mobile-responsive storytelling — built to impress in a developer portfolio.
     `,
     techs: ["React", "TypeScript", "TailwindCSS", "GSAP"],
-    image: "/assets/proyecto-SH-Card.png",
-    detailImage: "/assets/proyecto-SH.png",
+    image: "/assets/project/SHWebsite/proyecto-SH-Card.png",
+    detailImage: "/assets/project/SHWebsite/gallery/proyecto-SH.png",
+    gallery: [
+      "/assets/project/SHWebsite/proyecto-SH-Card.png",
+      "/assets/project/SHWebsite/gallery/proyecto-SH.png",
+      "/assets/project/SHWebsite/gallery/img2.png",
+      "/assets/project/SHWebsite/gallery/img3.png",
+      "/assets/project/SHWebsite/gallery/img4.png",
+    ],
     github: "https://github.com/edwin08torres/SilentHill",
     demo: "https://silent-hill.vercel.app/",
   },
@@ -51,10 +58,49 @@ export const projects: Project[] = [
       Online bookings increased significantly in the first month.
     `,
     techs: ["React", "TailwindCSS", "TypeScript", "SQL", ".NET"],
-    image: "/assets/project-1.webp",
+    image: "/assets/project/mopetcowebsite/project.png",
+    gallery: [
+      "/assets/project/mopetcowebsite/project.png",
+      "/assets/project/mopetcowebsite/gallery/Hero.png",
+      "/assets/project/mopetcowebsite/gallery/Services.png",
+      "/assets/project/mopetcowebsite/gallery/ServiceDetail.png",
+      "/assets/project/mopetcowebsite/gallery/Gallery.png",
+      "/assets/project/mopetcowebsite/gallery/contact.png",
+    ],
     github: "https://github.com/DETDevs/MoPetCo.App",
     demo: "https://mopetco.com/",
   },
+
+  {
+    slug: "mopetco-booking",
+    title: "MoPetCo Booking",
+    description:
+      "A full-featured online booking system for veterinary grooming services with a step-by-step reservation flow.",
+    details: `
+      ### The Challenge
+      The clinic needed clients to book grooming appointments online in a guided, intuitive multi-step process.
+
+      ### Solution
+      - **Frontend:** React + TailwindCSS + TypeScript
+      - **Backend:** .NET 7 + SQL Server
+      - Multi-step booking wizard: service selection → date & time → pet info → confirmation
+      - Service catalog with pricing display
+
+      ### Impact
+      Streamlined appointment scheduling reduced phone-call workload and improved client satisfaction.
+    `,
+    techs: ["React", "TailwindCSS", "TypeScript", "SQL", ".NET"],
+    image: "/assets/project/bookingwebsite/project.png",
+    gallery: [
+      "/assets/project/bookingwebsite/project.png",
+      "/assets/project/bookingwebsite/gallery/Services.png",
+      "/assets/project/bookingwebsite/gallery/Step1Booking.png",
+      "/assets/project/bookingwebsite/gallery/Step2Booking.png",
+      "/assets/project/bookingwebsite/gallery/Step3Booking.png",
+      "/assets/project/bookingwebsite/gallery/Step4Booking.png",
+    ],
+  },
+
   {
     slug: "coffee-shop-landing",
     title: "Coffee Shop Landing",
@@ -71,10 +117,52 @@ export const projects: Project[] = [
       `,
 
     techs: ["HTML", "CSS", "JavaScript"],
-    image: "/assets/project-2.webp",
+    image: "/assets/project/coffeewebsite/project.webp",
+    gallery: [
+      "/assets/project/coffeewebsite/project.webp",
+      "/assets/project/coffeewebsite/gallery/img1.png",
+      "/assets/project/coffeewebsite/gallery/img2.png",
+      "/assets/project/coffeewebsite/gallery/img3.png",
+    ],
     github: "https://github.com/edwin08torres/cafeCub",
     demo: "https://shimmering-lebkuchen-346495.netlify.app/",
   },
+
+  {
+    slug: "dulces-momentos",
+    title: "Dulces Momentos — POS System",
+    description:
+      "A full point-of-sale system for a bakery, featuring order management, product catalog, reporting dashboards, and real-time operations.",
+    details: `
+      ### The Challenge
+      A local bakery needed an all-in-one digital system to manage orders, track products, and generate sales reports — replacing manual processes entirely.
+
+      ### Solution
+      - **Frontend:** React + TypeScript + TailwindCSS
+      - **Backend:** .NET + SQL Server
+      - Dashboard with order status tracking and real-time updates
+      - Product management with categories, pricing, and inventory
+      - Sales reporting with daily, weekly, and monthly breakdowns
+      - Multi-role access (admin, cashier, kitchen)
+
+      ### Impact
+      Eliminated paper-based order tracking and reduced errors, enabling the bakery to handle higher order volumes with fewer staff.
+    `,
+    techs: ["React", "TypeScript", "TailwindCSS", "SQL", ".NET"],
+    image: "/assets/project/DulcesMomentos/project.png",
+    gallery: [
+      "/assets/project/DulcesMomentos/project.png",
+      "/assets/project/DulcesMomentos/gallery/Dash.png",
+      "/assets/project/DulcesMomentos/gallery/DashNew.png",
+      "/assets/project/DulcesMomentos/gallery/NuevaOrden.png",
+      "/assets/project/DulcesMomentos/gallery/OrdenesTomadas.png",
+      "/assets/project/DulcesMomentos/gallery/Pedidos.png",
+      "/assets/project/DulcesMomentos/gallery/Productos.png",
+      "/assets/project/DulcesMomentos/gallery/Reportes.png",
+    ],
+    github: "https://github.com/DETDevs/DET.Invoce.App",
+  },
+
   {
     slug: "logic-tkl-915",
     title: "Logitech TKL 915 Specs",
@@ -94,7 +182,14 @@ export const projects: Project[] = [
     `,
 
     techs: ["React", "TailwindCSS", "TypeScript"],
-    image: "/assets/project-tkl.webp",
+    image: "/assets/project/tklwebsite/project.png",
+    gallery: [
+      "/assets/project/tklwebsite/project.png",
+      "/assets/project/tklwebsite/gallery/img1.png",
+      "/assets/project/tklwebsite/gallery/img2.png",
+      "/assets/project/tklwebsite/gallery/img3.png",
+      "/assets/project/tklwebsite/gallery/img4.png",
+    ],
     github: "https://github.com/edwin08torres/TKL",
     demo: "https://magenta-smakager-fead4b.netlify.app/",
   },
@@ -123,7 +218,15 @@ export const projects: Project[] = [
       "TypeScript",
       "Expo",
     ],
-    image: "/assets/pokedex.webp",
+    image: "/assets/project/pokemonApps/project.jpg",
+    gallery: [
+      "/assets/project/pokemonApps/project.jpg",
+      "/assets/project/pokemonApps/gallery/img1.jpg",
+      "/assets/project/pokemonApps/gallery/img2.jpg",
+      "/assets/project/pokemonApps/gallery/img3.jpg",
+      "/assets/project/pokemonApps/gallery/img4.jpg",
+      "/assets/project/pokemonApps/gallery/img5.jpg",
+    ],
     github: "https://github.com/edwin08torres/pokeapi-native",
     demo: "",
   },

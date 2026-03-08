@@ -22,6 +22,7 @@ export interface Project {
   techs: readonly Tech[];
   image: string;
   detailImage?: string;
+  gallery?: string[];
   github?: string;
   demo?: string;
   note?: string;
