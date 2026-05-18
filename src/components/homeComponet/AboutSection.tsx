@@ -10,6 +10,7 @@ import Marquee from "react-fast-marquee";
 import { stats, featuredStack, techStack } from "@/data/aboutData";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { Sparkles, Zap, Target, Layers, Code2 } from "lucide-react";
+import { useLanguage } from "../../context/LanguageContext";
 
 const GitHubCalendar = lazy(() => import("react-github-calendar"));
 
@@ -105,6 +106,7 @@ function TiltCard({
 export const AboutSection = () => {
   const ref = useRef<HTMLElement | null>(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
+  const { t } = useLanguage();
 
   const scrollRef = useRef<HTMLElement | null>(null);
   const { scrollYProgress } = useScroll({
@@ -138,12 +140,12 @@ export const AboutSection = () => {
         <div className="flex items-center justify-center gap-2 mb-3">
           <Sparkles size={16} className="text-blue-400" />
           <span className="text-xs tracking-[0.2em] uppercase text-blue-400 font-medium">
-            Get to know me
+            {t("about.subtitle")}
           </span>
           <Sparkles size={16} className="text-blue-400" />
         </div>
         <h2 id="about-title" className="section-title text-4xl md:text-5xl">
-          About
+          {t("about.title")}
         </h2>
       </motion.div>
 
@@ -158,78 +160,62 @@ export const AboutSection = () => {
             <div className="flex items-center gap-2 mb-4">
               <Code2 size={18} className="text-blue-400" />
               <span className="text-xs tracking-wider uppercase text-blue-400 font-medium">
-                Who I Am
+                {t("about.whoIAm")}
               </span>
             </div>
-            <div className="text-sm md:text-[15px] leading-relaxed space-y-4 text-slate-300">
-              <p>
-                Software Engineer with{" "}
-                <span className="text-white font-medium">
-                  5+ years building production apps
-                </span>{" "}
-                at{" "}
-                <span className="text-blue-400 font-medium">Grupo Monge</span>,
-                where I ship modular{" "}
-                <span className="text-blue-400 font-medium">React</span> and{" "}
-                <span className="text-blue-400 font-medium">Blazor</span>{" "}
-                interfaces for AI assistants and real-time features with{" "}
-                <span className="text-blue-400 font-medium">SignalR</span>.
-              </p>
-              <p>
-                I also build cross-platform mobile apps with{" "}
-                <span className="text-blue-400 font-medium">React Native</span>{" "}
-                at LogaCode, handle{" "}
-                <span className="text-blue-400 font-medium">.NET</span> APIs
-                with Azure DevOps CI/CD, and empower non-technical teams through
-                headless CMS strategies—{" "}
-                <span className="text-white font-medium">
-                  shipping value from day one
-                </span>
-                .
-              </p>
+            <div className="text-sm md:text-[15px] leading-relaxed space-y-4 text-slate-350 pr-2 text-justify">
+              <p dangerouslySetInnerHTML={{ __html: t("about.description1") }} />
+              <p dangerouslySetInnerHTML={{ __html: t("about.description2") }} />
             </div>
           </TiltCard>
         </motion.div>
 
         <div className="md:col-span-2 grid grid-cols-2 md:grid-cols-1 gap-4">
-          {stats.map(({ label, value }, i) => (
-            <motion.div
-              key={label}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
-            >
-              <TiltCard className="rounded-2xl bg-white/[0.03] border border-white/[0.06] p-5 flex flex-col items-center justify-center text-center hover:border-blue-500/25 transition-all duration-500 h-full group">
-                <span className="text-3xl md:text-4xl font-black bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">
-                  <AnimatedCounter value={value} suffix="+" />
-                </span>
-                <span className="text-xs text-slate-500 mt-1 uppercase tracking-wider font-medium group-hover:text-slate-400 transition">
-                  {label}
-                </span>
-              </TiltCard>
-            </motion.div>
-          ))}
+          {stats.map(({ label, value }, i) => {
+            const statKey = i === 0 ? "projects" : "experience";
+            return (
+              <motion.div
+                key={label}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
+              >
+                <TiltCard className="rounded-2xl bg-white/[0.03] border border-white/[0.06] p-5 flex flex-col items-center justify-center text-center hover:border-blue-500/25 transition-all duration-500 h-full group">
+                  <span className="text-3xl md:text-4xl font-black bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">
+                    <AnimatedCounter value={value} suffix="+" />
+                  </span>
+                  <span className="text-xs text-slate-500 mt-1 uppercase tracking-wider font-medium group-hover:text-slate-400 transition">
+                    {t(`about.stats.${statKey}`)}
+                  </span>
+                </TiltCard>
+              </motion.div>
+            );
+          })}
         </div>
 
-        {principles.map((p, i) => (
-          <motion.div
-            key={p.title}
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.35 + i * 0.1 }}
-            className="md:col-span-2"
-          >
-            <TiltCard className="rounded-2xl bg-white/[0.03] border border-white/[0.06] p-5 hover:border-blue-500/25 transition-all duration-500 group h-full">
-              <div className="p-2.5 rounded-xl bg-blue-500/10 w-fit mb-3 group-hover:bg-blue-500/15 transition">
-                <p.icon size={18} className="text-blue-400" />
-              </div>
-              <h3 className="text-sm font-bold text-white mb-1">{p.title}</h3>
-              <p className="text-xs text-slate-500 leading-relaxed group-hover:text-slate-400 transition">
-                {p.desc}
-              </p>
-            </TiltCard>
-          </motion.div>
-        ))}
+        {principles.map((p, i) => {
+          const title = t(`about.principles.${i}.title`);
+          const desc = t(`about.principles.${i}.desc`);
+          return (
+            <motion.div
+              key={p.title}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.35 + i * 0.1 }}
+              className="md:col-span-2"
+            >
+              <TiltCard className="rounded-2xl bg-white/[0.03] border border-white/[0.06] p-5 hover:border-blue-500/25 transition-all duration-500 group h-full">
+                <div className="p-2.5 rounded-xl bg-blue-500/10 w-fit mb-3 group-hover:bg-blue-500/15 transition">
+                  <p.icon size={18} className="text-blue-400" />
+                </div>
+                <h3 className="text-sm font-bold text-white mb-1">{title}</h3>
+                <p className="text-xs text-slate-500 leading-relaxed group-hover:text-slate-400 transition">
+                  {desc}
+                </p>
+              </TiltCard>
+            </motion.div>
+          );
+        })}
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -239,7 +225,7 @@ export const AboutSection = () => {
         >
           <TiltCard className="rounded-2xl bg-white/[0.03] border border-white/[0.06] p-6 hover:border-blue-500/25 transition-all duration-500 h-full">
             <span className="text-xs tracking-wider uppercase text-blue-400 font-medium mb-4 block">
-              Core Stack
+              {t("about.coreStack")}
             </span>
             <div className="grid grid-cols-5 gap-3">
               {featuredStack.map((item) => (
@@ -269,7 +255,7 @@ export const AboutSection = () => {
         >
           <TiltCard className="rounded-2xl bg-white/[0.03] border border-white/[0.06] p-6 hover:border-blue-500/25 transition-all duration-500 overflow-hidden h-full">
             <span className="text-xs tracking-wider uppercase text-blue-400 font-medium mb-4 block">
-              GitHub Activity
+              {t("about.githubActivity")}
             </span>
             <Suspense
               fallback={

@@ -10,6 +10,7 @@ import { useRef, useEffect, useState, useCallback, useMemo } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 import type { ISourceOptions } from "@tsparticles/engine";
+import { useLanguage } from "../../context/LanguageContext";
 
 const codeLines = [
   { text: "const developer = {", color: "text-blue-300" },
@@ -25,6 +26,7 @@ const codeLines = [
 export const HomeHeroSection = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
   const [particlesReady, setParticlesReady] = useState(false);
+  const { t } = useLanguage();
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -64,6 +66,23 @@ export const HomeHeroSection = () => {
     return () => clearInterval(timer);
   }, []);
 
+  const [isHeroVisible, setIsHeroVisible] = useState(true);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsHeroVisible(entry.isIntersecting);
+      },
+      { threshold: 0.02 }
+    );
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   useEffect(() => {
     initParticlesEngine(async (engine) => {
       await loadSlim(engine);
@@ -99,7 +118,7 @@ export const HomeHeroSection = () => {
           speed: 0.6,
           straight: false,
         },
-        number: { density: { enable: true }, value: 60 },
+        number: { density: { enable: true }, value: 30 },
         opacity: { value: { min: 0.15, max: 0.5 } },
         shape: { type: "circle" },
         size: { value: { min: 1, max: 2.5 } },
@@ -120,7 +139,7 @@ export const HomeHeroSection = () => {
         <div className="aurora-bg absolute inset-0" />
       </motion.div>
 
-      {particlesReady && (
+      {particlesReady && isHeroVisible && (
         <Particles
           id="hero-particles"
           options={particleOptions}
@@ -165,7 +184,7 @@ export const HomeHeroSection = () => {
               <span className="relative rounded-full h-2 w-2 bg-emerald-400" />
             </span>
             <span className="text-xs font-medium text-emerald-300 tracking-wide">
-              Available for work
+              {t("hero.status")}
             </span>
           </motion.div>
 
@@ -175,7 +194,7 @@ export const HomeHeroSection = () => {
             transition={{ delay: 0.3, duration: 0.6 }}
             className="text-sm md:text-base text-slate-400 font-medium tracking-wide mb-2"
           >
-            Hi, I'm
+            {t("hero.greeting")}
           </motion.p>
 
           <motion.h1
@@ -197,9 +216,9 @@ export const HomeHeroSection = () => {
           >
             <div className="hidden lg:block h-px w-10 bg-gradient-to-r from-transparent to-blue-500/50" />
             <p className="text-sm md:text-base text-slate-400">
-              Systems Engineer &{" "}
+              {t("hero.subtitle")}{" "}
               <span className="gradient-text-blue font-semibold">
-                Front-End Developer
+                {t("hero.subtitleHighlight")}
               </span>
             </p>
           </motion.div>
@@ -214,7 +233,7 @@ export const HomeHeroSection = () => {
               href="#project"
               className="btn-glow px-8 py-3.5 text-white rounded-xl font-semibold text-sm tracking-wide flex items-center justify-center gap-2 group"
             >
-              View Projects
+              {t("hero.viewProjects")}
               <svg
                 className="w-4 h-4 transition-transform group-hover:translate-x-1"
                 fill="none"
@@ -230,11 +249,11 @@ export const HomeHeroSection = () => {
               </svg>
             </a>
             <a
-              href="/doc/EdwinTorres_CV.pdf"
-              download
+              href="/doc/Curriculum_EdwinTorrez.pdf"
+              download="Curriculum_EdwinTorrez.pdf"
               className="btn-outline px-8 py-3.5 text-white rounded-xl font-semibold text-sm tracking-wide text-center"
             >
-              Download CV
+              {t("hero.downloadCv")}
             </a>
           </motion.div>
 
@@ -245,9 +264,9 @@ export const HomeHeroSection = () => {
             className="flex items-center gap-6 mt-10 text-slate-500 text-xs"
           >
             {[
-              { value: "10+", label: "Projects\nDelivered" },
-              { value: "5+", label: "Years\nExperience" },
-              { value: "3", label: "Tech\nStacks" },
+              { value: "10+", label: t("hero.stats.projects") },
+              { value: "5+", label: t("hero.stats.experience") },
+              { value: "3", label: t("hero.stats.stacks") },
             ].map((stat, i) => (
               <div key={i} className="flex items-center gap-2">
                 {i > 0 && <div className="h-8 w-px bg-slate-700 mr-2" />}

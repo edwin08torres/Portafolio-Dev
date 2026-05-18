@@ -20,28 +20,28 @@ const accentColors = [
     label: "Web App",
   },
   {
+    border: "rgba(34,211,238,0.5)",
+    glow: "rgba(34,211,238,0.15)",
+    text: "#22d3ee",
+    label: "Booking System",
+  },
+  {
     border: "rgba(251,191,36,0.5)",
     glow: "rgba(251,191,36,0.12)",
     text: "#fbbf24",
     label: "Landing Page",
   },
   {
-    border: "rgba(139,92,246,0.5)",
-    glow: "rgba(139,92,246,0.15)",
-    text: "#a78bfa",
-    label: "Web App",
-  },
-  {
     border: "rgba(236,72,153,0.5)",
     glow: "rgba(236,72,153,0.12)",
     text: "#f472b6",
-    label: "Mobile App",
+    label: "POS System",
   },
   {
-    border: "rgba(20,184,166,0.5)",
-    glow: "rgba(20,184,166,0.12)",
-    text: "#2dd4bf",
-    label: "Web App",
+    border: "rgba(139,92,246,0.5)",
+    glow: "rgba(139,92,246,0.15)",
+    text: "#a78bfa",
+    label: "Product Page",
   },
 ];
 

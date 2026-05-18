@@ -1,0 +1,175 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Sobre Mí",
+    "experience": "Experiencia",
+    "services": "Servicios",
+    "projects": "Proyectos",
+    "skipToContent": "Saltar al contenido",
+    "goBack": "Volver",
+    "caseStudy": "Estudio de Caso"
+  },
+  "hero": {
+    "status": "Disponible para trabajar",
+    "greeting": "Hola, soy",
+    "subtitle": "Ingeniero en Sistemas &",
+    "subtitleHighlight": "Desarrollador Front-End",
+    "viewProjects": "Ver Proyectos",
+    "downloadCv": "Descargar CV",
+    "stats": {
+      "projects": "Proyectos\nEntregados",
+      "experience": "Años de\nExperiencia",
+      "stacks": "Tecnologías\nPrincipales"
+    }
+  },
+  "about": {
+    "subtitle": "Conóceme un poco",
+    "title": "Sobre Mí",
+    "whoIAm": "Quién Soy",
+    "stats": {
+      "projects": "Proyectos",
+      "experience": "Años Exp."
+    },
+    "description1": "Ingeniero en Sistemas con <span class=\"text-white font-medium\">más de 5 años construyendo aplicaciones de producción</span> en <span class=\"text-blue-400 font-medium\">Grupo Monge</span>, donde diseño interfaces modulares en <span class=\"text-blue-400 font-medium\">React</span> y <span class=\"text-blue-400 font-medium\">Blazor</span> para asistentes de inteligencia artificial y funciones en tiempo real con <span class=\"text-blue-400 font-medium\">SignalR</span>.",
+    "description2": "También desarrollo aplicaciones móviles multiplataforma con <span class=\"text-blue-400 font-medium\">React Native</span> en LogaCode, gestiono APIs en <span class=\"text-blue-400 font-medium\">.NET</span> con pipelines CI/CD de Azure DevOps, y capacito a equipos no técnicos a través de estrategias de CMS headless— <span class=\"text-white font-medium\">entregando valor desde el primer día</span>.",
+    "principles": [
+      {
+        "title": "Rendimiento Primero",
+        "desc": "Cada milisegundo cuenta. Optimizo para velocidad desde el inicio."
+      },
+      {
+        "title": "Pixel Perfect",
+        "desc": "La fidelidad del diseño no es negociable."
+      },
+      {
+        "title": "Arquitectura Limpia",
+        "desc": "Patrones escalables, no código espagueti."
+      }
+    ],
+    "coreStack": "Tecnologías Clave",
+    "githubActivity": "Actividad en GitHub"
+  },
+  "experience": {
+    "title": "Experiencia",
+    "subtitle": "Mi Trayectoria",
+    "items": [
+      {
+        "company": "LogaCode",
+        "role": "Desarrollador Frontend",
+        "period": "2025 - Presente",
+        "location": "Remoto",
+        "type": "Part-Time",
+        "description": "En este rol, me enfoco en el desarrollo y la optimización extrema de aplicaciones móviles de alto rendimiento. Trabajo en la implementación de arquitecturas escalables, centrándome en la gestión eficiente del estado global, el manejo de caché multimedia y la seguridad de los flujos de autenticación.",
+        "bullets": [
+          "Optimización del consumo de memoria en dispositivos mediante la implementación de listas infinitas con FlatList en React Native para feeds de video (Reels).",
+          "Manejo de estados complejos con Redux y Zustand para la persistencia de sesiones y control de transacciones de ventas en tiempo real.",
+          "Construcción de interfaces modulares e integración de flujos de autenticación seguros utilizando Firebase."
+        ]
+      },
+      {
+        "company": "Grupo Monge",
+        "role": "Desarrollador de software",
+        "period": "2023 - 2026",
+        "location": "Managua, Nicaragua",
+        "type": "Híbrido",
+        "description": "Como Frontend Developer, me dedico a construir y optimizar interfaces de usuario desde cero, asegurando experiencias fluidas y el cumplimiento de normativas financieras estrictas. Llevo a cabo la creación de componentes interactivos y la integración de flujos de conversión dinámicos que conectan directamente con los clientes de la empresa.",
+        "bullets": [
+          "Desarrollo de landing pages dinámicas conectadas al flujo de mensajería de WhatsApp para renderizar recomendaciones personalizadas.",
+          "Construcción de vistas interactivas utilizando React y Blazor para asistentes virtuales de servicio al cliente y paneles de reclutamiento.",
+          "Configuración y ajuste de componentes frontend en múltiples repositorios para garantizar el cumplimiento de la norma SUGEF 10-07."
+        ]
+      },
+      {
+        "company": "Freelance",
+        "role": "Desarrollador Frontend - Freelance",
+        "period": "Ene 2019 - Dic 2022",
+        "location": "Remoto",
+        "type": "Independiente",
+        "description": "Durante mi etapa como desarrollador independiente, me dediqué al diseño y despliegue rápido de soluciones web enfocadas en la velocidad y la experiencia del usuario. Llevé a cabo proyectos integrales, desde landing pages optimizadas para SEO hasta interfaces complejas para sistemas de Punto de Venta (POS) en estrecha integración con el backend.",
+        "bullets": [
+          "Diseño y despliegue rápido de landing pages adaptables utilizando React, Vite, Tailwind CSS y Vercel, con alto enfoque en velocidad de carga.",
+          "Construcción de aplicaciones web para sistemas POS dedicados al control de inventario y facturación.",
+          "Integración del cliente con APIs en .NET y SQL Server, gestionando el estado con Zustand para garantizar cargas rápidas en la UI."
+        ]
+      }
+    ]
+  },
+  "services": {
+    "subtitle": "Lo que ofrezco",
+    "title": "Servicios",
+    "desc": "Soluciones de desarrollo de extremo a extremo adaptadas a las necesidades de tu proyecto.",
+    "items": [
+      {
+        "title": "Desarrollo Web",
+        "description": "Aplicaciones web responsivas y de alto rendimiento construidas con React, Next.js y TailwindCSS. Desde páginas de aterrizaje hasta plataformas completas."
+      },
+      {
+        "title": "Desarrollo Móvil",
+        "description": "Aplicaciones móviles multiplataforma con React Native y Expo, con animaciones fluidas a 60fps y arquitectura offline-first."
+      },
+      {
+        "title": "APIs y Backend",
+        "description": "APIs REST robustas y servicios en tiempo real con .NET, SignalR y SQL Server. Despliegues en la nube con Azure DevOps."
+      },
+      {
+        "title": "CMS e Integraciones",
+        "description": "Estrategias de CMS Headless con Strapi, pipelines de CI/CD con Azure DevOps e integraciones de servicios de terceros para flujos de trabajo optimizados."
+      }
+    ]
+  },
+  "projects": {
+    "subtitle": "Mi trabajo",
+    "title": "Proyectos Destacados",
+    "desc": "Una selección de trabajos web para empresas y proyectos personales, enfocados en UX y rendimiento.",
+    "viewGallery": "Ver Galería",
+    "viewCase": "Caso de Estudio",
+    "liveDemo": "Demo en Vivo",
+    "sourceCode": "Código Fuente",
+    "items": {
+      "legal-track-usa": {
+        "title": "Legal Track USA",
+        "description": "Una aplicación móvil multiplataforma y segura para el seguimiento en tiempo real de casos de inmigración, guías de estudio oficiales para el examen de USCIS y sección de comunidad.",
+        "details": "### El Desafío\nConstruir una aplicación móvil integrada y segura que permita a los usuarios realizar un seguimiento en tiempo real del estado de sus casos de inmigración en EE. UU., practicar para los exámenes cívicos oficiales de USCIS y participar en una comunidad interactiva. El mayor obstáculo técnico fue la implementación de un módulo de Reels altamente reactivo, que requería validaciones estrictas de duración de video y cortes dinámicos en el rango de 1 minuto similares a WhatsApp.\n\n### Solución\n- **Cliente Móvil:** React Native CLI, TypeScript y Redux Toolkit\n- **Backend y Autenticación:** Firebase Auth, Firestore y Real-Time Database\n- **Procesamiento de Video (Reels):** Módulo personalizado de recorte utilizando `react-native-video` y `react-native-video-trim` que valida que los videos duren menos de 1 minuto, realizando recortes automatizados si el archivo original excede los 60 segundos.\n- **Estado y Almacenamiento:** Redux Persist + Async Storage para la persistencia local de casos sin conexión, combinados con TanStack React Query para sincronización de servidor en tiempo real.\n- **Experiencia Premium:** Animaciones interactivas con Lottie y alertas push instantáneas de OneSignal cuando cambia el estado de un caso en la corte.\n\n### Impacto\nDesplegada con éxito en la App Store de iOS y Google Play Store de Android, convirtiéndose en un centro digital valioso para miles de usuarios que buscan mantener el estado de sus trámites de inmigración al día."
+      },
+      "silent-hill-tribute": {
+        "title": "Silent Hill — Tributo Interactivo",
+        "description": "Una experiencia web cinematográfica que explora el horror de Silent Hill a través de animaciones interactivas basadas en el scroll y diseño atmosférico.",
+        "details": "### El Desafío\nCrear un tributo web interactivo y visualmente enriquecido a Silent Hill que se sienta como navegar por el propio juego, con niebla, tensión y profundidad narrativa integradas en cada interacción de scroll.\n\n### Solución\n- **Frontend:** React + TypeScript + TailwindCSS\n- **Animaciones:** GSAP ScrollTrigger para secciones fijas, paralaje, transiciones de zoom y revelación de tarjetas apiladas\n- **Preloader Cinematográfico:** Animación de línea de tiempo personalizada con opción de omitir\n- **Audio Inmersivo:** Web Audio API para ruido rosa ambiental, zumbidos y efectos de sonido al pasar el cursor\n- **Tarjetas con Inclinación 3D:** Transformaciones de perspectiva que siguen al cursor con brillo radial en escritorio\n- **Carrusel Móvil:** Tarjetas de personajes deslizables mediante toques con navegación por puntos\n- **Narración con Scroll del Bestiario:** Revelación de criaturas activada por scroll con vista fija y capas animadas\n- **Superposición de Grano de Película:** Textura SVG fractalNoise para una atmósfera de cinta de video VHS\n- **Niebla y Viñeta:** Niebla de video en capas (escritorio) y viñeta con gradiente radial\n- **Navegación de Secciones:** Navegación por puntos laterales con etiquetas y desplazamiento suave al hacer clic\n- **Barra de Progreso del Scroll:** Indicador del estado de scroll en tiempo real\n\n### Impacto\nUn proyecto destacado que demuestra técnicas avanzadas de animación con GSAP, diseño de interfaz inmersivo y narración adaptada a dispositivos móviles, diseñado para impresionar en un portafolio de desarrollo."
+      },
+      "mopetco-grooming": {
+        "title": "MoPetCo Grooming",
+        "description": "Una página web que presenta servicios de peluquería canina con reserva de citas en línea.",
+        "details": "### El Desafío\nLa clínica veterinaria necesitaba digitalizar su agenda de peluquería y al mismo tiempo promocionar sus servicios de forma digital.\n\n### Solución\n- **Frontend:** React + TailwindCSS\n- **Backend:** .NET 7 + SQL Server\n- **Integración:** Correo electrónico + canales de contacto + reservas automáticas\n\n### Impacto\nLas reservas en línea aumentaron significativamente durante el primer mes de lanzamiento."
+      },
+      "mopetco-booking": {
+        "title": "MoPetCo Booking",
+        "description": "Un sistema completo de reservas en línea para servicios veterinarios con un flujo interactivo paso a paso.",
+        "details": "### El Desafío\nLa clínica requería que los clientes pudieran reservar citas de peluquería en línea a través de un proceso guiado, intuitivo y compuesto por múltiples pasos.\n\n### Solución\n- **Frontend:** React + TailwindCSS + TypeScript\n- **Backend:** .NET 7 + SQL Server\n- Asistente de reserva paso a paso: selección de servicio → fecha y hora → datos de la mascota → confirmación\n- Catálogo de servicios con desglose de precios en tiempo real\n\n### Impacto\nLa automatización de citas redujo significativamente la carga de llamadas telefónicas y mejoró notablemente la satisfacción de los clientes."
+      },
+      "coffee-shop-landing": {
+        "title": "Coffee Shop Landing",
+        "description": "Una elegante página de aterrizaje para una marca premium de café.",
+        "details": "### El Desafío\nLa marca necesitaba un medio atractivo y moderno para exhibir su café premium en línea, transmitiendo una sólida identidad visual y facilitando un acceso rápido a su menú de especialidades.\n\n### Solución\n- **Frontend:** HTML puro, CSS y JavaScript, enfocado al 100% en rendimiento de carga y estética visual.\n- Diseño de una landing page minimalista con un alto enfoque en imágenes atractivas y experiencia de usuario fluida.\n- Menú interactivo integrado y secciones informativas de navegación sumamente ágiles."
+      },
+      "dulces-momentos": {
+        "title": "Dulces Momentos — Sistema POS",
+        "description": "Un sistema completo de punto de venta (POS) para una pastelería, que incluye gestión de pedidos, catálogo de productos y reportes en tiempo real.",
+        "details": "### El Desafío\nUna pastelería local necesitaba un sistema digital integrado para gestionar pedidos, rastrear inventario de productos y generar reportes financieros detallados de ventas, reemplazando por completo los procesos manuales en papel.\n\n### Solución\n- **Frontend:** React + TypeScript + TailwindCSS\n- **Backend:** .NET + SQL Server\n- Panel interactivo con seguimiento del estado de los pedidos y actualizaciones en tiempo real\n- Gestión integral de productos con categorización, precios e inventario dinámico\n- Reportes financieros de ventas detallados con desgloses diarios, semanales y mensuales\n- Acceso con múltiples roles (administrador, cajero, personal de cocina)\n\n### Impacto\nEliminó los errores del seguimiento manual en papel, permitiendo a la pastelería gestionar un volumen sustancialmente mayor de pedidos de forma ágil y eficiente."
+      },
+      "logic-tkl-915": {
+        "title": "Especificaciones Logitech TKL 915",
+        "description": "Una página interactiva para explorar las especificaciones completas del teclado Logitech TKL 915.",
+        "details": "### El Desafío\nSe requería una página web informativa moderna y sumamente limpia para destacar las características premium del teclado Logitech TKL 915, enfocándose en su diseño compacto y su funcionalidad optimizada para gamers.\n\n### Solución\n- **Frontend:** React + TailwindCSS + AOS + Marquee\n- Arquitectura modular con animaciones interactivas basadas en el scroll para desplegar cada especificación técnica.\n- Efectos visuales de marquesina continua y tiempos de carga optimizados al máximo.\n\n### Impacto\nElevó la percepción de calidad del producto entre distribuidores minoristas y se consolidó como una excelente herramienta de consulta previa para potenciales compradores."
+      }
+    }
+  },
+  "footer": {
+    "ctaTitle1": "Trabajemos ",
+    "ctaTitleHighlight": "Juntos",
+    "ctaTitle2": "",
+    "ctaText": "¿Tienes un proyecto en mente o simplemente quieres saludar?\nMe encantaría saber de ti.",
+    "sendEmail": "Envíame un Correo",
+    "rights": "Todos los derechos reservados.",
+    "builtBy": "Edwin Torrez — Construido con React y ❤️"
+  }
+}

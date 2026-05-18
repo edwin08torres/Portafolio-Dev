@@ -1,7 +1,10 @@
 import { motion } from "framer-motion";
 import { Mail, Github, Linkedin } from "lucide-react";
+import { useLanguage } from "../../context/LanguageContext";
 
 export const Footer = () => {
+  const { t } = useLanguage();
+
   return (
     <footer className="relative bg-[#020617] text-white overflow-hidden">
       <div className="gradient-divider w-full" />
@@ -18,9 +21,9 @@ export const Footer = () => {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="footer-cta-title font-black uppercase leading-none tracking-tight"
         >
-          Let's <span className="hero-name-gradient">Work</span>
-          <br />
-          Together
+          {t("footer.ctaTitle1")}
+          <span className="hero-name-gradient">{t("footer.ctaTitleHighlight")}</span>
+          {t("footer.ctaTitle2")}
         </motion.h2>
 
         <motion.p
@@ -28,11 +31,9 @@ export const Footer = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-slate-400 text-sm md:text-base max-w-md leading-relaxed"
+          className="text-slate-400 text-sm md:text-base max-w-md leading-relaxed whitespace-pre-line"
         >
-          Have a project in mind or just want to say hello?
-          <br />
-          I'd love to hear from you.
+          {t("footer.ctaText")}
         </motion.p>
 
         <motion.a
@@ -46,7 +47,7 @@ export const Footer = () => {
           className="btn-glow inline-flex items-center gap-2.5 text-white px-8 py-4 rounded-2xl text-sm font-semibold tracking-wide"
         >
           <Mail size={16} />
-          Send me an Email
+          {t("footer.sendEmail")}
         </motion.a>
 
         <motion.div
@@ -82,8 +83,9 @@ export const Footer = () => {
           ))}
         </motion.div>
 
-        <div className="w-full pt-6 border-t border-white/5 text-xs text-slate-600">
-          © {new Date().getFullYear()} Edwin Torrez — Built with React & ❤️
+        <div className="w-full pt-6 border-t border-white/5 text-xs text-slate-650 flex flex-col sm:flex-row items-center justify-between gap-2">
+          <span>© {new Date().getFullYear()} Edwin Torrez. {t("footer.rights")}</span>
+          <span>{t("footer.builtBy")}</span>
         </div>
       </div>
     </footer>

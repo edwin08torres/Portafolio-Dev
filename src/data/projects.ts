@@ -2,6 +2,37 @@ import { Project } from "@/types/Project";
 
 export const projects: Project[] = [
   {
+    slug: "legal-track-usa",
+    title: "Legal Track USA",
+    description:
+      "A secure multiplatform mobile application for real-time tracking of immigration cases, official USCIS test study guides, and community feed sharing.",
+    details: `
+      ### The Challenge
+      To build an integrated, secure mobile application that empowers users to track their US immigration cases with real-time status updates, practice for the official USCIS civics tests, and engage in a social community feed. The critical technical hurdle was implementing a highly responsive Reels video posting module supporting auto-trimming and cutting algorithms similar to WhatsApp.
+
+      ### Solution
+      - **Mobile Client:** React Native CLI, TypeScript, and Redux Toolkit
+      - **Backend & Auth:** Firebase Auth, Firestore, and Real-Time DB
+      - **Video Processing (Reels):** Custom video trimming system using \`react-native-video\` & \`react-native-video-trim\` that enforces videos to be strictly less than 1 minute, performing automated cutting if the raw file exceeds 60 seconds
+      - **State & Storage:** Redux Persist + Async Storage for offline case persistence, combined with TanStack React Query for reliable real-time server synchronizations
+      - **Interactive Features:** Lottie animations for premium UX feedback and OneSignal notifications for instant push alert updates on case status shifts
+      
+      ### Impact
+      Successfully deployed to the iOS App Store and Google Play Store, creating an invaluable modern hub for thousands of immigrants seeking legal status updates.
+    `,
+    techs: ["React Native", "Redux", "Firebase", "TypeScript"],
+    image: "/assets/project/legaltrack/img1.png",
+    gallery: [
+      "/assets/project/legaltrack/img1.png",
+      "/assets/project/legaltrack/img2.png",
+      "/assets/project/legaltrack/img3.png",
+      "/assets/project/legaltrack/img4.png",
+    ],
+    playstore:
+      "https://play.google.com/store/apps/details?id=com.legaltrackusa.app&pcampaignid=web_share",
+    appstore: "https://apps.apple.com/ni/app/legal-track-usa/id6742809966",
+  },
+  {
     slug: "silent-hill-tribute",
     title: "Silent Hill — Interactive Tribute",
     description:
@@ -192,73 +223,5 @@ export const projects: Project[] = [
     ],
     github: "https://github.com/edwin08torres/TKL",
     demo: "https://magenta-smakager-fead4b.netlify.app/",
-  },
-  {
-    slug: "pokedex",
-    title: "Pokédex — Browse & Discover Pokémon",
-    description:
-      "Find your favorite Pokémon and learn more about their stats and types.",
-    details: `
-      ### The Challenge
-      An interactive mobile app was needed to let users explore a list of Pokémon and quickly access their characteristics, stats and types.
-
-      ### Solution
-      - **Frontend:** React Native + TypeScript + CSS.
-      - Integration with the public **PokeAPI** for real-time data.
-      - Optimized design with dynamic lists and smooth screen navigation.
-      - Search and filter to find specific Pokémon.
-      - Smooth animations and transitions for a better user experience.
-
-      ### Impact
-      The app delivers a friendly and accessible experience for fans and newcomers alike, centralizing official Pokémon data in one place in a mobile-friendly format.
-    `,
-
-    techs: [
-      "React Native",
-      "TypeScript",
-      "Expo",
-    ],
-    image: "/assets/project/pokemonApps/project.jpg",
-    gallery: [
-      "/assets/project/pokemonApps/project.jpg",
-      "/assets/project/pokemonApps/gallery/img1.jpg",
-      "/assets/project/pokemonApps/gallery/img2.jpg",
-      "/assets/project/pokemonApps/gallery/img3.jpg",
-      "/assets/project/pokemonApps/gallery/img4.jpg",
-      "/assets/project/pokemonApps/gallery/img5.jpg",
-    ],
-    github: "https://github.com/edwin08torres/pokeapi-native",
-    demo: "",
-  },
-  {
-    slug: "WeatherBit",
-    title: "WeatherBit — US Weather & 5-Day Forecast",
-    description:
-      "A web app that displays current weather and a 5-day forecast for any US city by ZIP code.",
-    details: `
-      ### The Challenge
-      Build a lightweight, fast and accessible web app that provides reliable weather data based on a ZIP code, showing current conditions and an extended forecast in a clear, visual format.
-
-      ### Solution
-      - **Frontend:** Angular + TypeScript with responsive **Bootstrap** design.
-      - Direct consumption of the public **WeatherBit** API for real-time weather.
-      - ZIP Code search with proper state handling (loading, error, data).
-      - Reusable components and modular architecture for easy scalability.
-      - Clean, modern UI optimized for desktop and mobile.
-
-      ### Impact
-      The app delivers a simple yet powerful experience: accurate weather data in seconds, with a clean and professional interface ideal for general users or quick weather lookups.
-  `,
-
-    techs: [
-      "Angular",
-      "TypeScript",
-      "Bootstrap",
-      "WeatherBit API",
-    ],
-    image: "/assets/project-7.webp",
-    github: "https://github.com/edwin08torres/WeatherBit",
-    demo: "https://weatherbittesting.netlify.app/"
   }
-
 ];

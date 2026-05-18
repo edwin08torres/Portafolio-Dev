@@ -1,19 +1,30 @@
 import { useState, useEffect, useRef } from "react";
 import { Home, User, Briefcase, Wrench, FolderOpen } from "lucide-react";
+import { useLanguage } from "../../context/LanguageContext";
+import { LanguageSwitcher } from "../common/LanguageSwitcher";
 
 const links = [
-  { href: "#home", label: "Home", icon: Home },
-  { href: "#about", label: "About", icon: User },
-  { href: "#experience", label: "Experience", icon: Briefcase },
-  { href: "#services", label: "Services", icon: Wrench },
-  { href: "#project", label: "Projects", icon: FolderOpen },
+  { href: "#home", icon: Home },
+  { href: "#about", icon: User },
+  { href: "#experience", icon: Briefcase },
+  { href: "#services", icon: Wrench },
+  { href: "#project", icon: FolderOpen },
 ];
+
+const navKeys: Record<string, string> = {
+  "#home": "nav.home",
+  "#about": "nav.about",
+  "#experience": "nav.experience",
+  "#services": "nav.services",
+  "#project": "nav.projects",
+};
 
 export const Header: React.FC = () => {
   const [active, setActive] = useState("#home");
   const [scrollProgress, setScrollProgress] = useState(0);
   const [mobileOpen, setMobileOpen] = useState(false);
   const lineRef = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const onScroll = () => {
@@ -54,7 +65,7 @@ export const Header: React.FC = () => {
         href="#about"
         className="skip-link absolute left-2 top-0 -translate-y-full focus:translate-y-0 bg-blue-600 text-white px-3 py-1 rounded shadow-lg transition-transform z-[100]"
       >
-        Skip to content
+        {t("nav.skipToContent")}
       </a>
 
       <aside className="sidebar hidden lg:flex">
@@ -74,8 +85,9 @@ export const Header: React.FC = () => {
           </div>
 
           <div className="sidebar-links">
-            {links.map(({ href, label }) => {
+            {links.map(({ href }) => {
               const isCurrent = active === href;
+              const label = t(navKeys[href]);
               return (
                 <a
                   key={href}
@@ -91,29 +103,32 @@ export const Header: React.FC = () => {
           </div>
         </nav>
 
-        <div className="sidebar-socials">
-          <a
-            href="https://github.com/edwin08torres"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-            className="sidebar-social-link"
-          >
-            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.605-.015 2.896-.015 3.286 0 .315.21.694.825.576C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z" />
-            </svg>
-          </a>
-          <a
-            href="https://www.linkedin.com/in/edwintorrez"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            className="sidebar-social-link"
-          >
-            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.327-.024-3.037-1.852-3.037-1.852 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-            </svg>
-          </a>
+        <div className="flex flex-col items-center mb-6">
+          <LanguageSwitcher className="mb-6" />
+          <div className="sidebar-socials">
+            <a
+              href="https://github.com/edwin08torres"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              className="sidebar-social-link"
+            >
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.605-.015 2.896-.015 3.286 0 .315.21.694.825.576C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z" />
+              </svg>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/edwintorrez"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="sidebar-social-link"
+            >
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.327-.024-3.037-1.852-3.037-1.852 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+              </svg>
+            </a>
+          </div>
         </div>
       </aside>
 
@@ -122,21 +137,24 @@ export const Header: React.FC = () => {
           ET<span className="text-blue-400">.</span>
         </a>
 
-        <button
-          type="button"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="p-2 rounded-md hover:bg-white/10 transition"
-          aria-label={mobileOpen ? "Close menu" : "Open menu"}
-          aria-expanded={mobileOpen}
-        >
-          <span
-            className={`mobile-hamburger ${mobileOpen ? "mobile-hamburger--open" : ""}`}
+        <div className="flex items-center gap-3">
+          <LanguageSwitcher />
+          <button
+            type="button"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="p-2 rounded-md hover:bg-white/10 transition flex items-center justify-center"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
           >
-            <span />
-            <span />
-            <span />
-          </span>
-        </button>
+            <span
+              className={`mobile-hamburger ${mobileOpen ? "mobile-hamburger--open" : ""}`}
+            >
+              <span />
+              <span />
+              <span />
+            </span>
+          </button>
+        </div>
       </header>
 
       <div
@@ -154,24 +172,27 @@ export const Header: React.FC = () => {
           className="relative z-10 flex flex-col items-center justify-center h-full gap-3"
           aria-label="Mobile navigation"
         >
-          {links.map(({ href, label, icon: Icon }, i) => (
-            <a
-              key={href}
-              href={href}
-              onClick={() => setMobileOpen(false)}
-              className={`mobile-nav-link group ${mobileOpen ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}
-              style={{
-                transitionDelay: mobileOpen ? `${150 + i * 80}ms` : "0ms",
-              }}
-            >
-              <span className="p-3 rounded-xl bg-blue-600/15 text-blue-400 group-hover:bg-blue-600/25 transition-colors">
-                <Icon size={22} />
-              </span>
-              <span className="text-2xl font-semibold tracking-wide">
-                {label}
-              </span>
-            </a>
-          ))}
+          {links.map(({ href, icon: Icon }, i) => {
+            const label = t(navKeys[href]);
+            return (
+              <a
+                key={href}
+                href={href}
+                onClick={() => setMobileOpen(false)}
+                className={`mobile-nav-link group ${mobileOpen ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}
+                style={{
+                  transitionDelay: mobileOpen ? `${150 + i * 80}ms` : "0ms",
+                }}
+              >
+                <span className="p-3 rounded-xl bg-blue-600/15 text-blue-400 group-hover:bg-blue-600/25 transition-colors">
+                  <Icon size={22} />
+                </span>
+                <span className="text-2xl font-semibold tracking-wide">
+                  {label}
+                </span>
+              </a>
+            );
+          })}
 
           <div
             className={`mt-8 flex gap-6 text-white/40 transition-all duration-300 ${

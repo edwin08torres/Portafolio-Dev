@@ -1,11 +1,13 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { experiences } from "@/data/experienceData";
+import { experiencesConfig } from "@/data/experienceData";
 import { Briefcase, MapPin, Calendar, ChevronRight } from "lucide-react";
+import { useLanguage } from "../../context/LanguageContext";
 
 export const ExperienceSection = () => {
   const ref = useRef<HTMLElement | null>(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
+  const { t } = useLanguage();
 
   return (
     <section
@@ -25,20 +27,28 @@ export const ExperienceSection = () => {
         <div className="flex items-center justify-center gap-2 mb-3">
           <Briefcase size={16} className="text-blue-400" />
           <span className="text-xs tracking-[0.2em] uppercase text-blue-400 font-medium">
-            Career Path
+            {t("experience.subtitle")}
           </span>
           <Briefcase size={16} className="text-blue-400" />
         </div>
-        <h2 className="section-title text-4xl md:text-5xl">Experience</h2>
+        <h2 className="section-title text-4xl md:text-5xl">{t("experience.title")}</h2>
       </motion.div>
 
       <div className="relative w-full max-w-3xl">
         <div className="absolute left-4 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-blue-500/20 to-transparent" />
 
-        {experiences.map((exp, i) => {
+        {experiencesConfig.map((config, i) => {
+          const company = t(`experience.items.${i}.company`);
+          const role = t(`experience.items.${i}.role`);
+          const period = t(`experience.items.${i}.period`);
+          const location = t(`experience.items.${i}.location`);
+          const type = t(`experience.items.${i}.type`);
+          const description = t(`experience.items.${i}.description`);
+          const bullets = t(`experience.items.${i}.bullets`) as string[] || [];
+
           return (
             <motion.div
-              key={exp.company}
+              key={config.id}
               initial={{ opacity: 0, y: 40, x: -20 }}
               animate={isInView ? { opacity: 1, y: 0, x: 0 } : {}}
               transition={{
@@ -52,51 +62,57 @@ export const ExperienceSection = () => {
                 <div
                   className="w-3 h-3 rounded-full border-2"
                   style={{
-                    borderColor: exp.accent,
-                    boxShadow: `0 0 12px ${exp.accent}66`,
+                    borderColor: config.accent,
+                    boxShadow: `0 0 12px ${config.accent}66`,
                   }}
                 />
                 <div
                   className="absolute inset-0 w-3 h-3 rounded-full animate-ping"
-                  style={{ background: exp.accent, opacity: 0.3 }}
+                  style={{ background: config.accent, opacity: 0.3 }}
                 />
               </div>
 
               <div className="w-full">
                 <div
                   className="group rounded-2xl bg-white/[0.03] border border-white/[0.06] p-6 hover:border-opacity-50 transition-all duration-500"
-                  style={{ "--exp-accent": exp.accent } as React.CSSProperties}
+                  style={{ "--exp-accent": config.accent } as React.CSSProperties}
                 >
                   <div className="flex items-center gap-4 mb-4 flex-wrap">
                     <span
                       className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border"
                       style={{
-                        color: exp.accent,
-                        borderColor: `${exp.accent}55`,
-                        background: `${exp.accent}15`,
+                        color: config.accent,
+                        borderColor: `${config.accent}55`,
+                        background: `${config.accent}15`,
                       }}
                     >
                       <Calendar size={10} />
-                      {exp.period}
+                      {period}
                     </span>
                     <span className="inline-flex items-center gap-1 text-[10px] text-slate-500 uppercase tracking-wider">
                       <MapPin size={10} />
-                      {exp.location} · {exp.type}
+                      {location} · {type}
                     </span>
                   </div>
 
                   <h3 className="text-lg font-black text-white mb-0.5">
-                    {exp.company}
+                    {company}
                   </h3>
                   <p
-                    className="text-sm font-medium mb-4"
-                    style={{ color: exp.accent }}
+                    className="text-sm font-medium mb-3.5"
+                    style={{ color: config.accent }}
                   >
-                    {exp.role}
+                    {role}
                   </p>
 
+                  {description && (
+                    <p className="text-sm text-slate-350 leading-relaxed mb-4 text-justify pr-2">
+                      {description}
+                    </p>
+                  )}
+
                   <ul className="space-y-2.5 mb-5">
-                    {exp.bullets.map((bullet, bi) => (
+                    {bullets.map((bullet, bi) => (
                       <li
                         key={bi}
                         className="flex items-start gap-2 text-sm text-slate-400 leading-relaxed"
@@ -104,7 +120,7 @@ export const ExperienceSection = () => {
                         <ChevronRight
                           size={14}
                           className="shrink-0 mt-0.5"
-                          style={{ color: exp.accent }}
+                          style={{ color: config.accent }}
                         />
                         <span>{bullet}</span>
                       </li>
@@ -112,7 +128,7 @@ export const ExperienceSection = () => {
                   </ul>
 
                   <div className="flex flex-wrap gap-1.5">
-                    {exp.stack.map((tech) => (
+                    {config.stack.map((tech) => (
                       <span
                         key={tech}
                         className="px-2 py-0.5 rounded-md text-[10px] font-medium bg-white/[0.04] border border-white/[0.06] text-slate-400"

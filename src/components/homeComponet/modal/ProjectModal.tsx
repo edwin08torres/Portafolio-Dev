@@ -8,9 +8,11 @@ import {
   ArrowUpRight,
   Layers,
   ChevronLeft,
+  Apple,
 } from "lucide-react";
 import type { Project } from "@/types/Project";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLanguage } from "../../../context/LanguageContext";
 
 interface Props {
   open: boolean;
@@ -93,7 +95,7 @@ const markdownComponents: Components = {
   ),
   li: (props) => (
     <li
-      className="text-sm leading-relaxed text-slate-400 flex items-start gap-2 before:content-['▸'] before:text-blue-500 before:shrink-0 before:mt-0.5"
+      className="text-sm leading-relaxed text-slate-400 pl-5 relative before:absolute before:left-0 before:top-0 before:text-blue-500 before:content-['▸'] before:font-bold"
       {...props}
     />
   ),
@@ -105,7 +107,7 @@ const markdownComponents: Components = {
     const { inline, ...rest } = props as any;
     return inline ? (
       <code
-        className="px-1.5 py-0.5 rounded-md bg-blue-500/10 text-blue-300 text-[0.85em] font-mono"
+        className="px-1.5 py-0.5 rounded-md bg-blue-500/10 text-blue-300 text-[0.85em] font-mono break-words"
         {...rest}
       />
     ) : (
@@ -119,15 +121,19 @@ const markdownComponents: Components = {
 export default function ProjectModal({ open, onOpenChange, project }: Props) {
   if (!project) return null;
 
-  const details = dedent(project.details);
+  const { t } = useLanguage();
+  const title = t(`projects.items.${project.slug}.title`);
+  const description = t(`projects.items.${project.slug}.description`);
+  const details = dedent(t(`projects.items.${project.slug}.details`));
+
   const projectIndex = project.slug
     ? [
         "silent-hill-tribute",
         "mopetco-grooming",
+        "mopetco-booking",
         "coffee-shop-landing",
+        "dulces-momentos",
         "logic-tkl-915",
-        "pokedex",
-        "WeatherBit",
       ].indexOf(project.slug)
     : 0;
   const accent = accentColors[projectIndex >= 0 ? projectIndex : 0];
@@ -139,7 +145,7 @@ export default function ProjectModal({ open, onOpenChange, project }: Props) {
           <button
             onClick={() => onOpenChange(false)}
             className="p-1.5 rounded-lg bg-white/[0.06] border border-white/[0.08] text-slate-400 active:bg-white/[0.12] transition-all"
-            aria-label="Go back"
+            aria-label={t("nav.goBack")}
           >
             <ChevronLeft size={18} />
           </button>
@@ -151,7 +157,7 @@ export default function ProjectModal({ open, onOpenChange, project }: Props) {
               }}
             />
             <span className="text-sm font-semibold text-white truncate">
-              {project.title}
+              {title}
             </span>
           </div>
         </div>
@@ -177,7 +183,7 @@ export default function ProjectModal({ open, onOpenChange, project }: Props) {
               <div className="relative h-52 md:h-full overflow-hidden">
                 <img
                   src={project.detailImage || project.image}
-                  alt={project.title}
+                  alt={title}
                   className="w-full h-full object-cover object-top scale-105"
                   style={{ filter: "brightness(0.55)" }}
                 />
@@ -204,7 +210,7 @@ export default function ProjectModal({ open, onOpenChange, project }: Props) {
                   />
 
                   <h2 className="text-xl md:text-2xl font-black text-white leading-tight tracking-tight">
-                    {project.title}
+                    {title}
                   </h2>
 
                   <div className="flex flex-wrap gap-1.5">
@@ -224,7 +230,35 @@ export default function ProjectModal({ open, onOpenChange, project }: Props) {
                   </div>
 
                   <div className="hidden md:flex flex-col gap-2 mt-2">
-                    {project.demo && (
+                    {project.playstore && (
+                      <a
+                        href={project.playstore}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-sm font-semibold text-white transition-all hover:opacity-90"
+                        style={{
+                          background: "linear-gradient(135deg, #059669, #047857)",
+                          boxShadow: "0 4px 15px rgba(5,150,105,0.3)",
+                        }}
+                      >
+                        <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                          <path d="M3.609 1.814L13.792 12 3.61 22.186a1.996 1.996 0 0 1-.397-1.127V2.941c0-.422.13-.807.397-1.127zM14.78 12.99l2.766 2.766-3.754 2.164-3.805-3.806 4.793-4.124zm5.823-1.42l-2.023-1.164-3.007 2.594 3.007 2.594 2.023-1.164a2 2 0 0 0 0-2.86zM13.792 12L3.61 1.814C3.882 1.488 4.302 1.28 4.78 1.28c.36 0 .703.096 1.008.27l12.775 7.35-4.771 3.1zm0 0L8.793 16.9l4.999-4.9zm0 0" />
+                        </svg>
+                        Google Play
+                      </a>
+                    )}
+                    {project.appstore && (
+                      <a
+                        href={project.appstore}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-sm font-semibold text-white bg-black/40 border border-white/[0.08] hover:bg-black/60 transition-all"
+                      >
+                        <Apple size={14} className="-mt-0.5" />
+                        App Store
+                      </a>
+                    )}
+                    {!project.playstore && !project.appstore && project.demo && (
                       <a
                         href={project.demo}
                         target="_blank"
@@ -236,7 +270,7 @@ export default function ProjectModal({ open, onOpenChange, project }: Props) {
                         }}
                       >
                         <ExternalLink size={14} />
-                        Live Demo
+                        {t("projects.liveDemo")}
                         <ArrowUpRight size={13} className="opacity-70" />
                       </a>
                     )}
@@ -248,7 +282,7 @@ export default function ProjectModal({ open, onOpenChange, project }: Props) {
                         className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-sm font-medium text-slate-300 bg-white/[0.05] border border-white/[0.08] hover:bg-white/[0.09] hover:text-white transition-all"
                       >
                         <Github size={14} />
-                        Source Code
+                        {t("projects.sourceCode")}
                       </a>
                     )}
                   </div>
@@ -256,20 +290,20 @@ export default function ProjectModal({ open, onOpenChange, project }: Props) {
               </div>
             </div>
 
-            <div className="flex-1 flex flex-col min-h-0 border-l border-white/[0.05]">
+            <div className="flex-1 flex flex-col min-h-0 min-w-0 border-l border-white/[0.05]">
               <div className="shrink-0 px-6 py-4 border-b border-white/[0.05] flex items-center gap-2">
                 <Layers size={14} style={{ color: accent.text }} />
                 <span
                   className="text-xs font-bold uppercase tracking-widest"
                   style={{ color: accent.text }}
                 >
-                  Case Study
+                  {t("nav.caseStudy")}
                 </span>
               </div>
 
               <div className="flex-1 overflow-y-auto px-6 py-5 space-y-1 modal-scroll">
                 <p className="text-sm text-slate-400 leading-relaxed pb-3 border-b border-white/[0.05] mb-4">
-                  {project.description}
+                  {description}
                 </p>
 
                 <ReactMarkdown components={markdownComponents}>
@@ -277,29 +311,62 @@ export default function ProjectModal({ open, onOpenChange, project }: Props) {
                 </ReactMarkdown>
               </div>
 
-              <div className="md:hidden shrink-0 border-t border-white/[0.05] px-6 py-4 flex gap-3">
-                {project.github && (
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-medium text-slate-300 bg-white/[0.05] border border-white/[0.08] hover:bg-white/[0.09] transition-all"
-                  >
-                    <Github size={14} /> Source
-                  </a>
-                )}
-                {project.demo && (
-                  <a
-                    href={project.demo}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold text-white transition-all"
-                    style={{
-                      background: `linear-gradient(135deg, ${accent.from}, ${accent.to})`,
-                    }}
-                  >
-                    <ExternalLink size={14} /> Live Demo
-                  </a>
+              <div className="md:hidden shrink-0 border-t border-white/[0.05] px-6 py-4 flex flex-col gap-2">
+                <div className="flex gap-3 w-full">
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-medium text-slate-300 bg-white/[0.05] border border-white/[0.08] hover:bg-white/[0.09] transition-all"
+                    >
+                      <Github size={14} /> {t("projects.sourceCode")}
+                    </a>
+                  )}
+                  {!project.playstore && !project.appstore && project.demo && (
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold text-white transition-all"
+                      style={{
+                        background: `linear-gradient(135deg, ${accent.from}, ${accent.to})`,
+                      }}
+                    >
+                      <ExternalLink size={14} /> {t("projects.liveDemo")}
+                    </a>
+                  )}
+                </div>
+                {(project.playstore || project.appstore) && (
+                  <div className="flex gap-2 w-full mt-1">
+                    {project.playstore && (
+                      <a
+                        href={project.playstore}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold text-white transition-all hover:opacity-90"
+                        style={{
+                          background: "linear-gradient(135deg, #059669, #047857)",
+                        }}
+                      >
+                        <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                          <path d="M3.609 1.814L13.792 12 3.61 22.186a1.996 1.996 0 0 1-.397-1.127V2.941c0-.422.13-.807.397-1.127zM14.78 12.99l2.766 2.766-3.754 2.164-3.805-3.806 4.793-4.124zm5.823-1.42l-2.023-1.164-3.007 2.594 3.007 2.594 2.023-1.164a2 2 0 0 0 0-2.86zM13.792 12L3.61 1.814C3.882 1.488 4.302 1.28 4.78 1.28c.36 0 .703.096 1.008.27l12.775 7.35-4.771 3.1zm0 0L8.793 16.9l4.999-4.9zm0 0" />
+                        </svg>
+                        Google Play
+                      </a>
+                    )}
+                    {project.appstore && (
+                      <a
+                        href={project.appstore}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold text-white bg-black/40 border border-white/[0.08] hover:bg-black/60 transition-all"
+                      >
+                        <Apple size={14} className="-mt-0.5" />
+                        App Store
+                      </a>
+                    )}
+                  </div>
                 )}
               </div>
             </div>

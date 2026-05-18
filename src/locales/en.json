@@ -1,0 +1,175 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "experience": "Experience",
+    "services": "Services",
+    "projects": "Projects",
+    "skipToContent": "Skip to content",
+    "goBack": "Go back",
+    "caseStudy": "Case Study"
+  },
+  "hero": {
+    "status": "Available for work",
+    "greeting": "Hi, I'm",
+    "subtitle": "Systems Engineer &",
+    "subtitleHighlight": "Front-End Developer",
+    "viewProjects": "View Projects",
+    "downloadCv": "Download CV",
+    "stats": {
+      "projects": "Projects\nDelivered",
+      "experience": "Years\nExperience",
+      "stacks": "Tech\nStacks"
+    }
+  },
+  "about": {
+    "subtitle": "Get to know me",
+    "title": "About",
+    "whoIAm": "Who I Am",
+    "stats": {
+      "projects": "Projects",
+      "experience": "Years Exp."
+    },
+    "description1": "Software Engineer with <span class=\"text-white font-medium\">5+ years building production apps</span> at <span class=\"text-blue-400 font-medium\">Grupo Monge</span>, where I ship modular <span class=\"text-blue-400 font-medium\">React</span> and <span class=\"text-blue-400 font-medium\">Blazor</span> interfaces for AI assistants and real-time features with <span class=\"text-blue-400 font-medium\">SignalR</span>.",
+    "description2": "I also build cross-platform mobile apps with <span class=\"text-blue-400 font-medium\">React Native</span> at LogaCode, handle <span class=\"text-blue-400 font-medium\">.NET</span> APIs with Azure DevOps CI/CD, and empower non-technical teams through headless CMS strategies— <span class=\"text-white font-medium\">shipping value from day one</span>.",
+    "principles": [
+      {
+        "title": "Performance First",
+        "desc": "Every ms counts. I optimize for speed from the start."
+      },
+      {
+        "title": "Pixel Perfect",
+        "desc": "Design fidelity is non-negotiable."
+      },
+      {
+        "title": "Clean Architecture",
+        "desc": "Scalable patterns, not spaghetti code."
+      }
+    ],
+    "coreStack": "Core Stack",
+    "githubActivity": "GitHub Activity"
+  },
+  "experience": {
+    "title": "Experience",
+    "subtitle": "Career Path",
+    "items": [
+      {
+        "company": "LogaCode",
+        "role": "React Native Developer",
+        "period": "Aug 2025 – Present",
+        "location": "Remote",
+        "type": "Part-time Contract",
+        "description": "In this role, I focus on the development and extreme optimization of high-performance mobile applications. I work on the implementation of scalable architectures, focusing on efficient global state management, multimedia cache handling, and secure authentication flows.",
+        "bullets": [
+          "Memory consumption optimization on devices by implementing infinite lists with FlatList in React Native for video feeds (Reels).",
+          "Complex state management with Redux and Zustand for session persistence and real-time sales transaction control.",
+          "Construction of modular interfaces and integration of secure authentication flows using Firebase."
+        ]
+      },
+      {
+        "company": "Grupo Monge",
+        "role": "Software Engineer",
+        "period": "Jan 2023 – 2026",
+        "location": "Managua, Nicaragua",
+        "type": "Hybrid",
+        "description": "As a Frontend Developer, I am dedicated to building and optimizing user interfaces from scratch, ensuring smooth experiences and compliance with strict financial regulations. I lead the creation of interactive components and the integration of dynamic conversion funnels that connect directly with the company's customers.",
+        "bullets": [
+          "Development of dynamic landing pages connected to the WhatsApp messaging flow to render personalized recommendations.",
+          "Construction of interactive views using React and Blazor for customer service virtual assistants and recruitment portals.",
+          "Configuration and fine-tuning of frontend components across multiple repositories to ensure compliance with the SUGEF 10-07 standard."
+        ]
+      },
+      {
+        "company": "Freelance",
+        "role": "Freelance Frontend Developer",
+        "period": "Jan 2019 – Dec 2022",
+        "location": "Remote",
+        "type": "Self-employed",
+        "description": "During my time as an independent developer, I dedicated myself to the design and rapid deployment of web solutions focused on speed and user experience. I completed end-to-end projects, from SEO-optimized landing pages to complex interfaces for Point of Sale (POS) systems in close integration with the backend.",
+        "bullets": [
+          "Design and rapid deployment of responsive landing pages using React, Vite, Tailwind CSS, and Vercel, with a high focus on loading speed.",
+          "Construction of web applications for POS systems dedicated to inventory control and invoicing.",
+          "Client integration with APIs in .NET and SQL Server, managing state with Zustand to guarantee fast loading times in the UI."
+        ]
+      }
+    ]
+  },
+  "services": {
+    "subtitle": "What I offer",
+    "title": "Services",
+    "desc": "End-to-end development solutions tailored to your project needs.",
+    "items": [
+      {
+        "title": "Web Development",
+        "description": "Responsive, performant web apps built with React, Next.js, and TailwindCSS. From landing pages to full-scale platforms."
+      },
+      {
+        "title": "Mobile Development",
+        "description": "Cross-platform mobile apps with React Native and Expo, featuring smooth 60fps animations and offline-first architecture."
+      },
+      {
+        "title": "API & Backend",
+        "description": "Robust REST APIs and real-time services with .NET, SignalR, and SQL Server. Cloud deployments with Azure DevOps."
+      },
+      {
+        "title": "CMS & Integrations",
+        "description": "Headless CMS strategies with Strapi, CI/CD pipelines with Azure DevOps, and third-party service integrations for seamless workflows."
+      }
+    ]
+  },
+  "projects": {
+    "subtitle": "My work",
+    "title": "Featured Projects",
+    "desc": "A selection of web work for businesses and personal projects, focused on UX and performance.",
+    "viewGallery": "View Gallery",
+    "viewCase": "Case Study",
+    "liveDemo": "Live Demo",
+    "sourceCode": "Source Code",
+    "items": {
+      "legal-track-usa": {
+        "title": "Legal Track USA",
+        "description": "A secure cross-platform mobile application for real-time tracking of immigration cases, official USCIS test study guides, and community feed sharing.",
+        "details": "### The Challenge\nTo build an integrated, secure mobile application that empowers users to track their US immigration cases with real-time status updates, practice for the official USCIS civics tests, and engage in a social community feed. The critical technical hurdle was implementing a highly responsive Reels video posting module supporting auto-trimming and cutting algorithms similar to WhatsApp.\n\n### Solution\n- **Mobile Client:** React Native CLI, TypeScript, and Redux Toolkit\n- **Backend & Auth:** Firebase Auth, Firestore, and Real-Time DB\n- **Video Processing (Reels):** Custom video trimming system using `react-native-video` & `react-native-video-trim` that enforces videos to be strictly less than 1 minute, performing automated cutting if the raw file exceeds 60 seconds\n- **State & Storage:** Redux Persist + Async Storage for offline case persistence, combined with TanStack React Query for reliable real-time server synchronizations\n- **Interactive Features:** Lottie animations for premium UX feedback and OneSignal notifications for instant push alert updates on case status shifts\n\n### Impact\nSuccessfully deployed to the iOS App Store and Google Play Store, creating an invaluable modern hub for thousands of immigrants seeking legal status updates."
+      },
+      "silent-hill-tribute": {
+        "title": "Silent Hill — Interactive Tribute",
+        "description": "A cinematic web experience exploring the lore and horror of Silent Hill through immersive scroll-driven animations and atmospheric design.",
+        "details": "### The Challenge\nCreate a visually rich, interactive web tribute to Silent Hill that feels like navigating through the game itself — with fog, tension, and narrative depth baked into every scroll interaction.\n\n### Solution\n- **Frontend:** React + TypeScript + TailwindCSS\n- **Animations:** GSAP ScrollTrigger for pinned sections, parallax, zoom transitions, and stacking card reveals\n- **Cinematic Preloader:** Custom timeline animation with skip functionality\n- **Immersive Audio:** Web Audio API for ambient pink noise, drone, and hover sound effects\n- **3D Tilt Cards:** Cursor-following perspective transforms with radial shine overlay on desktop\n- **Mobile Carousel:** Touch-swipeable character cards with dot navigation\n- **Bestiary Scrollytelling:** Scroll-driven creature reveals with pinned viewport and animated overlays\n- **Film Grain Overlay:** SVG fractalNoise texture for VHS atmosphere\n- **Fog & Vignette:** Layered video fog (desktop) and radial gradient vignette\n- **Section Navigation:** Lateral dot nav with labels and smooth scroll-to\n- **Scroll Progress Bar:** Real-time scroll position indicator\n\n### Impact\nA showcase project demonstrating advanced GSAP animation techniques, immersive UI design, and mobile-responsive storytelling — built to impress in a developer portfolio."
+      },
+      "mopetco-grooming": {
+        "title": "MoPetCo Grooming",
+        "description": "A page showcasing pet grooming services with online appointment booking.",
+        "details": "### The Challenge\nThe veterinary clinic needed to digitize their grooming schedule while also promoting their services online.\n\n### Solution\n- **Frontend:** React + TailwindCSS\n- **Backend:** .NET 7 + SQL Server\n- **Integration:** Email + Contact channels + Reservations\n\n### Impact\nOnline bookings increased significantly in the first month."
+      },
+      "mopetco-booking": {
+        "title": "MoPetCo Booking",
+        "description": "A full-featured online booking system for veterinary grooming services with a step-by-step reservation flow.",
+        "details": "### The Challenge\nThe clinic needed clients to book grooming appointments online in a guided, intuitive multi-step process.\n\n### Solution\n- **Frontend:** React + TailwindCSS + TypeScript\n- **Backend:** .NET 7 + SQL Server\n- Multi-step booking wizard: service selection → date & time → pet info → confirmation\n- Service catalog with pricing display\n\n### Impact\nStreamlined appointment scheduling reduced phone-call workload and improved client satisfaction."
+      },
+      "coffee-shop-landing": {
+        "title": "Coffee Shop Landing",
+        "description": "An elegant landing page for a premium coffee brand.",
+        "details": "### The Challenge\nThe brand needed an attractive and modern way to showcase their premium coffee online, conveying a strong visual identity and providing easy access to their menu.\n\n### Solution\n- **Frontend:** Pure HTML, CSS and JavaScript, focused on performance and aesthetics.\n- Designed a minimalist landing page with a visual focus on imagery and user experience.\n- Included an interactive menu and easy-to-navigate informational sections."
+      },
+      "dulces-momentos": {
+        "title": "Dulces Momentos — POS System",
+        "description": "A full point-of-sale system for a bakery, featuring order management, product catalog, reporting dashboards, and real-time operations.",
+        "details": "### The Challenge\nA local bakery needed an all-in-one digital system to manage orders, track products, and generate sales reports — replacing manual processes entirely.\n\n### Solution\n- **Frontend:** React + TypeScript + TailwindCSS\n- **Backend:** .NET + SQL Server\n- Dashboard with order status tracking and real-time updates\n- Product management with categories, pricing, and inventory\n- Sales reporting with daily, weekly, and monthly breakdowns\n- Multi-role access (admin, cashier, kitchen)\n\n### Impact\nEliminated paper-based order tracking and reduced errors, enabling the bakery to handle higher order volumes with fewer staff."
+      },
+      "logic-tkl-915": {
+        "title": "Logitech TKL 915 Specs",
+        "description": "A product page to browse the full specifications of the Logitech TKL 915 keyboard.",
+        "details": "### The Challenge\nA modern, clean informational page was needed to highlight the features of the Logitech TKL 915 keyboard, especially its compact design and gamer-oriented functionality.\n\n### Solution\n- **Frontend:** React + TailwindCSS + AOS + Marquee\n- Modular architecture with scroll-driven animations to showcase each technical section.\n- Visual effects with Marquee and optimized fast loading.\n\n### Impact\nImproved product perception among retail distributors and became a useful resource for users wanting to review full specifications before purchasing."
+      }
+    }
+  },
+  "footer": {
+    "ctaTitle1": "Let's ",
+    "ctaTitleHighlight": "Work",
+    "ctaTitle2": " Together",
+    "ctaText": "Have a project in mind or just want to say hello?\nI'd love to hear from you.",
+    "sendEmail": "Send me an Email",
+    "rights": "All rights reserved.",
+    "builtBy": "Edwin Torrez — Built with React & ❤️"
+  }
+}

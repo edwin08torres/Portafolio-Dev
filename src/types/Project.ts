@@ -9,10 +9,9 @@ export type Tech =
   | "CSS"
   | "JavaScript"
   | "Expo"
-  | "Angular"
-  | "Bootstrap"
-  | "WeatherBit API"
-  | "GSAP";
+  | "GSAP"
+  | "Redux"
+  | "Firebase";
 
 export interface Project {
   slug: string;
@@ -25,6 +24,8 @@ export interface Project {
   gallery?: string[];
   github?: string;
   demo?: string;
+  playstore?: string;
+  appstore?: string;
   note?: string;
 }
 

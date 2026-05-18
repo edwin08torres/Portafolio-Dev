@@ -149,8 +149,8 @@ export const ChatWidget = () => {
     }
     if (action === "download_cv") {
       const a = document.createElement("a");
-      a.href = "/doc/EdwinTorres_CV.pdf";
-      a.download = "EdwinTorres_CV.pdf";
+      a.href = "/doc/Curriculum_EdwinTorrez.pdf";
+      a.download = "Curriculum_EdwinTorrez.pdf";
       a.click();
       return;
     }
