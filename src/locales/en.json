@@ -54,29 +54,43 @@
     "subtitle": "Career Path",
     "items": [
       {
-        "company": "LogaCode",
-        "role": "React Native Developer",
-        "period": "Aug 2025 – Present",
+        "company": "Fusion Pax",
+        "role": "Mobile Developer",
+        "period": "2026 – Present",
         "location": "Remote",
         "type": "Part-time Contract",
-        "description": "In this role, I focus on the development and extreme optimization of high-performance mobile applications. I work on the implementation of scalable architectures, focusing on efficient global state management, multimedia cache handling, and secure authentication flows.",
+        "description": "I spearhead cross-platform mobile development using Flutter and Dart, focusing on delivering fluid, native-feeling UIs across iOS and Android. My work encompasses real-time data sync, push notification infrastructure, and complete release management.",
         "bullets": [
-          "Memory consumption optimization on devices by implementing infinite lists with FlatList in React Native for video feeds (Reels).",
-          "Complex state management with Redux and Zustand for session persistence and real-time sales transaction control.",
-          "Construction of modular interfaces and integration of secure authentication flows using Firebase."
+          "Cross-platform mobile application development natively for iOS and Android using Flutter, ensuring fluid interfaces and complex animations.",
+          "Integration of real-time Uber-style geolocation systems for live fleet tracking and ride assignment.",
+          "Push notification infrastructure using Firebase Cloud Messaging (FCM), including topic configuration and targeted notifications.",
+          "Complete management of application lifecycles, from development to publication on the App Store and Google Play."
         ]
       },
       {
         "company": "Grupo Monge",
-        "role": "Software Engineer",
-        "period": "Jan 2023 – 2026",
+        "role": "FullStack Developer",
+        "period": "2023 – Present",
         "location": "Managua, Nicaragua",
         "type": "Hybrid",
-        "description": "As a Frontend Developer, I am dedicated to building and optimizing user interfaces from scratch, ensuring smooth experiences and compliance with strict financial regulations. I lead the creation of interactive components and the integration of dynamic conversion funnels that connect directly with the company's customers.",
+        "description": "As a FullStack Developer, I am dedicated to building and optimizing user interfaces and backend processes from scratch, ensuring smooth experiences and compliance with strict financial regulations. I lead the creation of interactive components and the integration of dynamic conversion funnels that connect directly with the company's customers.",
         "bullets": [
-          "Development of dynamic landing pages connected to the WhatsApp messaging flow to render personalized recommendations.",
-          "Construction of interactive views using React and Blazor for customer service virtual assistants and recruitment portals.",
-          "Configuration and fine-tuning of frontend components across multiple repositories to ensure compliance with the SUGEF 10-07 standard."
+          "Developed dynamic landing pages integrated with WhatsApp messaging flows, rendering personalized product recommendations in real time.",
+          "Built interactive views with React and Blazor powering customer-facing virtual assistants and internal recruitment dashboards.",
+          "Standardized frontend components across multiple repositories, ensuring compliance with SUGEF 10-07 regulatory requirements in notification flows."
+        ]
+      },
+      {
+        "company": "LogaCode",
+        "role": "Frontend Developer",
+        "period": "2025 – 2026",
+        "location": "Remote",
+        "type": "Part-time Contract",
+        "description": "In this role, I focused on the development and extreme optimization of high-performance mobile applications. I worked on the implementation of scalable architectures, focusing on efficient global state management, multimedia cache handling, and secure authentication flows.",
+        "bullets": [
+          "Memory consumption optimization on devices by implementing infinite lists with FlatList in React Native for video feeds (Reels).",
+          "Complex state management with Redux and Zustand for session persistence and real-time sales transaction control.",
+          "Construction of modular interfaces and integration of secure authentication flows using Firebase."
         ]
       },
       {
@@ -85,9 +99,9 @@
         "period": "Jan 2019 – Dec 2022",
         "location": "Remote",
         "type": "Self-employed",
-        "description": "During my time as an independent developer, I dedicated myself to the design and rapid deployment of web solutions focused on speed and user experience. I completed end-to-end projects, from SEO-optimized landing pages to complex interfaces for Point of Sale (POS) systems in close integration with the backend.",
+        "description": "During my time as an independent developer, I dedicated myself to the design and rapid deployment of web solutions focused on load speed, SEO, and user experience. I completed end-to-end projects, from optimized landing pages to complex interfaces for Point of Sale (POS) systems in close integration with the backend.",
         "bullets": [
-          "Design and rapid deployment of responsive landing pages using React, Vite, Tailwind CSS, and Vercel, with a high focus on loading speed.",
+          "Design and rapid deployment of responsive landing pages using React, Vite, Tailwind CSS, and Vercel, with a high focus on SEO and load speed metrics.",
           "Construction of web applications for POS systems dedicated to inventory control and invoicing.",
           "Client integration with APIs in .NET and SQL Server, managing state with Zustand to guarantee fast loading times in the UI."
         ]
@@ -105,7 +119,7 @@
       },
       {
         "title": "Mobile Development",
-        "description": "Cross-platform mobile apps with React Native and Expo, featuring smooth 60fps animations and offline-first architecture."
+        "description": "Cross-platform mobile applications for iOS and Android using Flutter and React Native. Expertise in real-time geolocation, push notification infrastructure, subscription integration with RevenueCat, and complete deployment management in App Store Connect and Google Play Console."
       },
       {
         "title": "API & Backend",

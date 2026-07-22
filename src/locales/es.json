@@ -54,29 +54,43 @@
     "subtitle": "Mi Trayectoria",
     "items": [
       {
-        "company": "LogaCode",
-        "role": "Desarrollador Frontend",
-        "period": "2025 - Presente",
+        "company": "Fusion Pax",
+        "role": "Desarrollador Móvil",
+        "period": "2026 – Presente",
         "location": "Remoto",
         "type": "Part-Time",
-        "description": "En este rol, me enfoco en el desarrollo y la optimización extrema de aplicaciones móviles de alto rendimiento. Trabajo en la implementación de arquitecturas escalables, centrándome en la gestión eficiente del estado global, el manejo de caché multimedia y la seguridad de los flujos de autenticación.",
+        "description": "Lidero el desarrollo móvil multiplataforma utilizando Flutter y Dart, enfocado en entregar interfaces de usuario fluidas y con sensación nativa en iOS y Android. Mi trabajo incluye sincronización de datos en tiempo real, infraestructura de notificaciones push y gestión de lanzamientos.",
         "bullets": [
-          "Optimización del consumo de memoria en dispositivos mediante la implementación de listas infinitas con FlatList en React Native para feeds de video (Reels).",
-          "Manejo de estados complejos con Redux y Zustand para la persistencia de sesiones y control de transacciones de ventas en tiempo real.",
-          "Construcción de interfaces modulares e integración de flujos de autenticación seguros utilizando Firebase."
+          "Desarrollo de aplicaciones móviles multiplataforma nativas para iOS y Android con Flutter, garantizando interfaces fluidas y animaciones complejas.",
+          "Integración de sistemas de geolocalización en tiempo real estilo Uber para rastreo en vivo de flotas y asignación de viajes.",
+          "Infraestructura de notificaciones push utilizando Firebase Cloud Messaging (FCM), incluyendo configuración de topics y notificaciones segmentadas.",
+          "Gestión completa de ciclos de vida de aplicaciones, desde el desarrollo hasta la publicación en App Store y Google Play."
         ]
       },
       {
         "company": "Grupo Monge",
-        "role": "Desarrollador de software",
-        "period": "2023 - 2026",
+        "role": "Desarrollador FullStack",
+        "period": "2023 - Presente",
         "location": "Managua, Nicaragua",
         "type": "Híbrido",
-        "description": "Como Frontend Developer, me dedico a construir y optimizar interfaces de usuario desde cero, asegurando experiencias fluidas y el cumplimiento de normativas financieras estrictas. Llevo a cabo la creación de componentes interactivos y la integración de flujos de conversión dinámicos que conectan directamente con los clientes de la empresa.",
+        "description": "Como Desarrollador FullStack, me dedico a construir y optimizar interfaces de usuario y procesos de backend desde cero, asegurando experiencias fluidas y el cumplimiento de normativas financieras estrictas. Llevo a cabo la creación de componentes interactivos y la integración de flujos de conversión dinámicos que conectan directamente con los clientes de la empresa.",
         "bullets": [
-          "Desarrollo de landing pages dinámicas conectadas al flujo de mensajería de WhatsApp para renderizar recomendaciones personalizadas.",
-          "Construcción de vistas interactivas utilizando React y Blazor para asistentes virtuales de servicio al cliente y paneles de reclutamiento.",
-          "Configuración y ajuste de componentes frontend en múltiples repositorios para garantizar el cumplimiento de la norma SUGEF 10-07."
+          "Desarrollo de landing pages dinámicas conectadas al flujo de mensajería de WhatsApp para renderizar recomendaciones personalizadas en tiempo real.",
+          "Construcción de vistas interactivas utilizando React y Blazor para asistentes virtuales de servicio al cliente y paneles internos de reclutamiento.",
+          "Estandarización de componentes frontend en múltiples repositorios para garantizar el cumplimiento de la norma regulatoria SUGEF 10-07 en flujos de notificaciones."
+        ]
+      },
+      {
+        "company": "LogaCode",
+        "role": "Desarrollador Frontend",
+        "period": "2025 - 2026",
+        "location": "Remoto",
+        "type": "Part-Time",
+        "description": "En este rol, me enfoqué en el desarrollo y la optimización extrema de aplicaciones móviles de alto rendimiento. Trabajé en la implementación de arquitecturas escalables, centrándome en la gestión eficiente del estado global, el manejo de caché multimedia y la seguridad de los flujos de autenticación.",
+        "bullets": [
+          "Optimización del consumo de memoria en dispositivos mediante la implementación de listas infinitas con FlatList en React Native para feeds de video (Reels).",
+          "Manejo de estados complejos con Redux y Zustand para la persistencia de sesiones y control de transacciones de ventas en tiempo real.",
+          "Construcción de interfaces modulares e integración de flujos de autenticación seguros utilizando Firebase."
         ]
       },
       {
@@ -85,9 +99,9 @@
         "period": "Ene 2019 - Dic 2022",
         "location": "Remoto",
         "type": "Independiente",
-        "description": "Durante mi etapa como desarrollador independiente, me dediqué al diseño y despliegue rápido de soluciones web enfocadas en la velocidad y la experiencia del usuario. Llevé a cabo proyectos integrales, desde landing pages optimizadas para SEO hasta interfaces complejas para sistemas de Punto de Venta (POS) en estrecha integración con el backend.",
+        "description": "Durante mi etapa como desarrollador independiente, me dediqué al diseño y despliegue rápido de soluciones web enfocadas en la velocidad de carga, SEO y experiencia del usuario. Llevé a cabo proyectos integrales, desde landing pages optimizadas hasta interfaces complejas para sistemas de Punto de Venta (POS) en estrecha integración con el backend.",
         "bullets": [
-          "Diseño y despliegue rápido de landing pages adaptables utilizando React, Vite, Tailwind CSS y Vercel, con alto enfoque en velocidad de carga.",
+          "Diseño y despliegue rápido de landing pages adaptables utilizando React, Vite, Tailwind CSS y Vercel, con alto enfoque en métricas de SEO y velocidad de carga.",
           "Construcción de aplicaciones web para sistemas POS dedicados al control de inventario y facturación.",
           "Integración del cliente con APIs en .NET y SQL Server, gestionando el estado con Zustand para garantizar cargas rápidas en la UI."
         ]
@@ -105,7 +119,7 @@
       },
       {
         "title": "Desarrollo Móvil",
-        "description": "Aplicaciones móviles multiplataforma con React Native y Expo, con animaciones fluidas a 60fps y arquitectura offline-first."
+        "description": "Aplicaciones móviles multiplataforma para iOS y Android utilizando Flutter y React Native. Experiencia en geolocalización en tiempo real, infraestructura de notificaciones push, integración de suscripciones con RevenueCat, y gestión completa de despliegues en App Store Connect y Google Play Console."
       },
       {
         "title": "APIs y Backend",

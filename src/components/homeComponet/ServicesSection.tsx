@@ -17,7 +17,7 @@ const services = [
   {
     num: "02",
     icon: Smartphone,
-    highlights: ["React Native", "Expo", "Reanimated", "Redux"],
+    highlights: ["Flutter", "React Native", "Firebase", "RevenueCat"],
   },
   {
     num: "03",

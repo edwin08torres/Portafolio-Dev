@@ -124,7 +124,17 @@ export default function ProjectModal({ open, onOpenChange, project }: Props) {
           >
             {/* Left preview & actions */}
             <div className="relative md:w-[42%] shrink-0 flex flex-col overflow-hidden bg-[#0c0c0c] border-r border-zinc-800">
-              <div className="relative h-48 md:h-full flex flex-col justify-between p-6">
+              {/* Project Image Background */}
+              <div className="absolute inset-0 z-0 pointer-events-none">
+                <img
+                  src={project.image}
+                  alt={`${title} preview`}
+                  className="w-full h-full object-cover opacity-30 grayscale mix-blend-luminosity"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] via-[#0c0c0c]/80 to-transparent" />
+              </div>
+
+              <div className="relative h-48 md:h-full flex flex-col justify-between p-6 z-10">
                 <div className="relative z-10">
                   <span className="font-mono text-xs font-bold text-[#a3e635] tracking-widest uppercase mb-2 block">
                     CASE STUDY
