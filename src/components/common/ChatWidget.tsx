@@ -1,288 +1,120 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageCircle, X, Mail, Phone, ExternalLink } from "lucide-react";
-
-interface ChatMessage {
-  id: number;
-  from: "bot" | "user";
-  text: string;
-  options?: QuickReply[];
-}
-
-interface QuickReply {
-  label: string;
-  action: string;
-}
-
-const INITIAL_MESSAGES: ChatMessage[] = [
-  {
-    id: 1,
-    from: "bot",
-    text: "Hey! 👋 I'm Edwin's portfolio assistant. How can I help you?",
-    options: [
-      { label: "📞 Contact info", action: "contact" },
-      { label: "💼 Services", action: "services" },
-      { label: "🚀 Projects", action: "projects" },
-      { label: "📄 Download CV", action: "cv" },
-    ],
-  },
-];
-
-const RESPONSES: Record<string, ChatMessage> = {
-  contact: {
-    id: 0,
-    from: "bot",
-    text: "You can reach Edwin through:",
-    options: [
-      { label: "📧 Email", action: "email" },
-      { label: "📱 WhatsApp", action: "whatsapp" },
-      { label: "🔗 LinkedIn", action: "linkedin" },
-      { label: "⬅️ Back to menu", action: "menu" },
-    ],
-  },
-  email: {
-    id: 0,
-    from: "bot",
-    text: "📧 at2899743@gmail.com\n\nClick below to send an email directly!",
-    options: [
-      { label: "✉️ Send Email", action: "open_email" },
-      { label: "⬅️ Back", action: "contact" },
-    ],
-  },
-  whatsapp: {
-    id: 0,
-    from: "bot",
-    text: "📱 +505 8806-8133\n\nTap below to start a WhatsApp conversation!",
-    options: [
-      { label: "💬 Open WhatsApp", action: "open_whatsapp" },
-      { label: "⬅️ Back", action: "contact" },
-    ],
-  },
-  linkedin: {
-    id: 0,
-    from: "bot",
-    text: "🔗 Connect with Edwin on LinkedIn for professional inquiries.",
-    options: [
-      { label: "🔗 Open LinkedIn", action: "open_linkedin" },
-      { label: "⬅️ Back", action: "contact" },
-    ],
-  },
-  services: {
-    id: 0,
-    from: "bot",
-    text: "Edwin offers:\n\n🌐 Web Development (React, Next.js)\n📱 Mobile Apps (React Native)\n⚙️ API & Backend (.NET, Azure)\n🎨 UI/UX Implementation\n\nInterested in any of these?",
-    options: [
-      { label: "📞 Get in touch", action: "contact" },
-      { label: "🚀 See projects", action: "projects" },
-      { label: "⬅️ Back to menu", action: "menu" },
-    ],
-  },
-  projects: {
-    id: 0,
-    from: "bot",
-    text: "Check out Edwin's featured projects below! 👇\n\nScroll down to the Projects section or click to jump there.",
-    options: [
-      { label: "⬇️ Go to Projects", action: "scroll_projects" },
-      { label: "📞 Contact", action: "contact" },
-      { label: "⬅️ Back to menu", action: "menu" },
-    ],
-  },
-  cv: {
-    id: 0,
-    from: "bot",
-    text: "📄 Edwin's CV is ready for download! Click below.",
-    options: [
-      { label: "📥 Download CV", action: "download_cv" },
-      { label: "⬅️ Back to menu", action: "menu" },
-    ],
-  },
-  menu: INITIAL_MESSAGES[0],
-};
+import { X, ArrowRight, User, Briefcase, Folder, FileText } from "lucide-react";
 
 export const ChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<ChatMessage[]>([
-    ...INITIAL_MESSAGES,
-  ]);
-  const [idCounter, setIdCounter] = useState(2);
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [hasNewMessage, setHasNewMessage] = useState(false);
 
-  useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-    }
-  }, [messages]);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (!isOpen) setHasNewMessage(true);
-    }, 5000);
-    return () => clearTimeout(timer);
-  }, [isOpen]);
-
-  const handleQuickReply = (action: string) => {
-    if (action === "open_email") {
-      window.open(
-        "mailto:at2899743@gmail.com?subject=Contact%20from%20Portfolio",
-        "_blank",
-      );
-      return;
-    }
-    if (action === "open_whatsapp") {
-      window.open(
-        "https://wa.me/50588068133?text=Hi%20Edwin!%20I%20found%20your%20portfolio",
-        "_blank",
-      );
-      return;
-    }
-    if (action === "open_linkedin") {
-      window.open("https://www.linkedin.com/in/edwintorrez", "_blank");
-      return;
-    }
-    if (action === "scroll_projects") {
-      setIsOpen(false);
-      document
-        .getElementById("project")
-        ?.scrollIntoView({ behavior: "smooth" });
-      return;
-    }
-    if (action === "download_cv") {
+  const handleAction = (action: string) => {
+    if (action === "contact") {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+    } else if (action === "services") {
+      document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
+    } else if (action === "projects") {
+      document.getElementById("project")?.scrollIntoView({ behavior: "smooth" });
+    } else if (action === "cv") {
       const a = document.createElement("a");
       a.href = "/doc/Curriculum_EdwinTorrez.pdf";
       a.download = "Curriculum_EdwinTorrez.pdf";
       a.click();
-      return;
     }
-
-    const response = RESPONSES[action];
-    if (!response) return;
-
-    const newId = idCounter;
-    setIdCounter((c) => c + 1);
-
-    setMessages((prev) => [...prev, { ...response, id: newId }]);
+    setIsOpen(false);
   };
+
+  const QUICK_ACTIONS = [
+    { id: "contact", label: "Contact Info", icon: User },
+    { id: "services", label: "Services", icon: Briefcase },
+    { id: "projects", label: "Projects", icon: Folder },
+    { id: "cv", label: "Download CV", icon: FileText },
+  ];
 
   return (
     <>
-      <motion.button
-        onClick={() => {
-          setIsOpen(true);
-          setHasNewMessage(false);
-        }}
-        className={`fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-br from-blue-600 to-violet-600 text-white shadow-lg shadow-blue-900/30 flex items-center justify-center transition-all hover:scale-110 hover:shadow-xl hover:shadow-blue-900/40 ${isOpen ? "hidden" : ""}`}
-        whileTap={{ scale: 0.9 }}
-        aria-label="Open chat"
+      {/* Floating Trigger Button */}
+      <button
+        onClick={() => setIsOpen(true)}
+        className={`fixed bottom-6 right-6 z-50 w-12 h-12 md:w-14 md:h-14 bg-[#a3e635] text-black border border-[#a3e635] flex items-center justify-center transition-all hover:bg-[#050505] hover:text-[#a3e635] shadow-none ${isOpen ? "hidden" : "flex"}`}
+        aria-label="Open quick access panel"
       >
-        <MessageCircle size={22} />
-        {hasNewMessage && (
-          <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-red-500 border-2 border-[#020617] animate-pulse" />
-        )}
-      </motion.button>
+        <span className="font-mono font-black text-lg md:text-xl tracking-tighter">
+          ET.
+        </span>
+      </button>
 
+      {/* Quick Access Panel */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 15 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed bottom-6 right-6 z-50 w-[360px] max-w-[calc(100vw-2rem)] h-[480px] max-h-[70vh] rounded-2xl border border-white/[0.08] bg-[#0a0f1e]/95 backdrop-blur-xl shadow-2xl shadow-black/50 flex flex-col overflow-hidden"
+            className="fixed bottom-6 right-6 z-50 w-[320px] max-w-[calc(100vw-2rem)] bg-[#050505] border border-zinc-800 flex flex-col overflow-hidden"
           >
-            <div className="shrink-0 flex items-center justify-between px-5 py-4 border-b border-white/[0.06]">
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-blue-500 to-violet-500 flex items-center justify-center text-white text-xs font-bold">
-                  ET
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-white leading-tight">
-                    Edwin's Assistant
-                  </p>
-                  <p className="text-[10px] text-emerald-400 flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                    Online now
-                  </p>
-                </div>
-              </div>
+            {/* Header */}
+            <div className="flex items-center justify-between px-5 py-4 border-b border-zinc-800 bg-[#0a0a0a]">
+              <h3 className="text-[10px] md:text-xs font-mono font-bold text-white tracking-[0.2em] uppercase">
+                Quick Access
+              </h3>
               <button
-                onClick={() => {
-                  setIsOpen(false);
-                  setMessages([...INITIAL_MESSAGES]);
-                  setIdCounter(2);
-                }}
-                className="p-1.5 rounded-lg text-slate-500 hover:text-white hover:bg-white/[0.06] transition-all"
-                aria-label="Close chat"
+                onClick={() => setIsOpen(false)}
+                className="text-zinc-500 hover:text-[#a3e635] transition-colors"
+                aria-label="Close panel"
               >
                 <X size={16} />
               </button>
             </div>
 
-            <div
-              ref={scrollRef}
-              className="flex-1 overflow-y-auto px-4 py-4 space-y-4 modal-scroll"
-            >
-              {messages.map((msg) => (
-                <motion.div
-                  key={msg.id}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className={`flex ${msg.from === "user" ? "justify-end" : "justify-start"}`}
+            {/* Actions List */}
+            <div className="flex flex-col">
+              {QUICK_ACTIONS.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => handleAction(item.id)}
+                  className="flex items-center justify-between px-5 py-4 border-b border-zinc-800 hover:bg-[#a3e635]/10 transition-colors group text-left"
                 >
-                  <div
-                    className={`max-w-[85%] ${msg.from === "user" ? "order-last" : ""}`}
-                  >
-                    <div
-                      className={`px-4 py-3 rounded-2xl text-sm leading-relaxed whitespace-pre-line ${
-                        msg.from === "user"
-                          ? "bg-blue-600 text-white rounded-br-md"
-                          : "bg-white/[0.06] text-slate-300 rounded-bl-md"
-                      }`}
-                    >
-                      {msg.text}
-                    </div>
-
-                    {msg.options && (
-                      <div className="flex flex-wrap gap-1.5 mt-2.5">
-                        {msg.options.map((opt) => (
-                          <button
-                            key={opt.label}
-                            onClick={() => handleQuickReply(opt.action)}
-                            className="px-3 py-1.5 rounded-xl text-xs font-medium border border-blue-500/25 text-blue-300 bg-blue-500/5 hover:bg-blue-500/15 hover:border-blue-500/40 transition-all"
-                          >
-                            {opt.label}
-                          </button>
-                        ))}
-                      </div>
-                    )}
+                  <div className="flex items-center gap-4">
+                    <item.icon
+                      size={14}
+                      className="text-zinc-500 group-hover:text-[#a3e635] transition-colors"
+                    />
+                    <span className="text-[11px] md:text-xs font-mono tracking-widest text-zinc-300 group-hover:text-white uppercase">
+                      {item.label}
+                    </span>
                   </div>
-                </motion.div>
+                  <ArrowRight
+                    size={14}
+                    className="text-zinc-600 opacity-0 group-hover:opacity-100 group-hover:text-[#a3e635] transition-all transform -translate-x-2 group-hover:translate-x-0"
+                  />
+                </button>
               ))}
             </div>
 
-            <div className="shrink-0 px-4 py-3 border-t border-white/[0.06] flex items-center justify-center gap-4 text-[10px] text-slate-600">
+            {/* Footer Links */}
+            <div className="px-5 py-4 bg-[#0a0a0a] flex items-center justify-between text-[10px] font-mono tracking-widest text-zinc-500 uppercase">
               <a
                 href="mailto:at2899743@gmail.com"
-                className="flex items-center gap-1 hover:text-slate-400 transition"
+                className="hover:text-[#a3e635] transition-colors"
               >
-                <Mail size={10} /> Email
+                Email
               </a>
+              <span className="text-zinc-800">/</span>
               <a
                 href="https://wa.me/50588068133"
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-1 hover:text-slate-400 transition"
+                className="hover:text-[#a3e635] transition-colors"
               >
-                <Phone size={10} /> WhatsApp
+                WhatsApp
               </a>
+              <span className="text-zinc-800">/</span>
               <a
                 href="https://www.linkedin.com/in/edwintorrez"
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-1 hover:text-slate-400 transition"
+                className="hover:text-[#a3e635] transition-colors"
               >
-                <ExternalLink size={10} /> LinkedIn
+                LinkedIn
               </a>
             </div>
           </motion.div>

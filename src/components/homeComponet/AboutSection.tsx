@@ -4,12 +4,11 @@ import {
   useRef,
   useEffect,
   useState,
-  useCallback,
 } from "react";
 import Marquee from "react-fast-marquee";
 import { stats, featuredStack, techStack } from "@/data/aboutData";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import { Sparkles, Zap, Target, Layers, Code2 } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { Zap, Target, Layers, Code2 } from "lucide-react";
 import { useLanguage } from "../../context/LanguageContext";
 
 const GitHubCalendar = lazy(() => import("react-github-calendar"));
@@ -50,278 +49,236 @@ function AnimatedCounter({
 const principles = [
   {
     icon: Zap,
+    num: "01",
     title: "Performance First",
     desc: "Every ms counts. I optimize for speed from the start.",
   },
   {
     icon: Target,
+    num: "02",
     title: "Pixel Perfect",
     desc: "Design fidelity is non-negotiable.",
   },
   {
     icon: Layers,
+    num: "03",
     title: "Clean Architecture",
     desc: "Scalable patterns, not spaghetti code.",
   },
 ];
-
-function TiltCard({
-  children,
-  className = "",
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-
-  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    const el = ref.current;
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const cx = rect.width / 2;
-    const cy = rect.height / 2;
-    const rotX = ((y - cy) / cy) * -6;
-    const rotY = ((x - cx) / cx) * 6;
-    el.style.transform = `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.02)`;
-  }, []);
-
-  const handleMouseLeave = useCallback(() => {
-    if (ref.current) ref.current.style.transform = "";
-  }, []);
-
-  return (
-    <div
-      ref={ref}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className={`tilt-card ${className}`}
-    >
-      {children}
-    </div>
-  );
-}
 
 export const AboutSection = () => {
   const ref = useRef<HTMLElement | null>(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
   const { t } = useLanguage();
 
-  const scrollRef = useRef<HTMLElement | null>(null);
-  const { scrollYProgress } = useScroll({
-    target: scrollRef,
-    offset: ["start 80%", "end start"],
-  });
-  const bgY = useTransform(scrollYProgress, [0, 1], [0, -60]);
-
   return (
     <section
       id="about"
-      ref={(el) => {
-        ref.current = el;
-        scrollRef.current = el;
-      }}
-      className="relative bg-[#020617] text-white py-24 px-4 flex flex-col items-center overflow-hidden"
+      ref={ref}
+      className="relative bg-[#050505] text-white py-24 px-6 lg:pl-24 lg:pr-12 border-b border-zinc-800/80 overflow-hidden"
       aria-labelledby="about-title"
     >
-      <motion.div
-        style={{ y: bgY }}
-        className="pointer-events-none absolute -right-64 top-0 h-[500px] w-[500px] rounded-full bg-blue-600/8 blur-[120px]"
-      />
-      <div className="pointer-events-none absolute -left-32 bottom-0 h-[400px] w-[400px] rounded-full bg-violet-600/5 blur-[100px]" />
-
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.7 }}
-        className="text-center mb-14"
-      >
-        <div className="flex items-center justify-center gap-2 mb-3">
-          <Sparkles size={16} className="text-blue-400" />
-          <span className="text-xs tracking-[0.2em] uppercase text-blue-400 font-medium">
-            {t("about.subtitle")}
-          </span>
-          <Sparkles size={16} className="text-blue-400" />
-        </div>
-        <h2 id="about-title" className="section-title text-4xl md:text-5xl">
-          {t("about.title")}
-        </h2>
-      </motion.div>
-
-      <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-6 gap-4 auto-rows-auto">
+      <div className="w-full max-w-7xl mx-auto">
+        {/* Editorial Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="md:col-span-4"
+          transition={{ duration: 0.6 }}
+          className="flex flex-col items-start mb-16"
         >
-          <TiltCard className="rounded-2xl bg-white/[0.03] border border-white/[0.06] p-6 md:p-8 hover:border-blue-500/25 transition-all duration-500 h-full">
-            <div className="flex items-center gap-2 mb-4">
-              <Code2 size={18} className="text-blue-400" />
-              <span className="text-xs tracking-wider uppercase text-blue-400 font-medium">
-                {t("about.whoIAm")}
-              </span>
-            </div>
-            <div className="text-sm md:text-[15px] leading-relaxed space-y-4 text-slate-350 pr-2 text-justify">
-              <p dangerouslySetInnerHTML={{ __html: t("about.description1") }} />
-              <p dangerouslySetInnerHTML={{ __html: t("about.description2") }} />
-            </div>
-          </TiltCard>
+          <span className="font-mono text-xs font-bold tracking-[0.25em] text-[#a3e635] uppercase">
+            01 — {t("about.subtitle")}
+          </span>
+          <h2 id="about-title" className="text-4xl md:text-5xl font-black uppercase text-white mt-2">
+            {t("about.title")}
+          </h2>
         </motion.div>
 
-        <div className="md:col-span-2 grid grid-cols-2 md:grid-cols-1 gap-4">
-          {stats.map(({ label, value }, i) => {
-            const statKey = i === 0 ? "projects" : "experience";
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-6 auto-rows-auto">
+          {/* Bio card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="md:col-span-4"
+          >
+            <div className="bg-[#121212] border border-zinc-800 p-6 md:p-8 rounded-[2px] hover:border-zinc-700 transition-colors h-full flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-2 mb-4 font-mono text-xs tracking-widest text-[#a3e635] uppercase font-bold">
+                  <Code2 size={16} />
+                  <span>{t("about.whoIAm")}</span>
+                </div>
+                <div className="text-sm md:text-base leading-relaxed space-y-4 text-zinc-300 text-justify">
+                  <p dangerouslySetInnerHTML={{ __html: t("about.description1") }} />
+                  <p dangerouslySetInnerHTML={{ __html: t("about.description2") }} />
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Stats counters */}
+          <div className="md:col-span-2 grid grid-cols-2 md:grid-cols-1 gap-6">
+            {stats.map(({ label, value }, i) => {
+              const statKey = i === 0 ? "projects" : "experience";
+              return (
+                <motion.div
+                  key={label}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
+                >
+                  <div className="bg-[#121212] border border-zinc-800 p-6 rounded-[2px] flex flex-col items-start justify-center hover:border-zinc-700 transition-colors h-full">
+                    <span className="font-mono text-4xl md:text-5xl font-black text-[#a3e635] leading-none">
+                      <AnimatedCounter value={value} suffix="+" />
+                    </span>
+                    <span className="text-xs font-mono text-zinc-400 mt-2 uppercase tracking-widest">
+                      {t(`about.stats.${statKey}`)}
+                    </span>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          {/* Principles */}
+          {principles.map((p, i) => {
+            const title = t(`about.principles.${i}.title`);
+            const desc = t(`about.principles.${i}.desc`);
             return (
               <motion.div
-                key={label}
+                key={p.title}
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
+                transition={{ duration: 0.5, delay: 0.35 + i * 0.1 }}
+                className="md:col-span-2"
               >
-                <TiltCard className="rounded-2xl bg-white/[0.03] border border-white/[0.06] p-5 flex flex-col items-center justify-center text-center hover:border-blue-500/25 transition-all duration-500 h-full group">
-                  <span className="text-3xl md:text-4xl font-black bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">
-                    <AnimatedCounter value={value} suffix="+" />
-                  </span>
-                  <span className="text-xs text-slate-500 mt-1 uppercase tracking-wider font-medium group-hover:text-slate-400 transition">
-                    {t(`about.stats.${statKey}`)}
-                  </span>
-                </TiltCard>
+                <div className="bg-[#121212] border border-zinc-800 p-6 rounded-[2px] hover:border-zinc-700 transition-colors h-full flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="font-mono text-xs font-bold text-[#a3e635]">
+                        {p.num}
+                      </span>
+                      <p.icon size={18} className="text-zinc-400" />
+                    </div>
+                    <h3 className="text-base font-bold text-white mb-2">{title}</h3>
+                    <p className="text-xs text-zinc-400 leading-relaxed">
+                      {desc}
+                    </p>
+                  </div>
+                </div>
               </motion.div>
             );
           })}
+
+          {/* Core stack */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            className="md:col-span-3"
+          >
+            <div className="bg-[#121212] border border-zinc-800 p-6 rounded-[2px] hover:border-zinc-700 transition-colors h-full">
+              <span className="font-mono text-xs font-bold tracking-widest uppercase text-[#a3e635] mb-6 block">
+                {t("about.coreStack")}
+              </span>
+              <div className="grid grid-cols-5 gap-3">
+                {featuredStack.map((item) => (
+                  <div
+                    key={item.name}
+                    className="flex flex-col items-center gap-2 p-3 bg-[#080808] border border-zinc-800 rounded-[2px] hover:border-[#a3e635] transition-colors group cursor-default"
+                  >
+                    <img
+                      src={item.src}
+                      alt={item.name}
+                      className="h-7 opacity-80 group-hover:opacity-100 transition-opacity"
+                    />
+                    <span className="text-[10px] font-mono text-zinc-400 group-hover:text-white transition-colors truncate w-full text-center">
+                      {item.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* GitHub Activity */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.7 }}
+            className="md:col-span-3"
+          >
+            <div className="bg-[#121212] border border-zinc-800 p-6 rounded-[2px] hover:border-zinc-700 transition-colors overflow-hidden h-full">
+              <span className="font-mono text-xs font-bold tracking-widest uppercase text-[#a3e635] mb-6 block">
+                {t("about.githubActivity")}
+              </span>
+              <Suspense
+                fallback={
+                  <div className="h-24 flex items-center justify-center">
+                    <span className="text-xs font-mono text-zinc-500">Loading…</span>
+                  </div>
+                }
+              >
+                <GitHubCalendar
+                  username="edwin08torres"
+                  blockSize={11}
+                  blockMargin={4}
+                  fontSize={11}
+                  colorScheme="dark"
+                />
+              </Suspense>
+            </div>
+          </motion.div>
         </div>
 
-        {principles.map((p, i) => {
-          const title = t(`about.principles.${i}.title`);
-          const desc = t(`about.principles.${i}.desc`);
-          return (
-            <motion.div
-              key={p.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.35 + i * 0.1 }}
-              className="md:col-span-2"
-            >
-              <TiltCard className="rounded-2xl bg-white/[0.03] border border-white/[0.06] p-5 hover:border-blue-500/25 transition-all duration-500 group h-full">
-                <div className="p-2.5 rounded-xl bg-blue-500/10 w-fit mb-3 group-hover:bg-blue-500/15 transition">
-                  <p.icon size={18} className="text-blue-400" />
-                </div>
-                <h3 className="text-sm font-bold text-white mb-1">{title}</h3>
-                <p className="text-xs text-slate-500 leading-relaxed group-hover:text-slate-400 transition">
-                  {desc}
-                </p>
-              </TiltCard>
-            </motion.div>
-          );
-        })}
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          className="md:col-span-3"
-        >
-          <TiltCard className="rounded-2xl bg-white/[0.03] border border-white/[0.06] p-6 hover:border-blue-500/25 transition-all duration-500 h-full">
-            <span className="text-xs tracking-wider uppercase text-blue-400 font-medium mb-4 block">
-              {t("about.coreStack")}
-            </span>
-            <div className="grid grid-cols-5 gap-3">
-              {featuredStack.map((item) => (
-                <div
-                  key={item.name}
-                  className="flex flex-col items-center gap-2 p-3 rounded-xl bg-white/[0.03] border border-white/[0.04] hover:bg-white/[0.07] hover:border-blue-500/20 hover:shadow-[0_0_16px_rgba(59,130,246,0.12)] transition-all duration-300 group cursor-default"
-                >
-                  <img
-                    src={item.src}
-                    alt={item.name}
-                    className="h-7 opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300"
-                  />
-                  <span className="text-[10px] text-slate-500 group-hover:text-slate-300 transition font-medium">
-                    {item.name}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </TiltCard>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.7 }}
-          className="md:col-span-3"
-        >
-          <TiltCard className="rounded-2xl bg-white/[0.03] border border-white/[0.06] p-6 hover:border-blue-500/25 transition-all duration-500 overflow-hidden h-full">
-            <span className="text-xs tracking-wider uppercase text-blue-400 font-medium mb-4 block">
-              {t("about.githubActivity")}
-            </span>
-            <Suspense
-              fallback={
-                <div className="h-24 flex items-center justify-center">
-                  <span className="text-xs text-slate-500">Loading…</span>
-                </div>
-              }
-            >
-              <GitHubCalendar
-                username="edwin08torres"
-                blockSize={11}
-                blockMargin={4}
-                fontSize={11}
-                colorScheme="dark"
-              />
-            </Suspense>
-          </TiltCard>
-        </motion.div>
-      </div>
-
-      <div className="w-full max-w-5xl mt-14 space-y-3">
-        <Marquee gradient={false} speed={35} pauseOnHover play>
-          {techStack.slice(0, 10).map((item) => (
-            <div
-              key={item.name + "-r1"}
-              className="flex items-center gap-2 mx-3 px-4 py-2 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:bg-white/[0.06] hover:border-blue-500/20 transition-all duration-300 group"
-            >
-              <img
-                src={item.src}
-                alt={item.name}
-                loading="lazy"
-                decoding="async"
-                className="h-5 opacity-70 group-hover:opacity-100 transition-all"
-              />
-              <span className="text-xs text-slate-400 font-medium whitespace-nowrap group-hover:text-slate-200 transition">
-                {item.name}
-              </span>
-            </div>
-          ))}
-        </Marquee>
-        <Marquee
-          gradient={false}
-          speed={30}
-          pauseOnHover
-          play
-          direction="right"
-        >
-          {techStack.slice(10).map((item) => (
-            <div
-              key={item.name + "-r2"}
-              className="flex items-center gap-2 mx-3 px-4 py-2 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:bg-white/[0.06] hover:border-violet-500/20 transition-all duration-300 group"
-            >
-              <img
-                src={item.src}
-                alt={item.name}
-                loading="lazy"
-                decoding="async"
-                className="h-5 opacity-70 group-hover:opacity-100 transition-all"
-              />
-              <span className="text-xs text-slate-400 font-medium whitespace-nowrap group-hover:text-slate-200 transition">
-                {item.name}
-              </span>
-            </div>
-          ))}
-        </Marquee>
-        <div className="gradient-divider w-full mt-5" />
+        {/* Tech stack Marquee */}
+        <div className="w-full mt-16 space-y-3">
+          <Marquee gradient={false} speed={35} pauseOnHover play>
+            {techStack.slice(0, 10).map((item) => (
+              <div
+                key={item.name + "-r1"}
+                className="flex items-center gap-2 mx-2 px-4 py-2 bg-[#121212] border border-zinc-800 rounded-[2px] hover:border-[#a3e635] transition-colors group"
+              >
+                <img
+                  src={item.src}
+                  alt={item.name}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-5 opacity-70 group-hover:opacity-100 transition-opacity"
+                />
+                <span className="text-xs font-mono text-zinc-400 group-hover:text-white transition-colors">
+                  {item.name}
+                </span>
+              </div>
+            ))}
+          </Marquee>
+          <Marquee
+            gradient={false}
+            speed={30}
+            pauseOnHover
+            play
+            direction="right"
+          >
+            {techStack.slice(10).map((item) => (
+              <div
+                key={item.name + "-r2"}
+                className="flex items-center gap-2 mx-2 px-4 py-2 bg-[#121212] border border-zinc-800 rounded-[2px] hover:border-[#a3e635] transition-colors group"
+              >
+                <img
+                  src={item.src}
+                  alt={item.name}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-5 opacity-70 group-hover:opacity-100 transition-opacity"
+                />
+                <span className="text-xs font-mono text-zinc-400 group-hover:text-white transition-colors">
+                  {item.name}
+                </span>
+              </div>
+            ))}
+          </Marquee>
+        </div>
       </div>
     </section>
   );

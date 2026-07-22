@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { experiencesConfig } from "@/data/experienceData";
-import { Briefcase, MapPin, Calendar, ChevronRight } from "lucide-react";
+import { MapPin, Calendar, ChevronRight } from "lucide-react";
 import { useLanguage } from "../../context/LanguageContext";
 
 export const ExperienceSection = () => {
@@ -13,135 +13,112 @@ export const ExperienceSection = () => {
     <section
       id="experience"
       ref={ref}
-      className="relative bg-[#020617] text-white py-24 px-4 flex flex-col items-center overflow-hidden"
+      className="relative bg-[#050505] text-white py-24 px-6 lg:pl-24 lg:pr-12 border-b border-zinc-800/80 overflow-hidden"
     >
-      <div className="pointer-events-none absolute right-0 top-1/4 h-[400px] w-[400px] rounded-full bg-violet-600/5 blur-[120px]" />
-      <div className="pointer-events-none absolute left-0 bottom-1/4 h-[350px] w-[350px] rounded-full bg-blue-600/5 blur-[100px]" />
-
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.7 }}
-        className="text-center mb-16"
-      >
-        <div className="flex items-center justify-center gap-2 mb-3">
-          <Briefcase size={16} className="text-blue-400" />
-          <span className="text-xs tracking-[0.2em] uppercase text-blue-400 font-medium">
-            {t("experience.subtitle")}
+      <div className="w-full max-w-7xl mx-auto">
+        {/* Editorial Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col items-start mb-16"
+        >
+          <span className="font-mono text-xs font-bold tracking-[0.25em] text-[#a3e635] uppercase">
+            02 — {t("experience.subtitle")}
           </span>
-          <Briefcase size={16} className="text-blue-400" />
-        </div>
-        <h2 className="section-title text-4xl md:text-5xl">{t("experience.title")}</h2>
-      </motion.div>
+          <h2 className="text-4xl md:text-5xl font-black uppercase text-white mt-2">
+            {t("experience.title")}
+          </h2>
+        </motion.div>
 
-      <div className="relative w-full max-w-3xl">
-        <div className="absolute left-4 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-blue-500/20 to-transparent" />
+        <div className="relative w-full max-w-4xl">
+          {/* Vertical timeline line - solid clean line */}
+          <div className="absolute left-3 top-2 bottom-2 w-[2px] bg-zinc-800" />
 
-        {experiencesConfig.map((config, i) => {
-          const company = t(`experience.items.${i}.company`);
-          const role = t(`experience.items.${i}.role`);
-          const period = t(`experience.items.${i}.period`);
-          const location = t(`experience.items.${i}.location`);
-          const type = t(`experience.items.${i}.type`);
-          const description = t(`experience.items.${i}.description`);
-          const bullets = t(`experience.items.${i}.bullets`) as string[] || [];
+          {experiencesConfig.map((config, i) => {
+            const company = t(`experience.items.${i}.company`);
+            const role = t(`experience.items.${i}.role`);
+            const period = t(`experience.items.${i}.period`);
+            const location = t(`experience.items.${i}.location`);
+            const type = t(`experience.items.${i}.type`);
+            const description = t(`experience.items.${i}.description`);
+            const bullets = (t(`experience.items.${i}.bullets`) as string[]) || [];
 
-          return (
-            <motion.div
-              key={config.id}
-              initial={{ opacity: 0, y: 40, x: -20 }}
-              animate={isInView ? { opacity: 1, y: 0, x: 0 } : {}}
-              transition={{
-                duration: 0.6,
-                delay: 0.2 + i * 0.2,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              className="relative flex items-start mb-12 last:mb-0 pl-12"
-            >
-              <div className="absolute left-4 -translate-x-1/2 top-1 z-10">
-                <div
-                  className="w-3 h-3 rounded-full border-2"
-                  style={{
-                    borderColor: config.accent,
-                    boxShadow: `0 0 12px ${config.accent}66`,
-                  }}
-                />
-                <div
-                  className="absolute inset-0 w-3 h-3 rounded-full animate-ping"
-                  style={{ background: config.accent, opacity: 0.3 }}
-                />
-              </div>
+            return (
+              <motion.div
+                key={config.id}
+                initial={{ opacity: 0, y: 30, x: -10 }}
+                animate={isInView ? { opacity: 1, y: 0, x: 0 } : {}}
+                transition={{
+                  duration: 0.5,
+                  delay: 0.15 + i * 0.15,
+                }}
+                className="relative flex items-start mb-12 last:mb-0 pl-10"
+              >
+                {/* Timeline Marker - Solid sharp square */}
+                <div className="absolute left-3 -translate-x-1/2 top-2.5 z-10">
+                  <div className="w-2.5 h-2.5 bg-[#a3e635]" />
+                </div>
 
-              <div className="w-full">
-                <div
-                  className="group rounded-2xl bg-white/[0.03] border border-white/[0.06] p-6 hover:border-opacity-50 transition-all duration-500"
-                  style={{ "--exp-accent": config.accent } as React.CSSProperties}
-                >
-                  <div className="flex items-center gap-4 mb-4 flex-wrap">
-                    <span
-                      className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border"
-                      style={{
-                        color: config.accent,
-                        borderColor: `${config.accent}55`,
-                        background: `${config.accent}15`,
-                      }}
-                    >
-                      <Calendar size={10} />
-                      {period}
-                    </span>
-                    <span className="inline-flex items-center gap-1 text-[10px] text-slate-500 uppercase tracking-wider">
-                      <MapPin size={10} />
-                      {location} · {type}
-                    </span>
-                  </div>
-
-                  <h3 className="text-lg font-black text-white mb-0.5">
-                    {company}
-                  </h3>
-                  <p
-                    className="text-sm font-medium mb-3.5"
-                    style={{ color: config.accent }}
-                  >
-                    {role}
-                  </p>
-
-                  {description && (
-                    <p className="text-sm text-slate-350 leading-relaxed mb-4 text-justify pr-2">
-                      {description}
-                    </p>
-                  )}
-
-                  <ul className="space-y-2.5 mb-5">
-                    {bullets.map((bullet, bi) => (
-                      <li
-                        key={bi}
-                        className="flex items-start gap-2 text-sm text-slate-400 leading-relaxed"
-                      >
-                        <ChevronRight
-                          size={14}
-                          className="shrink-0 mt-0.5"
-                          style={{ color: config.accent }}
-                        />
-                        <span>{bullet}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div className="flex flex-wrap gap-1.5">
-                    {config.stack.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-2 py-0.5 rounded-md text-[10px] font-medium bg-white/[0.04] border border-white/[0.06] text-slate-400"
-                      >
-                        {tech}
+                <div className="w-full">
+                  <div className="bg-[#121212] border border-zinc-800 p-6 sm:p-8 rounded-[2px] hover:border-zinc-700 transition-colors">
+                    {/* Header info */}
+                    <div className="flex items-center gap-4 mb-4 flex-wrap">
+                      <span className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider px-3 py-1 bg-zinc-900 border border-zinc-700 text-zinc-200 rounded-[2px]">
+                        <Calendar size={12} className="text-[#a3e635]" />
+                        {period}
                       </span>
-                    ))}
+                      <span className="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-400 uppercase tracking-wider">
+                        <MapPin size={12} className="text-zinc-500" />
+                        {location} · {type}
+                      </span>
+                    </div>
+
+                    <h3 className="text-xl sm:text-2xl font-black text-white mb-1">
+                      {company}
+                    </h3>
+                    <p className="text-sm font-mono font-semibold text-[#a3e635] mb-4">
+                      {role}
+                    </p>
+
+                    {description && (
+                      <p className="text-sm text-zinc-300 leading-relaxed mb-5 text-justify pr-2">
+                        {description}
+                      </p>
+                    )}
+
+                    <ul className="space-y-3 mb-6">
+                      {bullets.map((bullet, bi) => (
+                        <li
+                          key={bi}
+                          className="flex items-start gap-2.5 text-sm text-zinc-400 leading-relaxed"
+                        >
+                          <ChevronRight
+                            size={16}
+                            className="shrink-0 mt-0.5 text-[#a3e635]"
+                          />
+                          <span>{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* Tech stack tags - solid border */}
+                    <div className="flex flex-wrap gap-2">
+                      {config.stack.map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-3 py-1 rounded-[2px] text-xs font-mono font-medium bg-[#080808] border border-zinc-800 text-zinc-400 hover:border-[#a3e635] hover:text-white transition-colors"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          );
-        })}
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

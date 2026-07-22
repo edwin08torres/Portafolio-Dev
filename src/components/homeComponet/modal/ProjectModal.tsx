@@ -33,52 +33,10 @@ function dedent(text: string): string {
     .trim();
 }
 
-const accentColors: Record<
-  number,
-  { from: string; to: string; text: string; badge: string }
-> = {
-  0: {
-    from: "#dc2626",
-    to: "#991b1b",
-    text: "#f87171",
-    badge: "rgba(220,38,38,0.15)",
-  },
-  1: {
-    from: "#3b82f6",
-    to: "#6366f1",
-    text: "#60a5fa",
-    badge: "rgba(59,130,246,0.15)",
-  },
-  2: {
-    from: "#f59e0b",
-    to: "#ef4444",
-    text: "#fbbf24",
-    badge: "rgba(251,191,36,0.12)",
-  },
-  3: {
-    from: "#8b5cf6",
-    to: "#ec4899",
-    text: "#a78bfa",
-    badge: "rgba(139,92,246,0.15)",
-  },
-  4: {
-    from: "#ec4899",
-    to: "#f43f5e",
-    text: "#f472b6",
-    badge: "rgba(236,72,153,0.12)",
-  },
-  5: {
-    from: "#14b8a6",
-    to: "#3b82f6",
-    text: "#2dd4bf",
-    badge: "rgba(20,184,166,0.12)",
-  },
-};
-
 const markdownComponents: Components = {
   a: (props) => (
     <a
-      className="text-blue-400 underline decoration-blue-500/30 underline-offset-2 hover:decoration-blue-400 transition-colors"
+      className="text-[#a3e635] underline decoration-[#a3e635]/40 underline-offset-2 hover:decoration-[#a3e635] transition-colors"
       target="_blank"
       rel="noopener noreferrer"
       {...props}
@@ -86,33 +44,33 @@ const markdownComponents: Components = {
   ),
   h3: (props) => (
     <h3
-      className="text-base font-bold text-white mt-7 mb-2.5 first:mt-0 flex items-center gap-2"
+      className="text-sm font-mono font-bold text-[#a3e635] tracking-widest uppercase mt-6 mb-3.5 first:mt-0 flex items-center gap-2 border-b border-zinc-800 pb-1.5"
       {...props}
     />
   ),
   p: (props) => (
-    <p className="text-sm leading-relaxed text-slate-400 my-2" {...props} />
+    <p className="text-sm leading-relaxed text-zinc-300 my-2" {...props} />
   ),
   li: (props) => (
     <li
-      className="text-sm leading-relaxed text-slate-400 pl-5 relative before:absolute before:left-0 before:top-0 before:text-blue-500 before:content-['▸'] before:font-bold"
+      className="text-sm leading-relaxed text-zinc-300 pl-5 relative my-1.5 before:absolute before:left-0 before:top-0 before:text-[#a3e635] before:content-['■'] before:text-[10px]"
       {...props}
     />
   ),
-  ul: (props) => <ul className="space-y-2 my-3 list-none" {...props} />,
+  ul: (props) => <ul className="space-y-1.5 my-3 list-none" {...props} />,
   strong: (props) => (
-    <strong className="text-blue-300 font-semibold" {...props} />
+    <strong className="text-white font-semibold" {...props} />
   ),
   code: (props) => {
     const { inline, ...rest } = props as any;
     return inline ? (
       <code
-        className="px-1.5 py-0.5 rounded-md bg-blue-500/10 text-blue-300 text-[0.85em] font-mono break-words"
+        className="px-1.5 py-0.5 rounded-[2px] bg-zinc-900 border border-zinc-800 text-[#a3e635] text-[0.85em] font-mono break-words"
         {...rest}
       />
     ) : (
-      <pre className="overflow-x-auto rounded-xl bg-[#0a0f1e] border border-white/[0.06] p-4 my-3">
-        <code className="font-mono text-sm" {...rest} />
+      <pre className="overflow-x-auto rounded-[2px] bg-[#121212] border border-zinc-800 p-4 my-3">
+        <code className="font-mono text-sm text-zinc-200" {...rest} />
       </pre>
     );
   },
@@ -126,48 +84,33 @@ export default function ProjectModal({ open, onOpenChange, project }: Props) {
   const description = t(`projects.items.${project.slug}.description`);
   const details = dedent(t(`projects.items.${project.slug}.details`));
 
-  const projectIndex = project.slug
-    ? [
-        "silent-hill-tribute",
-        "mopetco-grooming",
-        "mopetco-booking",
-        "coffee-shop-landing",
-        "dulces-momentos",
-        "logic-tkl-915",
-      ].indexOf(project.slug)
-    : 0;
-  const accent = accentColors[projectIndex >= 0 ? projectIndex : 0];
-
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="w-[94vw] max-w-[900px] h-[88vh] max-h-[calc(100vh-env(safe-area-inset-top,0px)-env(safe-area-inset-bottom,0px)-2rem)] p-0 overflow-hidden rounded-2xl md:rounded-3xl border border-white/[0.07] bg-[#080d1a] shadow-2xl shadow-black/60 flex flex-col [&>button]:hidden">
-        <div className="md:hidden shrink-0 flex items-center gap-3 px-4 py-3 border-b border-white/[0.06] bg-[#080d1a]/95 backdrop-blur-xl">
+      <DialogContent className="w-[94vw] max-w-[900px] h-[88vh] max-h-[calc(100vh-2rem)] p-0 overflow-hidden rounded-[2px] border border-zinc-800 bg-[#080808] shadow-none flex flex-col [&>button]:hidden">
+        {/* Mobile Header */}
+        <div className="md:hidden shrink-0 flex items-center gap-3 px-4 py-3 border-b border-zinc-800 bg-[#0c0c0c]">
           <button
             onClick={() => onOpenChange(false)}
-            className="p-1.5 rounded-lg bg-white/[0.06] border border-white/[0.08] text-slate-400 active:bg-white/[0.12] transition-all"
+            className="p-1.5 rounded-[2px] bg-zinc-900 border border-zinc-700 text-zinc-300 transition-all"
             aria-label={t("nav.goBack")}
           >
             <ChevronLeft size={18} />
           </button>
           <div className="flex-1 flex items-center gap-2 min-w-0">
-            <div
-              className="w-2 h-2 rounded-full shrink-0"
-              style={{
-                background: `linear-gradient(135deg, ${accent.from}, ${accent.to})`,
-              }}
-            />
-            <span className="text-sm font-semibold text-white truncate">
+            <span className="w-2 h-2 bg-[#a3e635] shrink-0" />
+            <span className="text-sm font-mono font-bold text-white truncate uppercase tracking-wider">
               {title}
             </span>
           </div>
         </div>
 
+        {/* Desktop Close button */}
         <button
           onClick={() => onOpenChange(false)}
-          className="hidden md:flex absolute top-4 right-4 z-50 p-2 rounded-full bg-white/[0.06] border border-white/[0.08] text-white/50 hover:text-white hover:bg-white/[0.12] transition-all backdrop-blur-md"
+          className="hidden md:flex absolute top-4 right-4 z-50 p-2 rounded-[2px] bg-zinc-900 border border-zinc-700 text-zinc-300 hover:border-[#a3e635] hover:text-[#a3e635] transition-all"
           aria-label="Close"
         >
-          <X size={15} />
+          <X size={16} />
         </button>
 
         <AnimatePresence mode="wait">
@@ -176,133 +119,95 @@ export default function ProjectModal({ open, onOpenChange, project }: Props) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.2 }}
             className="flex flex-col md:flex-row w-full h-full overflow-hidden"
           >
-            <div className="relative md:w-[42%] shrink-0 flex flex-col overflow-hidden">
-              <div className="relative h-52 md:h-full overflow-hidden">
-                <img
-                  src={project.detailImage || project.image}
-                  alt={title}
-                  className="w-full h-full object-cover object-top scale-105"
-                  style={{ filter: "brightness(0.55)" }}
-                />
-
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background: `linear-gradient(to bottom, transparent 30%, #080d1a 100%)`,
-                  }}
-                />
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background: `linear-gradient(135deg, ${accent.from}22 0%, transparent 60%)`,
-                  }}
-                />
-
-                <div className="absolute bottom-0 left-0 right-0 p-6 flex flex-col gap-4">
-                  <div
-                    className="w-10 h-0.5 rounded-full"
-                    style={{
-                      background: `linear-gradient(90deg, ${accent.from}, ${accent.to})`,
-                    }}
-                  />
-
-                  <h2 className="text-xl md:text-2xl font-black text-white leading-tight tracking-tight">
+            {/* Left preview & actions */}
+            <div className="relative md:w-[42%] shrink-0 flex flex-col overflow-hidden bg-[#0c0c0c] border-r border-zinc-800">
+              <div className="relative h-48 md:h-full flex flex-col justify-between p-6">
+                <div className="relative z-10">
+                  <span className="font-mono text-xs font-bold text-[#a3e635] tracking-widest uppercase mb-2 block">
+                    CASE STUDY
+                  </span>
+                  <h2 className="text-xl md:text-2xl font-black text-white uppercase leading-tight tracking-tight mb-4">
                     {title}
                   </h2>
 
-                  <div className="flex flex-wrap gap-1.5">
+                  <div className="flex flex-wrap gap-1.5 mb-6">
                     {project.techs.map((t) => (
                       <span
                         key={t}
-                        className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-widest border"
-                        style={{
-                          color: accent.text,
-                          borderColor: `${accent.from}55`,
-                          background: accent.badge,
-                        }}
+                        className="px-2.5 py-1 rounded-[2px] text-[10px] font-mono uppercase tracking-wider border border-zinc-800 bg-[#050505] text-zinc-300"
                       >
                         {t}
                       </span>
                     ))}
                   </div>
+                </div>
 
-                  <div className="hidden md:flex flex-col gap-2 mt-2">
-                    {project.playstore && (
-                      <a
-                        href={project.playstore}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-sm font-semibold text-white transition-all hover:opacity-90"
-                        style={{
-                          background: "linear-gradient(135deg, #059669, #047857)",
-                          boxShadow: "0 4px 15px rgba(5,150,105,0.3)",
-                        }}
-                      >
-                        <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                          <path d="M3.609 1.814L13.792 12 3.61 22.186a1.996 1.996 0 0 1-.397-1.127V2.941c0-.422.13-.807.397-1.127zM14.78 12.99l2.766 2.766-3.754 2.164-3.805-3.806 4.793-4.124zm5.823-1.42l-2.023-1.164-3.007 2.594 3.007 2.594 2.023-1.164a2 2 0 0 0 0-2.86zM13.792 12L3.61 1.814C3.882 1.488 4.302 1.28 4.78 1.28c.36 0 .703.096 1.008.27l12.775 7.35-4.771 3.1zm0 0L8.793 16.9l4.999-4.9zm0 0" />
-                        </svg>
-                        Google Play
-                      </a>
-                    )}
-                    {project.appstore && (
-                      <a
-                        href={project.appstore}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-sm font-semibold text-white bg-black/40 border border-white/[0.08] hover:bg-black/60 transition-all"
-                      >
-                        <Apple size={14} className="-mt-0.5" />
-                        App Store
-                      </a>
-                    )}
-                    {!project.playstore && !project.appstore && project.demo && (
-                      <a
-                        href={project.demo}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-sm font-semibold text-white transition-all hover:opacity-90"
-                        style={{
-                          background: `linear-gradient(135deg, ${accent.from}, ${accent.to})`,
-                          boxShadow: `0 4px 20px ${accent.from}44`,
-                        }}
-                      >
-                        <ExternalLink size={14} />
-                        {t("projects.liveDemo")}
-                        <ArrowUpRight size={13} className="opacity-70" />
-                      </a>
-                    )}
-                    {project.github && (
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-sm font-medium text-slate-300 bg-white/[0.05] border border-white/[0.08] hover:bg-white/[0.09] hover:text-white transition-all"
-                      >
-                        <Github size={14} />
-                        {t("projects.sourceCode")}
-                      </a>
-                    )}
-                  </div>
+                <div className="hidden md:flex flex-col gap-2 relative z-10">
+                  {project.playstore && (
+                    <a
+                      href={project.playstore}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center justify-center gap-2 w-full py-3 rounded-[2px] text-xs font-mono font-bold uppercase tracking-wider text-emerald-400 border border-emerald-600/50 bg-emerald-950/20 hover:bg-emerald-900/30 transition-all"
+                    >
+                      <svg className="w-3.5 h-3.5 fill-current text-emerald-400" viewBox="0 0 24 24">
+                        <path d="M3.609 1.814L13.792 12 3.61 22.186a1.996 1.996 0 0 1-.397-1.127V2.941c0-.422.13-.807.397-1.127zM14.78 12.99l2.766 2.766-3.754 2.164-3.805-3.806 4.793-4.124zm5.823-1.42l-2.023-1.164-3.007 2.594 3.007 2.594 2.023-1.164a2 2 0 0 0 0-2.86zM13.792 12L3.61 1.814C3.882 1.488 4.302 1.28 4.78 1.28c.36 0 .703.096 1.008.27l12.775 7.35-4.771 3.1zm0 0L8.793 16.9l4.999-4.9zm0 0" />
+                      </svg>
+                      Google Play
+                    </a>
+                  )}
+                  {project.appstore && (
+                    <a
+                      href={project.appstore}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center justify-center gap-2 w-full py-3 rounded-[2px] text-xs font-mono font-bold uppercase tracking-wider text-white border border-zinc-700 bg-zinc-900 hover:border-zinc-500 transition-all"
+                    >
+                      <Apple size={14} className="-mt-0.5" />
+                      App Store
+                    </a>
+                  )}
+                  {!project.playstore && !project.appstore && project.demo && (
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center justify-center gap-2 w-full py-3 rounded-[2px] text-xs font-mono font-bold uppercase tracking-wider text-black bg-[#a3e635] border border-[#a3e635] hover:bg-[#b5ff14] transition-all"
+                    >
+                      <ExternalLink size={14} />
+                      {t("projects.liveDemo")}
+                      <ArrowUpRight size={13} />
+                    </a>
+                  )}
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center justify-center gap-2 w-full py-3 rounded-[2px] text-xs font-mono font-medium text-zinc-300 bg-[#080808] border border-zinc-800 hover:border-zinc-600 hover:text-white transition-all"
+                    >
+                      <Github size={14} />
+                      {t("projects.sourceCode")}
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
 
-            <div className="flex-1 flex flex-col min-h-0 min-w-0 border-l border-white/[0.05]">
-              <div className="shrink-0 px-6 py-4 border-b border-white/[0.05] flex items-center gap-2">
-                <Layers size={14} style={{ color: accent.text }} />
-                <span
-                  className="text-xs font-bold uppercase tracking-widest"
-                  style={{ color: accent.text }}
-                >
+            {/* Right Markdown details */}
+            <div className="flex-1 flex flex-col min-h-0 min-w-0 bg-[#080808]">
+              <div className="shrink-0 px-6 py-4 border-b border-zinc-800 flex items-center gap-2 bg-[#0c0c0c]">
+                <Layers size={14} className="text-[#a3e635]" />
+                <span className="text-xs font-mono font-bold uppercase tracking-widest text-zinc-300">
                   {t("nav.caseStudy")}
                 </span>
               </div>
 
               <div className="flex-1 overflow-y-auto px-6 py-5 space-y-1 modal-scroll">
-                <p className="text-sm text-slate-400 leading-relaxed pb-3 border-b border-white/[0.05] mb-4">
+                <p className="text-sm text-zinc-400 leading-relaxed pb-4 border-b border-zinc-800 mb-4">
                   {description}
                 </p>
 
@@ -311,14 +216,15 @@ export default function ProjectModal({ open, onOpenChange, project }: Props) {
                 </ReactMarkdown>
               </div>
 
-              <div className="md:hidden shrink-0 border-t border-white/[0.05] px-6 py-4 flex flex-col gap-2">
+              {/* Mobile Actions */}
+              <div className="md:hidden shrink-0 border-t border-zinc-800 px-6 py-4 flex flex-col gap-2 bg-[#0c0c0c]">
                 <div className="flex gap-3 w-full">
                   {project.github && (
                     <a
                       href={project.github}
                       target="_blank"
                       rel="noreferrer"
-                      className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-medium text-slate-300 bg-white/[0.05] border border-white/[0.08] hover:bg-white/[0.09] transition-all"
+                      className="flex-1 flex items-center justify-center gap-2 py-3 rounded-[2px] text-xs font-mono font-medium text-zinc-300 bg-[#080808] border border-zinc-800 hover:border-zinc-600 transition-all"
                     >
                       <Github size={14} /> {t("projects.sourceCode")}
                     </a>
@@ -328,46 +234,12 @@ export default function ProjectModal({ open, onOpenChange, project }: Props) {
                       href={project.demo}
                       target="_blank"
                       rel="noreferrer"
-                      className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold text-white transition-all"
-                      style={{
-                        background: `linear-gradient(135deg, ${accent.from}, ${accent.to})`,
-                      }}
+                      className="flex-1 flex items-center justify-center gap-2 py-3 rounded-[2px] text-xs font-mono font-bold uppercase tracking-wider text-black bg-[#a3e635] border border-[#a3e635] transition-all"
                     >
                       <ExternalLink size={14} /> {t("projects.liveDemo")}
                     </a>
                   )}
                 </div>
-                {(project.playstore || project.appstore) && (
-                  <div className="flex gap-2 w-full mt-1">
-                    {project.playstore && (
-                      <a
-                        href={project.playstore}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold text-white transition-all hover:opacity-90"
-                        style={{
-                          background: "linear-gradient(135deg, #059669, #047857)",
-                        }}
-                      >
-                        <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                          <path d="M3.609 1.814L13.792 12 3.61 22.186a1.996 1.996 0 0 1-.397-1.127V2.941c0-.422.13-.807.397-1.127zM14.78 12.99l2.766 2.766-3.754 2.164-3.805-3.806 4.793-4.124zm5.823-1.42l-2.023-1.164-3.007 2.594 3.007 2.594 2.023-1.164a2 2 0 0 0 0-2.86zM13.792 12L3.61 1.814C3.882 1.488 4.302 1.28 4.78 1.28c.36 0 .703.096 1.008.27l12.775 7.35-4.771 3.1zm0 0L8.793 16.9l4.999-4.9zm0 0" />
-                        </svg>
-                        Google Play
-                      </a>
-                    )}
-                    {project.appstore && (
-                      <a
-                        href={project.appstore}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold text-white bg-black/40 border border-white/[0.08] hover:bg-black/60 transition-all"
-                      >
-                        <Apple size={14} className="-mt-0.5" />
-                        App Store
-                      </a>
-                    )}
-                  </div>
-                )}
               </div>
             </div>
           </motion.div>

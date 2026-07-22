@@ -5,6 +5,7 @@ import { useLanguage } from "../../context/LanguageContext";
 
 const services = [
   {
+    num: "01",
     icon: Code2,
     highlights: [
       "React / Next.js",
@@ -12,22 +13,21 @@ const services = [
       "Tailwind CSS",
       "SEO Optimized",
     ],
-    accent: "#3b82f6",
   },
   {
+    num: "02",
     icon: Smartphone,
     highlights: ["React Native", "Expo", "Reanimated", "Redux"],
-    accent: "#8b5cf6",
   },
   {
+    num: "03",
     icon: Server,
     highlights: [".NET 6/8", "SignalR", "SQL Server", "Azure"],
-    accent: "#14b8a6",
   },
   {
+    num: "04",
     icon: Database,
     highlights: ["Strapi CMS", "Azure DevOps", "CI/CD", "Docker"],
-    accent: "#f59e0b",
   },
 ];
 
@@ -40,81 +40,71 @@ export const ServicesSection = () => {
     <section
       id="services"
       ref={ref}
-      className="relative bg-[#020617] text-white py-24 px-4 flex flex-col items-center overflow-hidden"
+      className="relative bg-[#050505] text-white py-24 px-6 lg:pl-24 lg:pr-12 border-b border-zinc-800/80 overflow-hidden"
     >
-      <div className="pointer-events-none absolute left-0 top-0 h-[400px] w-[400px] rounded-full bg-blue-600/5 blur-[120px]" />
-
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.7 }}
-        className="text-center mb-14"
-      >
-        <div className="flex items-center justify-center gap-2 mb-3">
-          <Database size={16} className="text-blue-400" />
-          <span className="text-xs tracking-[0.2em] uppercase text-blue-400 font-medium">
-            {t("services.subtitle")}
+      <div className="w-full max-w-7xl mx-auto">
+        {/* Editorial Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col items-start mb-16"
+        >
+          <span className="font-mono text-xs font-bold tracking-[0.25em] text-[#a3e635] uppercase">
+            03 — {t("services.subtitle")}
           </span>
-          <Database size={16} className="text-blue-400" />
-        </div>
-        <h2 className="section-title text-4xl md:text-5xl">{t("services.title")}</h2>
-        <p className="text-slate-400 text-sm md:text-base max-w-lg mx-auto mt-4 leading-relaxed">
-          {t("services.desc")}
-        </p>
-      </motion.div>
+          <h2 className="text-4xl md:text-5xl font-black uppercase text-white mt-2">
+            {t("services.title")}
+          </h2>
+          <p className="text-zinc-400 text-sm md:text-base max-w-lg mt-3 leading-relaxed">
+            {t("services.desc")}
+          </p>
+        </motion.div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 w-full max-w-4xl">
-        {services.map((service, i) => {
-          const title = t(`services.items.${i}.title`);
-          const description = t(`services.items.${i}.description`);
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-5xl">
+          {services.map((service, i) => {
+            const title = t(`services.items.${i}.title`);
+            const description = t(`services.items.${i}.description`);
 
-          return (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.15 * i }}
-              className="group relative rounded-2xl bg-white/[0.03] border border-white/[0.06] p-6 hover:border-opacity-50 transition-all duration-500 overflow-hidden"
-            >
-              <div
-                className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none"
-                style={{
-                  boxShadow: `inset 0 0 0 1px ${service.accent}44, 0 8px 30px ${service.accent}10`,
-                }}
-              />
-
-              <div
-                className="w-11 h-11 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110"
-                style={{ background: `${service.accent}15` }}
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.1 * i }}
+                className="group bg-[#121212] border border-zinc-800 p-8 rounded-[2px] hover:border-[#a3e635] transition-all flex flex-col justify-between"
               >
-                <service.icon size={20} style={{ color: service.accent }} />
-              </div>
+                <div>
+                  <div className="flex items-center justify-between mb-6">
+                    <span className="font-mono text-3xl font-black text-[#a3e635]">
+                      {service.num}
+                    </span>
+                    <service.icon
+                      size={22}
+                      className="text-zinc-400 group-hover:text-white transition-colors"
+                    />
+                  </div>
 
-              <h3 className="text-lg font-bold text-white mb-2">
-                {title}
-              </h3>
-              <p className="text-sm text-slate-400 leading-relaxed mb-5">
-                {description}
-              </p>
+                  <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
+                  <p className="text-sm text-zinc-400 leading-relaxed mb-6">
+                    {description}
+                  </p>
+                </div>
 
-              <div className="flex flex-wrap gap-1.5">
-                {service.highlights.map((h) => (
-                  <span
-                    key={h}
-                    className="px-2 py-0.5 rounded-md text-[10px] font-medium border"
-                    style={{
-                      color: service.accent,
-                      borderColor: `${service.accent}33`,
-                      background: `${service.accent}10`,
-                    }}
-                  >
-                    {h}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          );
-        })}
+                <div className="flex flex-wrap gap-2 pt-4 border-t border-zinc-800/60">
+                  {service.highlights.map((h) => (
+                    <span
+                      key={h}
+                      className="px-3 py-1 rounded-[2px] text-xs font-mono bg-[#080808] border border-zinc-800 text-zinc-300 group-hover:border-zinc-700 transition-colors"
+                    >
+                      {h}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
