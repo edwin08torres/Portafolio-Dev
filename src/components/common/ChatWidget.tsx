@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ArrowRight, User, Briefcase, Folder, FileText } from "lucide-react";
+import { useLanguage } from "../../context/LanguageContext";
 
 export const ChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { language } = useLanguage();
 
   const handleAction = (action: string) => {
     if (action === "contact") {
@@ -14,8 +16,8 @@ export const ChatWidget = () => {
       document.getElementById("project")?.scrollIntoView({ behavior: "smooth" });
     } else if (action === "cv") {
       const a = document.createElement("a");
-      a.href = "/doc/Curriculum_EdwinTorrez.pdf";
-      a.download = "Curriculum_EdwinTorrez.pdf";
+      a.href = language === "en" ? "/doc/Curriculum_EdwinTorrez_EN.pdf" : "/doc/Curriculum_EdwinTorrez_ES.pdf";
+      a.download = language === "en" ? "Curriculum_EdwinTorrez_EN.pdf" : "Curriculum_EdwinTorrez_ES.pdf";
       a.click();
     }
     setIsOpen(false);

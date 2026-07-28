@@ -32,7 +32,7 @@ const KineticRole = () => {
 };
 
 export const HomeHeroSection = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <section
@@ -89,8 +89,8 @@ export const HomeHeroSection = () => {
             <span className="text-sm">→</span>
           </a>
           <a
-            href="/doc/Curriculum_EdwinTorrez.pdf"
-            download="Curriculum_EdwinTorrez.pdf"
+            href={language === "en" ? "/doc/Curriculum_EdwinTorrez_EN.pdf" : "/doc/Curriculum_EdwinTorrez_ES.pdf"}
+            download={language === "en" ? "Curriculum_EdwinTorrez_EN.pdf" : "Curriculum_EdwinTorrez_ES.pdf"}
             className="group flex items-center gap-2 text-[11px] sm:text-xs font-mono font-bold uppercase tracking-widest text-zinc-300 hover:text-[#a3e635] transition-colors"
           >
             <span className="border-b border-zinc-500 group-hover:border-[#a3e635] transition-colors pb-1">
