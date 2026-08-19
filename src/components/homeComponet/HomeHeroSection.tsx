@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "../../context/LanguageContext";
 
 const KineticRole = () => {
-  const roles = ["FRONTEND DEVELOPER", "MOBILE DEVELOPER"];
+  const roles = ["FULLSTACK DEVELOPER", "FRONTEND DEVELOPER", "MOBILE DEVELOPER"];
   const [index, setIndex] = useState(0);
 
   useEffect(() => {

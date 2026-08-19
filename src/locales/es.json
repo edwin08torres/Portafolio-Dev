@@ -31,7 +31,7 @@
       "experience": "Años Exp."
     },
     "description1": "Me especializo en construir aplicaciones web y móviles de alto rendimiento — ahí es donde he pasado la mayor parte de los últimos <span class=\"text-white font-medium\">cinco años</span>, y sinceramente, donde hago mi mejor trabajo. En mi día a día, diseño la arquitectura de interfaces web en tiempo real con <span class=\"text-[#a3e635] font-medium\">React y Blazor</span> (potenciadas por <span class=\"text-[#a3e635] font-medium\">SignalR</span>), y desarrollo funcionalidades móviles con <span class=\"text-[#a3e635] font-medium\">React Native y Flutter/Dart</span>, desde geolocalización en vivo hasta infraestructura de notificaciones push.",
-    "description2": "Me importa profundamente lo que ocurre bajo la superficie: resolver acertijos arquitectónicos, optimizar el consumo de memoria y manejar estados complejos es lo que me mantiene motivado. Mi experiencia en desarrollo backend con <span class=\"text-[#a3e635] font-medium\">.NET y C#</span> me da una ventaja adicional —entiendo el panorama completo, no solo la capa de UI— pero mi enfoque principal está en el frontend y mobile. Eso incluye el ciclo completo de publicación: configuración y despliegue en <span class=\"text-[#a3e635] font-medium\">App Store Connect y Google Play Console</span>, integración de suscripciones con <span class=\"text-[#a3e635] font-medium\">RevenueCat</span>, y pagos con plataformas como <span class=\"text-[#a3e635] font-medium\">Square</span>. Ya sea para sistemas empresariales o proyectos personales, construyo software que es tan <span class=\"text-white font-medium\">sólido por dentro como se ve por fuera</span>.",
+    "description2": "Me importa profundamente lo que ocurre bajo la superficie: resolver acertijos arquitectónicos, optimizar el consumo de memoria y manejar estados complejos es lo que me mantiene motivado. Entrego soluciones completas de extremo a extremo, desde backends robustos y escalables (.NET/Node.js) y extracción de datos, hasta interfaces web y móviles pixel-perfect. Eso incluye el ciclo completo de publicación: configuración y despliegue en <span class=\"text-[#a3e635] font-medium\">App Store Connect y Google Play Console</span>, integración de suscripciones con <span class=\"text-[#a3e635] font-medium\">RevenueCat</span>, y pagos con plataformas como <span class=\"text-[#a3e635] font-medium\">Square</span>. Ya sea para sistemas empresariales o proyectos personales, construyo software que es tan <span class=\"text-white font-medium\">sólido por dentro como se ve por fuera</span>.",
     "principles": [
       {
         "title": "Rendimiento Primero",
@@ -77,7 +77,8 @@
         "bullets": [
           "Desarrollo de landing pages dinámicas conectadas al flujo de mensajería de WhatsApp para renderizar recomendaciones personalizadas en tiempo real.",
           "Construcción de vistas interactivas utilizando React y Blazor para asistentes virtuales de servicio al cliente y paneles internos de reclutamiento.",
-          "Estandarización de componentes frontend en múltiples repositorios para garantizar el cumplimiento de la norma regulatoria SUGEF 10-07 en flujos de notificaciones."
+          "Estandarización de componentes frontend en múltiples repositorios para garantizar el cumplimiento de la norma regulatoria SUGEF 10-07 en flujos de notificaciones.",
+          "Enterprise Architecture: Diseño y escalabilidad de servicios backend implementando patrones de diseño estructurados, Clean Architecture y Vertical Slice, mejorando significativamente su mantenimiento."
         ]
       },
       {
@@ -103,7 +104,8 @@
         "bullets": [
           "Diseño y despliegue rápido de landing pages adaptables utilizando React, Vite, Tailwind CSS y Vercel, con alto enfoque en métricas de SEO y velocidad de carga.",
           "Construcción de aplicaciones web para sistemas POS dedicados al control de inventario y facturación.",
-          "Integración del cliente con APIs en .NET y SQL Server, gestionando el estado con Zustand para garantizar cargas rápidas en la UI."
+          "Integración del cliente con APIs en .NET y SQL Server, gestionando el estado con Zustand para garantizar cargas rápidas en la UI.",
+          "Web Scraping & Automation: Diseño e implementación de procesos de extracción masiva de datos estructurados mediante el despliegue de bots en la plataforma Apify."
         ]
       }
     ]
@@ -123,7 +125,7 @@
       },
       {
         "title": "APIs y Backend",
-        "description": "APIs REST robustas y servicios en tiempo real con .NET, SignalR y SQL Server. Despliegues en la nube con Azure DevOps."
+        "description": "APIs REST robustas, microservicios y servicios en tiempo real con Node.js, .NET y SignalR. Despliegues seguros en la nube y modelado de datos con PostgreSQL y SQL Server."
       },
       {
         "title": "CMS e Integraciones",

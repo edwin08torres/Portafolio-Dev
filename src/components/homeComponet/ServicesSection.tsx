@@ -22,7 +22,7 @@ const services = [
   {
     num: "03",
     icon: Server,
-    highlights: [".NET 6/8", "SignalR", "SQL Server", "Azure"],
+    highlights: ["Node.js", "Microservices", "PostgreSQL", ".NET", "SignalR"],
   },
   {
     num: "04",

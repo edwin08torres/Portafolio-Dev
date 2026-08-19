@@ -31,7 +31,7 @@
       "experience": "Years Exp."
     },
     "description1": "I specialize in building high-performance web and mobile applications — that's where I've spent most of the last <span class=\"text-white font-medium\">five years</span>, and honestly, where I do my best work. Day to day, I architect real-time web interfaces with <span class=\"text-[#a3e635] font-medium\">React and Blazor</span> (powered by <span class=\"text-[#a3e635] font-medium\">SignalR</span>), and engineer mobile features with <span class=\"text-[#a3e635] font-medium\">React Native and Flutter/Dart</span>, from live geolocation to push notification infrastructure.",
-    "description2": "I care deeply about what happens under the hood: solving architectural puzzles, optimizing memory consumption, and managing complex state are what keep me engaged. My background in <span class=\"text-[#a3e635] font-medium\">.NET and C#</span> backend development gives me an extra edge — I understand the full picture, not just the UI layer — but my main focus is frontend and mobile. That includes the full release cycle: configuring and deploying to <span class=\"text-[#a3e635] font-medium\">App Store Connect and Google Play Console</span>, integrating subscriptions with <span class=\"text-[#a3e635] font-medium\">RevenueCat</span>, and handling payments with platforms like <span class=\"text-[#a3e635] font-medium\">Square</span>. Whether it's for enterprise systems or personal projects, I build software that feels as <span class=\"text-white font-medium\">solid under the hood as it looks on screen</span>.",
+    "description2": "I care deeply about what happens under the hood: solving architectural puzzles, optimizing memory consumption, and managing complex state are what keep me engaged. I deliver complete end-to-end solutions, from robust scalable backends (.NET/Node.js) and data extraction, to pixel-perfect mobile and web interfaces. That includes the full release cycle: configuring and deploying to <span class=\"text-[#a3e635] font-medium\">App Store Connect and Google Play Console</span>, integrating subscriptions with <span class=\"text-[#a3e635] font-medium\">RevenueCat</span>, and handling payments with platforms like <span class=\"text-[#a3e635] font-medium\">Square</span>. Whether it's for enterprise systems or personal projects, I build software that feels as <span class=\"text-white font-medium\">solid under the hood as it looks on screen</span>.",
     "principles": [
       {
         "title": "Performance First",
@@ -77,7 +77,8 @@
         "bullets": [
           "Developed dynamic landing pages integrated with WhatsApp messaging flows, rendering personalized product recommendations in real time.",
           "Built interactive views with React and Blazor powering customer-facing virtual assistants and internal recruitment dashboards.",
-          "Standardized frontend components across multiple repositories, ensuring compliance with SUGEF 10-07 regulatory requirements in notification flows."
+          "Standardized frontend components across multiple repositories, ensuring compliance with SUGEF 10-07 regulatory requirements in notification flows.",
+          "Enterprise Architecture: Designed and scaled backend services implementing structured design patterns, Clean Architecture, and Vertical Slice, significantly improving maintainability."
         ]
       },
       {
@@ -103,7 +104,8 @@
         "bullets": [
           "Design and rapid deployment of responsive landing pages using React, Vite, Tailwind CSS, and Vercel, with a high focus on SEO and load speed metrics.",
           "Construction of web applications for POS systems dedicated to inventory control and invoicing.",
-          "Client integration with APIs in .NET and SQL Server, managing state with Zustand to guarantee fast loading times in the UI."
+          "Client integration with APIs in .NET and SQL Server, managing state with Zustand to guarantee fast loading times in the UI.",
+          "Web Scraping & Automation: Designed and implemented structured data mass-extraction processes by deploying bots on the Apify platform."
         ]
       }
     ]
@@ -123,7 +125,7 @@
       },
       {
         "title": "API & Backend",
-        "description": "Robust REST APIs and real-time services with .NET, SignalR, and SQL Server. Cloud deployments with Azure DevOps."
+        "description": "Robust REST APIs, microservices, and real-time services with Node.js, .NET, and SignalR. Secure cloud deployments and data modeling with PostgreSQL and SQL Server."
       },
       {
         "title": "CMS & Integrations",

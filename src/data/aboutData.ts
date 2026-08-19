@@ -12,6 +12,7 @@ export const featuredStack = [
   { src: "https://cdn.simpleicons.org/react/ffffff", name: "React Native" },
   { src: "https://cdn.simpleicons.org/react/ffffff", name: "React" },
   { src: "https://cdn.simpleicons.org/nextdotjs/ffffff", name: "Next.js" },
+  { src: "https://cdn.simpleicons.org/nodedotjs/ffffff", name: "Node.js" },
   { src: "https://cdn.simpleicons.org/tailwindcss/ffffff", name: "Tailwind" },
   { src: "https://cdn.simpleicons.org/typescript/ffffff", name: "TypeScript" },
   { src: "https://cdn.simpleicons.org/dotnet/ffffff", name: ".NET" },
@@ -44,4 +45,8 @@ export const techStack = [
   { src: "https://cdn.simpleicons.org/databricks/ffffff", name: "Databricks" },
   { src: "https://cdn.simpleicons.org/devdotto/ffffff", name: "Dev.to" },
   { src: "https://cdn.simpleicons.org/hostinger/ffffff", name: "Hostinger" },
+  { src: "https://cdn.simpleicons.org/apify/ffffff", name: "Apify" },
+  { src: "https://cdn.simpleicons.org/docker/ffffff", name: "Docker" },
+  { src: "https://cdn.simpleicons.org/postgresql/ffffff", name: "PostgreSQL" },
+  { src: "", name: "Clean Architecture" },
 ];
