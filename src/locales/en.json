@@ -121,15 +121,15 @@
       },
       {
         "title": "Mobile Development",
-        "description": "Cross-platform mobile applications for iOS and Android using Flutter and React Native. Expertise in real-time geolocation, push notification infrastructure, subscription integration with RevenueCat, and complete deployment management in App Store Connect and Google Play Console."
+        "description": "Cross-platform mobile applications for iOS and Android using Flutter and React Native. Expertise in live GPS tracking with Mapbox GL, push notifications with Firebase FCM, and complete deployment management in App Store Connect and Google Play Console."
       },
       {
-        "title": "API & Backend",
-        "description": "Robust REST APIs, microservices, and real-time services with Node.js, .NET, and SignalR. Secure cloud deployments and data modeling with PostgreSQL and SQL Server."
+        "title": "Backend & Real-Time APIs",
+        "description": "Robust REST APIs, microservices, and real-time systems using NestJS, Socket.IO, and .NET. Scalable multi-tenant architecture and data modeling with PostgreSQL and Prisma."
       },
       {
-        "title": "CMS & Integrations",
-        "description": "Headless CMS strategies with Strapi, CI/CD pipelines with Azure DevOps, and third-party service integrations for seamless workflows."
+        "title": "Cloud, DevOps & Desktop",
+        "description": "Modern infrastructure deployment with Railway, containerization with Docker, automated CI/CD pipelines, and cross-platform desktop application development with Electron."
       }
     ]
   },

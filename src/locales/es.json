@@ -121,15 +121,15 @@
       },
       {
         "title": "Desarrollo Móvil",
-        "description": "Aplicaciones móviles multiplataforma para iOS y Android utilizando Flutter y React Native. Experiencia en geolocalización en tiempo real, infraestructura de notificaciones push, integración de suscripciones con RevenueCat, y gestión completa de despliegues en App Store Connect y Google Play Console."
+        "description": "Aplicaciones móviles multiplataforma para iOS y Android utilizando Flutter y React Native. Experiencia en seguimiento GPS en vivo con Mapbox GL, notificaciones push con Firebase FCM y gestión completa de despliegues en App Store Connect y Google Play Console."
       },
       {
-        "title": "APIs y Backend",
-        "description": "APIs REST robustas, microservicios y servicios en tiempo real con Node.js, .NET y SignalR. Despliegues seguros en la nube y modelado de datos con PostgreSQL y SQL Server."
+        "title": "Backend y Sistemas en Tiempo Real",
+        "description": "APIs REST robustas, microservicios y sistemas en tiempo real utilizando NestJS, Socket.IO y .NET. Arquitectura multi-tenant escalable y modelado de datos con PostgreSQL y Prisma."
       },
       {
-        "title": "CMS e Integraciones",
-        "description": "Estrategias de CMS Headless con Strapi, pipelines de CI/CD con Azure DevOps e integraciones de servicios de terceros para flujos de trabajo optimizados."
+        "title": "Cloud, DevOps y Desktop",
+        "description": "Despliegue de infraestructura moderna en Railway, contenerización con Docker, pipelines automatizados de CI/CD y desarrollo de aplicaciones de escritorio multiplataforma con Electron."
       }
     ]
   },

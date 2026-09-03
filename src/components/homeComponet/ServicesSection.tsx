@@ -17,17 +17,17 @@ const services = [
   {
     num: "02",
     icon: Smartphone,
-    highlights: ["Flutter", "React Native", "Firebase", "RevenueCat"],
+    highlights: ["Flutter", "React Native", "Mapbox GL", "Firebase FCM"],
   },
   {
     num: "03",
     icon: Server,
-    highlights: ["Node.js", "Microservices", "PostgreSQL", ".NET", "SignalR"],
+    highlights: ["NestJS", "Socket.IO", "PostgreSQL", "Prisma", ".NET"],
   },
   {
     num: "04",
     icon: Database,
-    highlights: ["Strapi CMS", "Azure DevOps", "CI/CD", "Docker"],
+    highlights: ["Railway", "Docker", "CI/CD", "Electron"],
   },
 ];
 
