@@ -11,7 +11,20 @@ export type Tech =
   | "Expo"
   | "GSAP"
   | "Redux"
-  | "Firebase";
+  | "Firebase"
+  | "Next.js"
+  | "GraphQL"
+  | "Zustand"
+  | "i18n"
+  | "NestJS"
+  | "Prisma"
+  | "PostgreSQL"
+  | "Socket.IO"
+  | "Mapbox"
+  | "Flutter"
+  | "Dart"
+  | "Riverpod"
+  | "Electron";
 
 export interface Project {
   slug: string;

@@ -10,11 +10,15 @@ import { useLanguage } from "../../context/LanguageContext";
 const projectAccents: Record<string, { labelKey: string }> = {
   "legal-track-usa": { labelKey: "mobileApp" },
   "silent-hill-tribute": { labelKey: "interactiveExperience" },
+  "trackdeli-web": { labelKey: "webApp" },
+  "trackdeli-app": { labelKey: "mobileApp" },
+  "trackdeli-pos": { labelKey: "posSystem" },
   "mopetco-grooming": { labelKey: "webApp" },
   "mopetco-booking": { labelKey: "bookingSystem" },
   "coffee-shop-landing": { labelKey: "landingPage" },
   "dulces-momentos": { labelKey: "posSystem" },
   "logic-tkl-915": { labelKey: "productPage" },
+  "mimas-tatas-foundation": { labelKey: "webApp" },
 };
 
 export const FeaturedProjectsSection = () => {

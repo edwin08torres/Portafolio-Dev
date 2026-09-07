@@ -72,6 +72,117 @@ export const projects: Project[] = [
   },
 
   {
+    slug: "trackdeli-web",
+    title: "TrackDeli — Web Platform",
+    description:
+      "A multi-tenant SaaS admin platform for local delivery businesses, featuring live dispatch management, real-time GPS dashboards, and a public tracking portal for end customers.",
+    details: `
+      ### The Challenge
+      Build a full web platform serving three different audiences from one shared architecture: business owners managing orders and riders, a super-admin overseeing every tenant on the platform, and end customers tracking their delivery in real time — all without exposing any tenant's data to another. The hardest part was the dispatch logic itself: automatically offering an order to the nearest available rider with a countdown, falling back to the next rider on rejection or timeout, while keeping every connected client in sync via WebSockets.
+
+      ### Solution
+      - **Frontend:** React + TypeScript + Vite monorepo (Turborepo) with three apps — Admin, SuperAdmin, and public Tracking
+      - **Backend:** NestJS + Prisma ORM + PostgreSQL, with strict multi-tenant isolation at the query level
+      - **Real-Time:** Socket.IO Gateway with room-based isolation (\`business:{id}\`, \`order:{id}\`) for live rider positions, order status changes, and dispatch offers
+      - **Maps:** Mapbox GL JS with custom-styled markers, live route rendering, and client-side interpolation for smooth avatar movement — matching the feel of Uber/InDrive rather than choppy GPS jumps
+      - **Recurring Customers:** Phone-scoped customer records per business with a self-service geolocation confirmation flow sent via WhatsApp, avoiding manual address re-entry on repeat orders
+      - **UX Details:** A custom "dynamic island" toast system with error-priority queueing, replacing traditional corner toasts across the whole admin
+
+      ### Impact
+      A single backend now powers three distinct experiences with zero data leakage between tenants, live dispatch that automatically routes around unresponsive riders, and a public tracking link customers can open without any login.
+    `,
+    techs: ["React", "NestJS", "Prisma", "PostgreSQL", "Socket.IO", "Mapbox"],
+    image: "/assets/project/webtrack/dash_webtrack.png",
+    gallery: [
+      "/assets/project/webtrack/dash_webtrack.png",
+      "/assets/project/webtrack/pedido_webtrack.png",
+      "/assets/project/webtrack/pedidodetalle_webtrack.png",
+      "/assets/project/webtrack/cliente_webtrack.png",
+      "/assets/project/webtrack/riders_webtrack.png",
+      "/assets/project/webtrack/comisiones_webtrack.png",
+      "/assets/project/webtrack/reportes_webtrack.png",
+      "/assets/project/webtrack/config_webtrack.png",
+      "/assets/project/webtrack/estado_webtracking.png",
+      "/assets/project/webtrack/tracking_werbtracking.png",
+      "/assets/project/webtrack/rating_webtracking.png",
+      "/assets/project/webtrack/rated_webtracking.png",
+      "/assets/project/webtrack/dash_webtracksuperadmin.png",
+      "/assets/project/webtrack/negocios_webtracksuperadmin.png",
+      "/assets/project/webtrack/riders_webtracksuperadmin.png",
+      "/assets/project/webtrack/logs_webtracksuperadmin.png",
+    ],
+    github: "https://github.com/edwin08torres/trackdeli-web",
+  },
+
+  {
+    slug: "trackdeli-app",
+    title: "TrackDeli — Rider App",
+    description:
+      "A Flutter mobile app for delivery riders, featuring automatic order dispatch, real-time negotiable quotes, and turn-by-turn GPS navigation synced live with the customer-facing web.",
+    details: `
+      ### The Challenge
+      Deliver a rider experience on par with major ride-hailing apps: smooth live GPS tracking (not choppy point-to-point jumps), automatic route recalculation when a rider deviates, and a dual order-assignment model — automatic cascading dispatch for delivery companies with their own fleet, and a negotiable quoting system for independent riders bidding on open orders.
+
+      ### Solution
+      - **Mobile:** Flutter + Dart, Riverpod for reactive state, GoRouter with auth guards
+      - **Maps & GPS:** \`mapbox_maps_flutter\` with custom canvas-rendered markers, animated heading rotation, and client-side position interpolation for fluid movement between GPS fixes
+      - **Networking:** Dio with silent JWT refresh token interceptors and a request queue during token renewal
+      - **Push Notifications:** Firebase Cloud Messaging with dedicated Android notification channels, automatic cleanup of invalid/expired device tokens, and a custom in-app "dynamic island" banner for foreground alerts
+      - **Real-Time:** Dedicated Socket.IO namespace for GPS telemetry, with a heartbeat mechanism keeping the connection alive even when the rider is stationary
+
+      ### Impact
+      Riders get one app that adapts to two different business models (fleet dispatch vs. open marketplace), with live tracking accurate and smooth enough to match the UX of established ride-hailing apps.
+    `,
+    techs: ["Flutter", "Dart", "Riverpod", "Mapbox", "Firebase", "Socket.IO"],
+    image: "/assets/project/appdeli/listasolicitudes_app.jpg",
+    gallery: [
+      "/assets/project/appdeli/taking_app.jpg",
+      "/assets/project/appdeli/takepedido_app.jpg",
+      "/assets/project/appdeli/listasolicitudes_app.jpg",
+      "/assets/project/appdeli/rutaentrega_app.jpg",
+      "/assets/project/appdeli/validandoentrega_app.jpg",
+      "/assets/project/appdeli/pedidoexitoso_app.jpg",
+      "/assets/project/appdeli/historial_app.jpg",
+      "/assets/project/appdeli/profile_app.jpg",
+      "/assets/project/appdeli/register_app.jpg",
+      "/assets/project/appdeli/register2_app.jpg",
+    ],
+    github: "https://github.com/edwin08torres/trackdeli-app",
+  },
+
+  {
+    slug: "trackdeli-pos",
+    title: "TrackDeli POS",
+    description:
+      "A desktop point-of-sale application built with Electron, integrating real thermal printer and cash drawer hardware, sharing the same backend as the TrackDeli delivery platform.",
+    details: `
+      ### The Challenge
+      Build a standalone desktop POS for local businesses that talks to real hardware — an ESC/POS thermal printer, a cash drawer, and a USB barcode scanner — while sharing the exact same backend and data model as the web and mobile delivery platform, so a business can run in-store sales and delivery orders from one unified system.
+
+      ### Solution
+      - **Desktop Shell:** Electron + Vite, with hardware access isolated to the main process and exposed to the React renderer via IPC
+      - **Hardware Integration:** \`node-thermal-printer\` for ESC/POS receipt printing and cash drawer control; barcode scanner input handled as raw USB HID keypress events
+      - **Frontend:** React + TypeScript + Tailwind CSS, sharing the same design system and API client patterns as the web admin
+      - **Auto-Updates:** \`electron-updater\` distributing new versions via GitHub Releases, so every business receives updates automatically without an in-person visit
+      - **Shared Backend:** Same NestJS API and PostgreSQL database as the rest of the platform — sales, cash register shifts, and inventory live alongside delivery orders under the same business account
+
+      ### Impact
+      Local businesses get a real point-of-sale system — categories, inventory, cash register reconciliation, invoicing — without needing separate software or a separate account from their delivery operations.
+    `,
+    techs: ["Electron", "React", "TypeScript", "NestJS", "PostgreSQL"],
+    image: "/assets/project/pos/order_POS.png",
+    gallery: [
+      "/assets/project/pos/caja_POS.png",
+      "/assets/project/pos/order_POS.png",
+      "/assets/project/pos/order2_POS.png",
+      "/assets/project/pos/catalogo_POS.png",
+      "/assets/project/pos/historial_POS.png",
+      "/assets/project/pos/reportes_POS.png",
+    ],
+    github: "https://github.com/edwin08torres/trackdeli-pos",
+  },
+
+  {
     slug: "mopetco-grooming",
     title: "MoPetCo Grooming",
     description:
@@ -223,5 +334,35 @@ export const projects: Project[] = [
     ],
     github: "https://github.com/edwin08torres/TKL",
     demo: "https://magenta-smakager-fead4b.netlify.app/",
-  }
+  },
+  {
+    slug: "mimas-tatas-foundation",
+    title: "Mima's & Tata's Foundation",
+    description:
+      "A donation web application featuring an item catalog, request cart, user authentication, and full bilingual support.",
+    details: `
+      ### The Challenge
+      Mima's & Tata's Foundation needed a modern, accessible, and intuitive digital platform to facilitate donation workflows and community support. The primary requirements involved establishing a dynamic donation items catalog, implementing an interactive request cart for beneficiaries, enforcing strict security validations during user authentication, and delivering a complete bilingual experience (English/Spanish).
+
+      ### Solution
+      - **Frontend Architecture:** Built with Next.js and TypeScript to deliver high performance, server-side rendering, and strict type safety.
+      - **GraphQL Integration:** Efficient consumption of queries and mutations for donation requests, pledges, and user operations.
+      - **Global State Management:** Zustand store managing the dynamic request cart with persistent state and real-time item tracking.
+      - **Bilingual Experience (i18n):** Native internationalization enabling seamless language toggling across catalogs, forms, and modals.
+      - **Authentication & Security:** Robust validation layers for secure login flows and protected user access.
+
+      ### Impact
+      Digitized the foundation's operations into a transparent, streamlined catalog, drastically reducing manual coordination time and empowering both donors and recipients across communities.
+    `,
+    techs: ["Next.js", "GraphQL", "Zustand", "TypeScript", "i18n"],
+    image: "/assets/project/mimas/home_mima.png",
+    gallery: [
+      "/assets/project/mimas/home_mima.png",
+      "/assets/project/mimas/about_mima.png",
+      "/assets/project/mimas/items_mima.png",
+      "/assets/project/mimas/donate_mima.png",
+      "/assets/project/mimas/contact_mima.png",
+    ],
+    demo: "https://mimasandtatas.com",
+  },
 ];
