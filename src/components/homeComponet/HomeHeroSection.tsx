@@ -57,7 +57,7 @@ export const HomeHeroSection = () => {
         >
           EDWIN
           <br />
-          <span className="text-zinc-800">TORREZ</span>
+          <span className="text-zinc-400">TORREZ</span>
         </motion.h1>
       </div>
 

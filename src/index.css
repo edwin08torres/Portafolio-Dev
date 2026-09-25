@@ -3,35 +3,47 @@
 @tailwind utilities;
 
 .react-activity-calendar__scroll-container::-webkit-scrollbar {
-  height: 10px;
+  height: 6px;
 }
 .react-activity-calendar__scroll-container::-webkit-scrollbar-thumb {
-  background: #9db0cf;
+  background: rgba(163, 230, 53, 0.35);
   border-radius: 9999px;
+}
+.react-activity-calendar__scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #a3e635;
 }
 
 .calendar-wrapper {
   scrollbar-width: thin;
-  scrollbar-color: #3b82f6 transparent;
+  scrollbar-color: rgba(163, 230, 53, 0.35) transparent;
 }
 
 .react-activity-calendar__scroll-container {
-  background: #1e293b;
+  background: #080808;
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(163, 230, 53, 0.4) #080808;
 }
 
 ::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #1e293b;
-  border-radius: 10px;
+  background: #080808;
 }
 ::-webkit-scrollbar-thumb {
-  background: #002d75;
-  border-radius: 10px;
+  background: rgba(163, 230, 53, 0.35);
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #012166;
+  background: #a3e635;
+  box-shadow: 0 0 10px rgba(163, 230, 53, 0.6);
+}
+::-webkit-scrollbar-corner {
+  background: #080808;
 }
 
 @layer base {

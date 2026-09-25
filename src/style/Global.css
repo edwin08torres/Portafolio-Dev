@@ -452,18 +452,18 @@ code,
 
 .modal-scroll {
   scrollbar-width: thin;
-  scrollbar-color: rgba(99, 102, 241, 0.3) transparent;
+  scrollbar-color: rgba(163, 230, 53, 0.4) transparent;
 }
 .modal-scroll::-webkit-scrollbar {
-  width: 4px;
+  width: 5px;
 }
 .modal-scroll::-webkit-scrollbar-track {
   background: transparent;
 }
 .modal-scroll::-webkit-scrollbar-thumb {
-  background: rgba(99, 102, 241, 0.3);
+  background: rgba(163, 230, 53, 0.35);
   border-radius: 9999px;
 }
 .modal-scroll::-webkit-scrollbar-thumb:hover {
-  background: rgba(99, 102, 241, 0.55);
+  background: #a3e635;
 }

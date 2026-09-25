@@ -33,10 +33,10 @@ export const CustomCursor = () => {
 
     const onEnter = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (target.closest("a, button, [data-cursor-hover]")) {
+      if (target.closest("a, button, [data-cursor-hover], input, textarea, select, [role='button']")) {
         isHovering.current = true;
-        ringScale.set(2.2);
-        ringOpacity.set(0.6);
+        ringScale.set(1.9);
+        ringOpacity.set(0.85);
       }
     };
 
@@ -46,13 +46,25 @@ export const CustomCursor = () => {
       ringOpacity.set(1);
     };
 
+    const onMouseDown = () => {
+      ringScale.set(isHovering.current ? 1.4 : 0.75);
+    };
+
+    const onMouseUp = () => {
+      ringScale.set(isHovering.current ? 1.9 : 1);
+    };
+
     window.addEventListener("mousemove", onMove);
     window.addEventListener("mouseover", onEnter);
     window.addEventListener("mouseout", onLeave);
+    window.addEventListener("mousedown", onMouseDown);
+    window.addEventListener("mouseup", onMouseUp);
     return () => {
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("mouseover", onEnter);
       window.removeEventListener("mouseout", onLeave);
+      window.removeEventListener("mousedown", onMouseDown);
+      window.removeEventListener("mouseup", onMouseUp);
     };
   }, [dotX, dotY, ringX, ringY, ringOpacity, ringScale]);
 
@@ -67,10 +79,11 @@ export const CustomCursor = () => {
           translateY: "-50%",
           scale: ringScale,
           opacity: ringOpacity,
-          width: 32,
-          height: 32,
+          width: 34,
+          height: 34,
           borderRadius: "50%",
-          border: "1.5px solid rgba(99,102,241,0.7)",
+          border: "1.5px solid rgba(163, 230, 53, 0.75)",
+          boxShadow: "0 0 12px rgba(163, 230, 53, 0.25)",
         }}
       />
       <motion.div
@@ -83,8 +96,8 @@ export const CustomCursor = () => {
           width: 6,
           height: 6,
           borderRadius: "50%",
-          background: "rgba(99,102,241,1)",
-          boxShadow: "0 0 8px rgba(99,102,241,0.8)",
+          background: "#a3e635",
+          boxShadow: "0 0 10px rgba(163, 230, 53, 0.9), 0 0 20px rgba(163, 230, 53, 0.4)",
         }}
       />
     </>
