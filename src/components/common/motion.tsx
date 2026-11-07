@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from "react";
 import { animate, motion, useInView, useReducedMotion } from "framer-motion";
 
 /*
@@ -17,10 +17,18 @@ interface When {
   delay?: number;
 }
 
+/*
+ * `amount` bajo: en el teléfono las tarjetas son muy altas y esperar al 25 % las hacía tardar.
+ * El detector siempre va en un elemento que NO está desplazado ni recortado; si no,
+ * el navegador nunca lo ve "en pantalla" y el contenido se queda oculto.
+ */
 const trigger = (onMount?: boolean) =>
   onMount
     ? { animate: "show" }
-    : { whileInView: "show", viewport: { once: true, amount: 0.25 } };
+    : { whileInView: "show", viewport: { once: true, amount: 0.1 } };
+
+/** Indica a un PopBlock que está dentro de un MaskReveal y debe heredar su disparo. */
+const InMask = createContext(false);
 
 /** Aparece subiendo (opcionalmente con rebote). Para tarjetas, párrafos, botones. */
 export function Reveal({
@@ -59,20 +67,19 @@ export function MaskReveal({
   // El relleno negativo deja ver sombras, inclinaciones y descendentes dentro de la máscara
   const mask = `block overflow-hidden -mx-3 -mt-2 -mb-4 px-3 pb-4 pt-2 ${className}`;
   if (reduce) return <span className={mask}>{children}</span>;
+  // La máscara (quieta y sin recorte) detecta la entrada; el texto de adentro hereda "show".
   return (
-    <span className={mask}>
+    <motion.span className={mask} initial="hide" {...trigger(onMount)}>
       <motion.span
         className="block"
-        initial="hide"
         variants={{
           hide: { y: "115%" },
           show: { y: 0, transition: { duration: 0.6, ease: [0.2, 0.8, 0.2, 1], delay } },
         }}
-        {...trigger(onMount)}
       >
-        {children}
+        <InMask.Provider value={true}>{children}</InMask.Provider>
       </motion.span>
-    </span>
+    </motion.span>
   );
 }
 
@@ -89,18 +96,21 @@ export function PopBlock({
   onMount,
 }: When & { children: ReactNode; className?: string; rotate: number; drop?: boolean }) {
   const reduce = useReducedMotion();
+  const inMask = useContext(InMask);
   const base = `inline-block ${className}`;
   if (reduce) return <span className={base} style={{ rotate: `${rotate}deg` }}>{children}</span>;
+  // Dentro de un MaskReveal (sin onMount) hereda el disparo de la máscara: no tiene detector propio,
+  // porque al estar dentro del texto desplazado y recortado nunca se vería "en pantalla".
+  const own = onMount || !inMask ? { initial: "hide", ...trigger(onMount) } : {};
   return (
     <motion.span
       className={base}
       style={{ rotate }}
-      initial="hide"
       variants={{
         hide: drop ? { opacity: 0, y: -90 } : { opacity: 0, scale: 0 },
         show: { opacity: 1, y: 0, scale: 1, transition: { ...bounce, delay } },
       }}
-      {...trigger(onMount)}
+      {...own}
     >
       {children}
     </motion.span>
