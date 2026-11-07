@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, useEffect } from "react";
 import en from "../locales/en.json";
 import es from "../locales/es.json";
 
@@ -23,6 +23,10 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       return "en";
     }
   });
+
+  useEffect(() => {
+    document.documentElement.lang = language;
+  }, [language]);
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);

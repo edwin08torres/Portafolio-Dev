@@ -1,110 +1,44 @@
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import { Code2, Smartphone, Server, Database } from "lucide-react";
+import { Cloud, Code2, Server, Smartphone } from "lucide-react";
 import { useLanguage } from "../../context/LanguageContext";
+import { MaskReveal, Reveal } from "@/components/common/motion";
 
 const services = [
-  {
-    num: "01",
-    icon: Code2,
-    highlights: [
-      "React / Next.js",
-      "TypeScript",
-      "Tailwind CSS",
-      "SEO Optimized",
-    ],
-  },
-  {
-    num: "02",
-    icon: Smartphone,
-    highlights: ["Flutter", "React Native", "Mapbox GL", "Firebase FCM"],
-  },
-  {
-    num: "03",
-    icon: Server,
-    highlights: ["NestJS", "Socket.IO", "PostgreSQL", "Prisma", ".NET"],
-  },
-  {
-    num: "04",
-    icon: Database,
-    highlights: ["Railway", "Docker", "CI/CD", "Electron"],
-  },
+  { icon: Code2, surface: "bg-cobalt text-white" },
+  { icon: Smartphone, surface: "bg-bubble" },
+  { icon: Server, surface: "bg-sun" },
+  { icon: Cloud, surface: "bg-mint" },
 ];
 
 export const ServicesSection = () => {
-  const ref = useRef<HTMLElement | null>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.1 });
   const { t } = useLanguage();
 
   return (
     <section
-      id="services"
-      ref={ref}
-      className="relative bg-[#050505] text-white py-24 px-6 lg:pl-24 lg:pr-12 border-b border-zinc-800/80 overflow-hidden"
+      id="servicios"
+      className="mx-auto flex max-w-[1280px] scroll-mt-24 flex-col gap-11 px-6 pb-20 pt-[110px]"
     >
-      <div className="w-full max-w-7xl mx-auto">
-        {/* Editorial Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col items-start mb-16"
-        >
-          <span className="font-mono text-xs font-bold tracking-[0.25em] text-[#a3e635] uppercase">
-            03 — {t("services.subtitle")}
-          </span>
-          <h2 className="text-4xl md:text-5xl font-black uppercase text-white mt-2">
-            {t("services.title")}
-          </h2>
-          <p className="text-zinc-400 text-sm md:text-base max-w-lg mt-3 leading-relaxed">
-            {t("services.desc")}
-          </p>
-        </motion.div>
+      <div className="flex flex-col gap-4">
+        <span className="pop-tag self-start bg-sun">{t("services.tag")}</span>
+        <h2 className="pop-display text-[clamp(36px,6.4vw,96px)]">
+          <MaskReveal>
+            {t("services.titleBefore")}
+            <span className="pop-outline-3 text-tomato-text">{t("services.titleHighlight")}</span>
+          </MaskReveal>
+        </h2>
+      </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-5xl">
-          {services.map((service, i) => {
-            const title = t(`services.items.${i}.title`);
-            const description = t(`services.items.${i}.description`);
-
-            return (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.1 * i }}
-                className="group bg-[#121212] border border-zinc-800 p-8 rounded-[2px] hover:border-[#a3e635] transition-all flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-6">
-                    <span className="font-mono text-3xl font-black text-[#a3e635]">
-                      {service.num}
-                    </span>
-                    <service.icon
-                      size={22}
-                      className="text-zinc-400 group-hover:text-white transition-colors"
-                    />
-                  </div>
-
-                  <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
-                  <p className="text-sm text-zinc-400 leading-relaxed mb-6">
-                    {description}
-                  </p>
-                </div>
-
-                <div className="flex flex-wrap gap-2 pt-4 border-t border-zinc-800/60">
-                  {service.highlights.map((h) => (
-                    <span
-                      key={h}
-                      className="px-3 py-1 rounded-[2px] text-xs font-mono bg-[#080808] border border-zinc-800 text-zinc-300 group-hover:border-zinc-700 transition-colors"
-                    >
-                      {h}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,260px),1fr))] gap-6">
+        {services.map(({ icon: Icon, surface }, i) => (
+          <Reveal key={i} delay={i * 0.1} bouncy className="flex">
+          <div className={`pop-box pop-service flex flex-1 flex-col gap-3.5 rounded-3xl p-7 ${surface}`}>
+            <Icon size={40} strokeWidth={2} aria-hidden="true" />
+            <h3 className="pop-display text-2xl [overflow-wrap:anywhere]">
+              {t(`services.items.${i}.title`)}
+            </h3>
+            <p className="text-[17px] leading-normal">{t(`services.items.${i}.description`)}</p>
+          </div>
+          </Reveal>
+        ))}
       </div>
     </section>
   );

@@ -73,7 +73,7 @@ export const projects: Project[] = [
 
   {
     slug: "trackdeli-web",
-    title: "TrackDeli — Web Platform",
+    title: "NEXOL Web",
     description:
       "A multi-tenant SaaS admin platform for local delivery businesses, featuring live dispatch management, real-time GPS dashboards, and a public tracking portal for end customers.",
     details: `
@@ -111,12 +111,11 @@ export const projects: Project[] = [
       "/assets/project/webtrack/riders_webtracksuperadmin.png",
       "/assets/project/webtrack/logs_webtracksuperadmin.png",
     ],
-    github: "https://github.com/edwin08torres/trackdeli-web",
   },
 
   {
     slug: "trackdeli-app",
-    title: "TrackDeli — Rider App",
+    title: "NEXOL Rider App",
     description:
       "A Flutter mobile app for delivery riders, featuring automatic order dispatch, real-time negotiable quotes, and turn-by-turn GPS navigation synced live with the customer-facing web.",
     details: `
@@ -147,14 +146,13 @@ export const projects: Project[] = [
       "/assets/project/appdeli/register_app.jpg",
       "/assets/project/appdeli/register2_app.jpg",
     ],
-    github: "https://github.com/edwin08torres/trackdeli-app",
   },
 
   {
     slug: "trackdeli-pos",
-    title: "TrackDeli POS",
+    title: "NEXOL POS",
     description:
-      "A desktop point-of-sale application built with Electron, integrating real thermal printer and cash drawer hardware, sharing the same backend as the TrackDeli delivery platform.",
+      "A desktop point-of-sale application built with Electron, integrating real thermal printer and cash drawer hardware, sharing the same backend as the NEXOL delivery platform.",
     details: `
       ### The Challenge
       Build a standalone desktop POS for local businesses that talks to real hardware — an ESC/POS thermal printer, a cash drawer, and a USB barcode scanner — while sharing the exact same backend and data model as the web and mobile delivery platform, so a business can run in-store sales and delivery orders from one unified system.
@@ -179,7 +177,6 @@ export const projects: Project[] = [
       "/assets/project/pos/historial_POS.png",
       "/assets/project/pos/reportes_POS.png",
     ],
-    github: "https://github.com/edwin08torres/trackdeli-pos",
   },
 
   {

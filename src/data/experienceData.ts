@@ -12,7 +12,7 @@ export const experiencesConfig: ExperienceConfig[] = [
   },
   {
     id: "grupomonge",
-    stack: ["React", "Blazor", "TypeScript", ".NET 8", "SignalR", "SQL Server", "Azure DevOps"],
+    stack: ["React", "Angular", "TypeScript", ".NET 8", "SQL Server", "Azure DevOps"],
     accent: "#3b82f6",
   },
   {

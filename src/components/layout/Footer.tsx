@@ -1,88 +1,66 @@
-import { motion } from "framer-motion";
-import { Mail, Github, Linkedin } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 import { useLanguage } from "../../context/LanguageContext";
+import { links } from "@/data/siteLinks";
+import { useLoopPause } from "@/hooks/useLoopPause";
+import { MaskReveal, PopBlock } from "@/components/common/motion";
 
 export const Footer = () => {
   const { t } = useLanguage();
+  const ref = useLoopPause<HTMLElement>();
 
   return (
-    <footer className="relative bg-[#050505] text-white overflow-hidden border-t border-zinc-800/80">
-      <div className="relative z-10 max-w-5xl mx-auto px-6 py-24 flex flex-col items-center text-center gap-8">
-        <span className="font-mono text-xs font-bold tracking-[0.25em] text-[#a3e635] uppercase">
-          05 — GET IN TOUCH
+    <section id="contacto" ref={ref} className="scroll-mt-24 px-6 pt-10">
+      <div className="relative mx-auto flex max-w-[1280px] flex-col items-center gap-8 overflow-hidden rounded-t-[40px] border-[3px] border-b-0 border-ink bg-sun px-8 pb-[72px] pt-36 text-center sm:pt-24 md:pt-[96px]">
+        <span className="anim-bob-2 pop-sticker left-[6%] top-6 -rotate-[10deg] bg-bubble [--r:-10deg] sm:top-9">
+          {t("footer.stickerIdea")}
+        </span>
+        <span className="anim-bob-3 pop-sticker right-[6%] top-[84px] rotate-[8deg] bg-white [--r:8deg] sm:top-[60px]">
+          {t("footer.stickerFast")}
         </span>
 
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase text-white leading-none tracking-tight"
-        >
-          {t("footer.ctaTitle1")}
-          <span className="text-[#a3e635]">{t("footer.ctaTitleHighlight")}</span>
-          {t("footer.ctaTitle2")}
-        </motion.h2>
+        <h2 className="pop-display text-[clamp(36px,9vw,150px)]">
+          <MaskReveal>{t("footer.ctaTitle1")}</MaskReveal>
+          <MaskReveal delay={0.08}>
+            <PopBlock rotate={-2} delay={0.4} className="rounded-[28px] bg-ink px-6 pb-2.5 text-sun">
+              {t("footer.ctaTitleHighlight")}
+            </PopBlock>
+          </MaskReveal>
+        </h2>
 
-        <motion.p
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.15 }}
-          className="text-zinc-400 text-base md:text-lg max-w-md leading-relaxed whitespace-pre-line"
-        >
-          {t("footer.ctaText")}
-        </motion.p>
+        <p className="max-w-[560px] text-[22px] font-medium leading-normal">{t("footer.ctaText")}</p>
 
-        <motion.a
-          href="mailto:at2899743@gmail.com?subject=Contact%20from%20Portfolio"
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.25 }}
-          className="bg-[#a3e635] text-black font-bold border border-[#a3e635] px-8 py-4 rounded-[2px] text-xs font-mono uppercase tracking-widest inline-flex items-center gap-3 hover:bg-[#b5ff14] transition-all"
-        >
-          <Mail size={16} />
-          {t("footer.sendEmail")}
-        </motion.a>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.35 }}
-          className="flex gap-4 mt-4"
-        >
-          {[
-            {
-              href: "https://github.com/edwin08torres",
-              label: "GitHub",
-              icon: Github,
-            },
-            {
-              href: "https://www.linkedin.com/in/edwintorrez",
-              label: "LinkedIn",
-              icon: Linkedin,
-            },
-          ].map(({ href, label, icon: Icon }) => (
-            <a
-              key={label}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={label}
-              className="p-3.5 rounded-[2px] bg-[#121212] border border-zinc-800 text-zinc-400 hover:border-[#a3e635] hover:text-[#a3e635] transition-colors"
-            >
-              <Icon size={18} />
-            </a>
-          ))}
-        </motion.div>
-
-        <div className="w-full pt-8 border-t border-zinc-800 text-xs font-mono text-zinc-500 flex flex-col sm:flex-row items-center justify-between gap-4 mt-6">
-          <span>© {new Date().getFullYear()} Edwin Torrez. {t("footer.rights")}</span>
-          <span>{t("footer.builtBy")}</span>
+        <div className="flex flex-wrap justify-center gap-3.5">
+          <a href={links.email} className="pop-btn pop-btn-dark min-h-[60px] justify-center px-5 text-[15px] sm:px-[30px] sm:text-base">
+            <Mail size={20} aria-hidden="true" />
+            {t("footer.sendEmail")}
+          </a>
+          <a
+            href={links.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            className="pop-btn min-h-[60px] w-[60px] justify-center p-0"
+          >
+            <Github size={22} aria-hidden="true" />
+          </a>
+          <a
+            href={links.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            className="pop-btn min-h-[60px] w-[60px] justify-center p-0"
+          >
+            <Linkedin size={22} aria-hidden="true" />
+          </a>
         </div>
       </div>
-    </footer>
+
+      <footer className="mx-auto flex max-w-[1280px] flex-wrap justify-between gap-3 border-[3px] border-ink bg-ink px-8 py-[22px] font-mono text-[13px] text-cream">
+        <span>
+          © {new Date().getFullYear()} {t("footer.copyright")}
+        </span>
+        <span>{t("footer.madeWith")}</span>
+      </footer>
+    </section>
   );
 };

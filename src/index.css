@@ -2,48 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-.react-activity-calendar__scroll-container::-webkit-scrollbar {
-  height: 6px;
-}
-.react-activity-calendar__scroll-container::-webkit-scrollbar-thumb {
-  background: rgba(163, 230, 53, 0.35);
-  border-radius: 9999px;
-}
-.react-activity-calendar__scroll-container::-webkit-scrollbar-thumb:hover {
-  background: #a3e635;
-}
-
-.calendar-wrapper {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(163, 230, 53, 0.35) transparent;
-}
-
-.react-activity-calendar__scroll-container {
-  background: #080808;
-}
-
 html {
   scrollbar-width: thin;
-  scrollbar-color: rgba(163, 230, 53, 0.4) #080808;
+  scrollbar-color: theme("colors.ink") theme("colors.cream");
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #080808;
+  background: theme("colors.cream");
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(163, 230, 53, 0.35);
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #a3e635;
-  box-shadow: 0 0 10px rgba(163, 230, 53, 0.6);
+  background: theme("colors.ink");
+  border-radius: 999px;
+  border: 2px solid theme("colors.cream");
 }
 ::-webkit-scrollbar-corner {
-  background: #080808;
+  background: theme("colors.cream");
 }
 
 @layer base {
@@ -107,6 +84,144 @@ html {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-cream text-ink;
   }
+}
+
+@layer base {
+  :focus-visible {
+    outline: 3px solid theme("colors.cobalt");
+    outline-offset: 3px;
+  }
+}
+
+/* Sistema visual "pop": bordes de 3 px, sombras sólidas sin desenfoque, radios grandes. */
+@layer components {
+  .pop-display {
+    @apply font-display font-black leading-[0.95] tracking-[-0.02em];
+  }
+  .pop-box {
+    @apply border-[3px] border-ink shadow-pop;
+  }
+  .pop-btn {
+    @apply inline-flex min-h-[48px] items-center gap-2.5 rounded-full border-[3px] border-ink bg-white px-[22px] font-mono text-sm font-bold text-ink shadow-pop-sm transition-[transform,box-shadow] duration-150 ease-out;
+  }
+  .pop-btn-dark {
+    @apply bg-ink text-cream;
+  }
+  .pop-tag {
+    @apply inline-flex items-center rounded-full border-2 border-ink bg-white px-3 py-1.5 font-mono text-xs font-bold text-ink;
+  }
+  .pop-sticker {
+    @apply absolute whitespace-nowrap rounded-full border-[3px] border-ink px-[18px] py-2.5 font-mono text-[15px] font-bold text-ink shadow-pop-sm;
+  }
+  .pop-navlink {
+    @apply inline-flex min-h-[44px] items-center rounded-full px-3.5 font-mono text-sm font-bold text-ink transition-colors;
+  }
+  .pop-row {
+    @apply flex min-h-[44px] flex-col items-start justify-between gap-2 border-t-[3px] border-ink px-2 py-[22px] text-ink transition-colors duration-200 sm:flex-row sm:items-center sm:gap-4;
+  }
+  .pop-outline-2 {
+    -webkit-text-stroke: 2px theme("colors.ink");
+  }
+  .pop-outline-3 {
+    -webkit-text-stroke: 3px theme("colors.ink");
+  }
+  .pop-photo-shadow {
+    filter: drop-shadow(10px 10px 0 theme("colors.ink"));
+  }
+  .pop-chip {
+    @apply inline-flex min-h-[44px] items-center gap-2 rounded-full border-2 border-nexol-green px-4 font-mono text-sm font-bold text-white transition-colors;
+  }
+}
+
+/* ---------- 249b: animaciones ----------
+   Solo transform y opacity. Los bucles llevan una clase `anim-*` y se pausan cuando su
+   sección sale de pantalla (`data-paused="true"` lo pone useLoopPause). */
+@keyframes pop-rock {
+  0%, 100% { transform: rotate(4deg); }
+  50% { transform: rotate(-2deg) translateY(-8px); }
+}
+@keyframes pop-hi {
+  0%, 12% { transform: scale(0) rotate(-20deg); opacity: 0; }
+  20%, 80% { transform: scale(1) rotate(-8deg); opacity: 1; }
+  90%, 100% { transform: scale(0) rotate(10deg); opacity: 0; }
+}
+@keyframes pop-twinkle {
+  0%, 100% { transform: scale(0.6) rotate(0); opacity: 0.6; }
+  50% { transform: scale(1.15) rotate(90deg); opacity: 1; }
+}
+@keyframes pop-bob {
+  0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+  50% { transform: translateY(-12px) rotate(var(--r, 0deg)); }
+}
+@keyframes pop-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes pop-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes pop-wiggle {
+  0%, 100% { transform: rotate(0); }
+  25% { transform: rotate(-4deg); }
+  75% { transform: rotate(4deg); }
+}
+
+.anim-rock { animation: pop-rock 5s ease-in-out infinite; }
+.anim-hi { animation: pop-hi 3.6s ease-in-out infinite; }
+.anim-twinkle { animation: pop-twinkle 2.4s ease-in-out infinite; }
+.anim-twinkle-2 { animation: pop-twinkle 2.4s ease-in-out 1.2s infinite; }
+.anim-bob-1 { animation: pop-bob 3.2s ease-in-out infinite; }
+.anim-bob-2 { animation: pop-bob 3.8s ease-in-out 0.4s infinite; }
+.anim-bob-3 { animation: pop-bob 2.9s ease-in-out 0.8s infinite; }
+.anim-spin { animation: pop-spin 14s linear infinite; }
+.anim-marquee { animation: pop-marquee 22s linear infinite; will-change: transform; }
+.anim-marquee-rev { animation: pop-marquee 22s linear infinite reverse; will-change: transform; }
+
+[data-paused="true"] [class*="anim-"] {
+  animation-play-state: paused !important;
+}
+
+/* Hover: solo en dispositivos con mouse (en táctiles no hay efectos) */
+@media (hover: hover) {
+  .pop-btn:hover { @apply text-ink; }
+  .pop-btn-dark:hover { @apply text-sun; }
+  .pop-navlink:hover { @apply bg-sun text-ink; }
+  .pop-row:hover { @apply bg-sun text-ink; }
+  .pop-chip:hover { @apply bg-nexol-green text-nexol-navy; }
+}
+
+/* Hover con movimiento: se desactiva con "reducir movimiento" */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .pop-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 theme("colors.ink");
+  }
+  .pop-row > :first-child { transition: transform 0.2s ease; }
+  .pop-row:hover > :first-child { transform: translateX(16px); }
+
+  .pop-card {
+    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease;
+  }
+  .pop-card:hover {
+    transform: translateY(-6px) rotate(0deg);
+    box-shadow: 16px 16px 0 theme("colors.ink");
+  }
+  .pop-card .pop-shot { transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .pop-card:hover .pop-shot { transform: translateY(-8px) rotate(-2deg); }
+
+  .pop-service { transition: transform 0.2s ease; }
+  .pop-service:hover { transform: translateY(-6px) rotate(-1deg); }
+
+  .pop-logo:hover { animation: pop-wiggle 0.4s ease-in-out; }
+
+  .pop-photo img { transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .pop-photo:hover img { transform: scale(1.08) rotate(-2deg); }
+}
+
+/* Reducir movimiento: todo queda quieto en su estado final */
+@media (prefers-reduced-motion: reduce) {
+  [class*="anim-"] { animation: none !important; }
+  .pop-btn, .pop-row, .pop-chip, .pop-navlink { transition: none; }
 }

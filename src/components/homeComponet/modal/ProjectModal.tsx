@@ -1,260 +1,443 @@
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { useEffect, useRef, useState } from "react";
+import * as DialogPrimitive from "@radix-ui/react-dialog";
 import ReactMarkdown from "react-markdown";
 import type { Components } from "react-markdown";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
+  ArrowLeft,
+  ArrowRight,
+  Apple,
   ExternalLink,
   Github,
   X,
-  ArrowUpRight,
-  Layers,
-  ChevronLeft,
-  Apple,
 } from "lucide-react";
 import type { Project } from "@/types/Project";
-import { motion, AnimatePresence } from "framer-motion";
+import { projects as allProjects } from "@/data/projects";
+import {
+  caseOrder,
+  caseTheme,
+  defaultCaseTheme,
+  featuredCards,
+} from "@/data/featuredProjects";
+import { parseCase } from "@/lib/caseStudy";
 import { useLanguage } from "../../../context/LanguageContext";
 
 interface Props {
   open: boolean;
   onOpenChange: (v: boolean) => void;
   project: Project | null;
+  /** Cambia el proyecto mostrado (Anterior / Siguiente) */
+  onNavigate?: (project: Project) => void;
 }
 
-function dedent(text: string): string {
-  const lines = text.split("\n");
-  const nonEmpty = lines.filter((l) => l.trim().length > 0);
-  const indent = nonEmpty.reduce((min, l) => {
-    const match = l.match(/^(\s*)/);
-    return match ? Math.min(min, match[1].length) : min;
-  }, Infinity);
-  return lines
-    .map((l) => l.slice(indent))
-    .join("\n")
-    .trim();
-}
-
-const markdownComponents: Components = {
-  a: (props) => (
-    <a
-      className="text-[#a3e635] underline decoration-[#a3e635]/40 underline-offset-2 hover:decoration-[#a3e635] transition-colors"
-      target="_blank"
-      rel="noopener noreferrer"
-      {...props}
-    />
+const inlineComponents: Components = {
+  p: ({ children }) => <>{children}</>,
+  strong: ({ children }) => <strong className="font-bold">{children}</strong>,
+  code: ({ children }) => (
+    <code className="rounded-lg border-2 border-ink bg-cream px-1.5 py-px font-mono text-[13px] text-ink [overflow-wrap:anywhere]">
+      {children}
+    </code>
   ),
-  h3: (props) => (
-    <h3
-      className="text-sm font-mono font-bold text-[#a3e635] tracking-widest uppercase mt-6 mb-3.5 first:mt-0 flex items-center gap-2 border-b border-zinc-800 pb-1.5"
-      {...props}
-    />
-  ),
-  p: (props) => (
-    <p className="text-sm leading-relaxed text-zinc-300 my-2" {...props} />
-  ),
-  li: (props) => (
-    <li
-      className="text-sm leading-relaxed text-zinc-300 pl-5 relative my-1.5 before:absolute before:left-0 before:top-0 before:text-[#a3e635] before:content-['■'] before:text-[10px]"
-      {...props}
-    />
-  ),
-  ul: (props) => <ul className="space-y-1.5 my-3 list-none" {...props} />,
-  strong: (props) => (
-    <strong className="text-white font-semibold" {...props} />
-  ),
-  code: (props) => {
-    const { inline, ...rest } = props as any;
-    return inline ? (
-      <code
-        className="px-1.5 py-0.5 rounded-[2px] bg-zinc-900 border border-zinc-800 text-[#a3e635] text-[0.85em] font-mono break-words"
-        {...rest}
-      />
-    ) : (
-      <pre className="overflow-x-auto rounded-[2px] bg-[#121212] border border-zinc-800 p-4 my-3">
-        <code className="font-mono text-sm text-zinc-200" {...rest} />
-      </pre>
-    );
-  },
 };
 
-export default function ProjectModal({ open, onOpenChange, project }: Props) {
-  if (!project) return null;
+const blockComponents: Components = {
+  ...inlineComponents,
+  p: ({ children }) => <p className="text-[17px] leading-[1.6]">{children}</p>,
+};
 
+const numberColors = ["bg-cobalt text-white", "bg-bubble", "bg-sun", "bg-mint"];
+
+const HIDE_SOURCE_CODE_SLUGS = new Set([
+  "trackdeli-pos",
+  "trackdeli-web",
+  "trackdeli-app",
+]);
+
+const PlayIcon = () => (
+  <svg
+    aria-hidden="true"
+    className="h-[18px] w-[18px] fill-current"
+    viewBox="0 0 24 24"
+  >
+    <path d="M5 3l14 9-14 9z" />
+  </svg>
+);
+
+export default function ProjectModal({
+  open,
+  onOpenChange,
+  project,
+  onNavigate,
+}: Props) {
   const { t } = useLanguage();
-  const title = t(`projects.items.${project.slug}.title`);
-  const description = t(`projects.items.${project.slug}.description`);
-  const details = dedent(t(`projects.items.${project.slug}.details`));
+  const reduce = useReducedMotion();
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [activeTab, setActiveTab] = useState("resumen");
 
-  return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="w-[94vw] max-w-[900px] h-[88vh] max-h-[calc(100vh-2rem)] p-0 overflow-hidden rounded-[2px] border border-zinc-800 bg-[#080808] shadow-none flex flex-col [&>button]:hidden">
-        {/* Mobile Header */}
-        <div className="md:hidden shrink-0 flex items-center gap-3 px-4 py-3 border-b border-zinc-800 bg-[#0c0c0c]">
-          <button
-            onClick={() => onOpenChange(false)}
-            className="p-1.5 rounded-[2px] bg-zinc-900 border border-zinc-700 text-zinc-300 transition-all"
-            aria-label={t("nav.goBack")}
+  const slug = project?.slug;
+  useEffect(() => {
+    scrollRef.current?.scrollTo({ top: 0 });
+    setActiveTab("resumen");
+  }, [slug]);
+
+  const content = project ? renderBody() : null;
+
+  function renderBody() {
+    if (!project) return null;
+    const title = t(`projects.items.${project.slug}.title`);
+    const description = t(`projects.items.${project.slug}.description`);
+    const parsed = parseCase(t(`projects.items.${project.slug}.details`));
+    const theme = caseTheme[project.slug] ?? defaultCaseTheme;
+    const index = Math.max(0, caseOrder.indexOf(project.slug));
+    const total = caseOrder.length;
+    const pad = (n: number) => String(n).padStart(2, "0");
+    const bySlug = (s: string) => allProjects.find((p) => p.slug === s);
+    const prevProject = bySlug(caseOrder[(index - 1 + total) % total]);
+    const nextProject = bySlug(caseOrder[(index + 1) % total]);
+    const displayName = (p?: Project) => {
+      if (!p) return "";
+      return (
+        featuredCards.find((c) => c.slug === p.slug)?.name ??
+        t(`projects.items.${p.slug}.title`)
+      );
+    };
+
+    let type = t(`projects.cards.${project.slug}.type`);
+    if (typeof type !== "string" || type.startsWith("projects."))
+      type = t(`projects.rows.${project.slug}.type`);
+
+    const images = Array.from(
+      new Set([project.image, ...(project.gallery ?? [])]),
+    ).slice(0, 2);
+    const hasStores = Boolean(project.playstore || project.appstore);
+
+    const tabs = [
+      { id: "resumen", label: t("projects.modal.tabs.overview") },
+      parsed.challenge
+        ? { id: "desafio", label: t("projects.modal.tabs.challenge") }
+        : null,
+      parsed.solution.length || parsed.solutionIntro.length
+        ? { id: "solucion", label: t("projects.modal.tabs.solution") }
+        : null,
+      parsed.impact
+        ? { id: "impacto", label: t("projects.modal.tabs.impact") }
+        : null,
+    ].filter(Boolean) as { id: string; label: string }[];
+
+    const goTo = (id: string) => {
+      setActiveTab(id);
+      scrollRef.current
+        ?.querySelector(`#${id}`)
+        ?.scrollIntoView({
+          behavior: reduce ? "auto" : "smooth",
+          block: "start",
+        });
+    };
+
+    const storeBtn = "pop-btn min-h-[52px] justify-center";
+
+    return (
+      <>
+        <div className="sticky top-3 z-20 h-0 lg:hidden">
+          <DialogPrimitive.Close
+            aria-label={t("projects.modal.close")}
+            className="absolute right-3 top-0 flex h-[52px] w-[52px] items-center justify-center rounded-full border-[3px] border-ink bg-tomato shadow-pop-sm"
           >
-            <ChevronLeft size={18} />
-          </button>
-          <div className="flex-1 flex items-center gap-2 min-w-0">
-            <span className="w-2 h-2 bg-[#a3e635] shrink-0" />
-            <span className="text-sm font-mono font-bold text-white truncate uppercase tracking-wider">
-              {title}
+            <X size={22} strokeWidth={3} aria-hidden="true" />
+          </DialogPrimitive.Close>
+        </div>
+
+        {/* Izquierda */}
+        <div
+          className={`relative flex shrink-0 flex-col gap-[22px] overflow-hidden border-b-[3px] border-ink p-6 sm:p-9 lg:min-h-0 lg:shrink lg:border-b-0 lg:border-r-[3px] ${theme.surface}`}
+        >
+          <div
+            aria-hidden="true"
+            className="absolute -bottom-[90px] -right-[90px] h-[280px] w-[280px] rounded-full border-[3px] border-dashed border-current opacity-60"
+          />
+          <div className="relative flex flex-wrap items-center justify-between gap-2 pr-16 lg:pr-0">
+            <span className={`pop-tag ${theme.light ? "bg-white" : "bg-sun"}`}>
+              {t("projects.modal.caseTag")} · {pad(index + 1)}
             </span>
+            <span className="pop-tag">{type}</span>
+          </div>
+
+          <DialogPrimitive.Title
+            id="caso-titulo"
+            className="pop-display relative text-[clamp(30px,4vw,52px)] [overflow-wrap:anywhere]"
+          >
+            {title}
+          </DialogPrimitive.Title>
+
+          <ul className="relative flex flex-wrap gap-2" aria-label="Stack">
+            {project.techs.map((tech) => (
+              <li key={tech} className="pop-tag">
+                {tech}
+              </li>
+            ))}
+          </ul>
+
+          <div className="relative flex min-h-[200px] flex-1 items-end justify-center gap-4 lg:min-h-0">
+            {images.map((src, i) => (
+              <div
+                key={src}
+                className={`h-[220px] sm:h-[260px] lg:h-full max-h-[300px] min-h-[180px] w-full max-w-[200px] sm:max-w-[230px] overflow-hidden rounded-[22px] border-[3px] border-ink bg-white shadow-pop ${
+                  i === 0 ? "-rotate-[5deg]" : "rotate-[4deg]"
+                } ${images.length === 1 ? "max-w-[320px]" : ""}`}
+              >
+                <img
+                  src={src}
+                  alt={`${title} ${i + 1}`}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full object-cover object-top"
+                />
+              </div>
+            ))}
+          </div>
+
+          <div className="relative grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {project.playstore && (
+              <a
+                href={project.playstore}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${storeBtn} bg-sun`}
+              >
+                <PlayIcon />
+                Google Play
+              </a>
+            )}
+            {project.appstore && (
+              <a
+                href={project.appstore}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={storeBtn}
+              >
+                <Apple size={18} aria-hidden="true" />
+                App Store
+              </a>
+            )}
+            {!hasStores && project.demo && (
+              <a
+                href={project.demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${storeBtn} bg-sun`}
+              >
+                <ExternalLink size={18} aria-hidden="true" />
+                {t("projects.liveDemo")}
+              </a>
+            )}
+            {!HIDE_SOURCE_CODE_SLUGS.has(project.slug) && project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={storeBtn}
+              >
+                <Github size={18} aria-hidden="true" />
+                {t("projects.sourceCode")}
+              </a>
+            )}
           </div>
         </div>
 
-        {/* Desktop Close button */}
-        <button
-          onClick={() => onOpenChange(false)}
-          className="hidden md:flex absolute top-4 right-4 z-50 p-2 rounded-[2px] bg-zinc-900 border border-zinc-700 text-zinc-300 hover:border-[#a3e635] hover:text-[#a3e635] transition-all"
-          aria-label="Close"
-        >
-          <X size={16} />
-        </button>
+        {/* Derecha */}
+        <div className="flex min-h-0 flex-col bg-cream text-ink">
+          <div className="flex items-center justify-between gap-4 border-b-[3px] border-ink px-6 py-5 sm:px-8 lg:py-6">
+            <div className="flex flex-wrap gap-2">
+              {tabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  type="button"
+                  onClick={() => goTo(tab.id)}
+                  className={`pop-tag min-h-[44px] px-4 ${activeTab === tab.id ? "bg-ink text-cream" : ""}`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+            <DialogPrimitive.Close
+              aria-label={t("projects.modal.close")}
+              className="hidden h-[52px] w-[52px] shrink-0 items-center justify-center rounded-full border-[3px] border-ink bg-tomato shadow-pop-sm lg:flex"
+            >
+              <X size={22} strokeWidth={3} aria-hidden="true" />
+            </DialogPrimitive.Close>
+          </div>
 
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={project.slug}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="flex flex-col md:flex-row w-full h-full overflow-hidden"
+          <div
+            ref={scrollRef}
+            className="flex flex-1 flex-col gap-[30px] px-6 pb-10 pt-8 sm:px-9 lg:min-h-0 lg:overflow-y-auto"
           >
-            {/* Left preview & actions */}
-            <div className="relative md:w-[42%] shrink-0 flex flex-col overflow-hidden bg-[#0c0c0c] border-r border-zinc-800">
-              {/* Project Image Background */}
-              <div className="absolute inset-0 z-0 pointer-events-none">
-                <img
-                  src={project.image}
-                  alt={`${title} preview`}
-                  className="w-full h-full object-cover opacity-30 grayscale mix-blend-luminosity"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] via-[#0c0c0c]/80 to-transparent" />
-              </div>
+            <section id="resumen" className="scroll-mt-4">
+              <DialogPrimitive.Description className="text-[22px] font-medium leading-[1.5]">
+                {description}
+              </DialogPrimitive.Description>
+            </section>
 
-              <div className="relative h-48 md:h-full flex flex-col justify-between p-6 z-10">
-                <div className="relative z-10">
-                  <span className="font-mono text-xs font-bold text-[#a3e635] tracking-widest uppercase mb-2 block">
-                    CASE STUDY
-                  </span>
-                  <h2 className="text-xl md:text-2xl font-black text-white uppercase leading-tight tracking-tight mb-4">
-                    {title}
-                  </h2>
-
-                  <div className="flex flex-wrap gap-1.5 mb-6">
-                    {project.techs.map((t) => (
-                      <span
-                        key={t}
-                        className="px-2.5 py-1 rounded-[2px] text-[10px] font-mono uppercase tracking-wider border border-zinc-800 bg-[#050505] text-zinc-300"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="hidden md:flex flex-col gap-2 relative z-10">
-                  {project.playstore && (
-                    <a
-                      href={project.playstore}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="flex items-center justify-center gap-2 w-full py-3 rounded-[2px] text-xs font-mono font-bold uppercase tracking-wider text-emerald-400 border border-emerald-600/50 bg-emerald-950/20 hover:bg-emerald-900/30 transition-all"
-                    >
-                      <svg className="w-3.5 h-3.5 fill-current text-emerald-400" viewBox="0 0 24 24">
-                        <path d="M3.609 1.814L13.792 12 3.61 22.186a1.996 1.996 0 0 1-.397-1.127V2.941c0-.422.13-.807.397-1.127zM14.78 12.99l2.766 2.766-3.754 2.164-3.805-3.806 4.793-4.124zm5.823-1.42l-2.023-1.164-3.007 2.594 3.007 2.594 2.023-1.164a2 2 0 0 0 0-2.86zM13.792 12L3.61 1.814C3.882 1.488 4.302 1.28 4.78 1.28c.36 0 .703.096 1.008.27l12.775 7.35-4.771 3.1zm0 0L8.793 16.9l4.999-4.9zm0 0" />
-                      </svg>
-                      Google Play
-                    </a>
-                  )}
-                  {project.appstore && (
-                    <a
-                      href={project.appstore}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="flex items-center justify-center gap-2 w-full py-3 rounded-[2px] text-xs font-mono font-bold uppercase tracking-wider text-white border border-zinc-700 bg-zinc-900 hover:border-zinc-500 transition-all"
-                    >
-                      <Apple size={14} className="-mt-0.5" />
-                      App Store
-                    </a>
-                  )}
-                  {!project.playstore && !project.appstore && project.demo && (
-                    <a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="flex items-center justify-center gap-2 w-full py-3 rounded-[2px] text-xs font-mono font-bold uppercase tracking-wider text-black bg-[#a3e635] border border-[#a3e635] hover:bg-[#b5ff14] transition-all"
-                    >
-                      <ExternalLink size={14} />
-                      {t("projects.liveDemo")}
-                      <ArrowUpRight size={13} />
-                    </a>
-                  )}
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="flex items-center justify-center gap-2 w-full py-3 rounded-[2px] text-xs font-mono font-medium text-zinc-300 bg-[#080808] border border-zinc-800 hover:border-zinc-600 hover:text-white transition-all"
-                    >
-                      <Github size={14} />
-                      {t("projects.sourceCode")}
-                    </a>
-                  )}
-                </div>
-              </div>
-            </div>
-
-            {/* Right Markdown details */}
-            <div className="flex-1 flex flex-col min-h-0 min-w-0 bg-[#080808]">
-              <div className="shrink-0 px-6 py-4 border-b border-zinc-800 flex items-center gap-2 bg-[#0c0c0c]">
-                <Layers size={14} className="text-[#a3e635]" />
-                <span className="text-xs font-mono font-bold uppercase tracking-widest text-zinc-300">
-                  {t("nav.caseStudy")}
-                </span>
-              </div>
-
-              <div className="flex-1 overflow-y-auto px-6 py-5 space-y-1 modal-scroll">
-                <p className="text-sm text-zinc-400 leading-relaxed pb-4 border-b border-zinc-800 mb-4">
-                  {description}
-                </p>
-
-                <ReactMarkdown components={markdownComponents}>
-                  {details}
+            {parsed.challenge && (
+              <section
+                id="desafio"
+                className="flex -rotate-[0.6deg] scroll-mt-4 flex-col gap-3.5 rounded-3xl border-[3px] border-ink bg-sun p-6 shadow-pop"
+              >
+                <h3 className="pop-display text-[26px]">
+                  {t("projects.modal.headings.challenge")}
+                </h3>
+                <ReactMarkdown components={blockComponents}>
+                  {parsed.challenge}
                 </ReactMarkdown>
-              </div>
+              </section>
+            )}
 
-              {/* Mobile Actions */}
-              <div className="md:hidden shrink-0 border-t border-zinc-800 px-6 py-4 flex flex-col gap-2 bg-[#0c0c0c]">
-                <div className="flex gap-3 w-full">
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="flex-1 flex items-center justify-center gap-2 py-3 rounded-[2px] text-xs font-mono font-medium text-zinc-300 bg-[#080808] border border-zinc-800 hover:border-zinc-600 transition-all"
+            {(parsed.solution.length > 0 ||
+              parsed.solutionIntro.length > 0) && (
+              <section
+                id="solucion"
+                className="flex scroll-mt-4 flex-col gap-3.5"
+              >
+                <h3 className="pop-display text-[26px]">
+                  {t("projects.modal.headings.solution")}
+                </h3>
+                {parsed.solutionIntro.map((line) => (
+                  <ReactMarkdown key={line} components={blockComponents}>
+                    {line}
+                  </ReactMarkdown>
+                ))}
+                {parsed.solution.map((item, i) => (
+                  <motion.div
+                    key={`${project.slug}-${i}`}
+                    className="flex items-start gap-3.5 rounded-[18px] border-[3px] border-ink bg-white px-[18px] py-4 shadow-pop-sm"
+                    initial={reduce ? false : { opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: 0.25 + i * 0.05 }}
+                  >
+                    <span
+                      className={`flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-full border-2 border-ink font-display text-[13px] font-black ${numberColors[i % numberColors.length]}`}
                     >
-                      <Github size={14} /> {t("projects.sourceCode")}
-                    </a>
-                  )}
-                  {!project.playstore && !project.appstore && project.demo && (
-                    <a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="flex-1 flex items-center justify-center gap-2 py-3 rounded-[2px] text-xs font-mono font-bold uppercase tracking-wider text-black bg-[#a3e635] border border-[#a3e635] transition-all"
-                    >
-                      <ExternalLink size={14} /> {t("projects.liveDemo")}
-                    </a>
-                  )}
-                </div>
-              </div>
+                      {i + 1}
+                    </span>
+                    <div className="flex min-w-0 flex-col gap-1">
+                      {item.title && (
+                        <strong className="text-[17px]">{item.title}</strong>
+                      )}
+                      <span className="text-base leading-[1.5] [overflow-wrap:anywhere]">
+                        <ReactMarkdown components={inlineComponents}>
+                          {item.text}
+                        </ReactMarkdown>
+                      </span>
+                    </div>
+                  </motion.div>
+                ))}
+              </section>
+            )}
+
+            {parsed.impact && (
+              <section
+                id="impacto"
+                className="flex scroll-mt-4 flex-col gap-3.5 rounded-3xl border-[3px] border-ink bg-mint p-6 shadow-pop"
+              >
+                <h3 className="pop-display text-[26px]">
+                  {t("projects.modal.headings.impact")}
+                </h3>
+                <ReactMarkdown components={blockComponents}>
+                  {parsed.impact}
+                </ReactMarkdown>
+              </section>
+            )}
+
+            <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
+              <button
+                type="button"
+                onClick={() => prevProject && onNavigate?.(prevProject)}
+                className="pop-btn min-h-[52px]"
+              >
+                <ArrowLeft size={18} strokeWidth={2.5} aria-hidden="true" />
+                {t("projects.modal.prev")}
+              </button>
+              <span className="font-mono text-sm font-bold" aria-live="polite">
+                {pad(index + 1)} / {pad(total)}
+              </span>
+              <button
+                type="button"
+                onClick={() => nextProject && onNavigate?.(nextProject)}
+                className="pop-btn pop-btn-dark min-h-[52px]"
+              >
+                {t("projects.modal.next")}:{" "}
+                {displayName(nextProject ?? undefined)}
+                <ArrowRight size={18} strokeWidth={2.5} aria-hidden="true" />
+              </button>
             </div>
-          </motion.div>
-        </AnimatePresence>
-      </DialogContent>
-    </Dialog>
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  const enter = reduce
+    ? {
+        initial: { opacity: 0 },
+        animate: { opacity: 1 },
+        exit: { opacity: 0 },
+        transition: { duration: 0 },
+      }
+    : {
+        initial: { opacity: 0, y: 24, scale: 0.96 },
+        animate: {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          transition: { type: "spring" as const, stiffness: 300, damping: 24 },
+        },
+        exit: {
+          opacity: 0,
+          y: 16,
+          scale: 0.97,
+          transition: { duration: 0.15 },
+        },
+      };
+
+  return (
+    <DialogPrimitive.Root open={open} onOpenChange={onOpenChange}>
+      <AnimatePresence>
+        {open && project && (
+          <DialogPrimitive.Portal forceMount>
+            <DialogPrimitive.Overlay asChild forceMount>
+              <motion.div
+                className="fixed inset-0 z-[80] bg-ink/[0.72]"
+                initial={{ opacity: 0 }}
+                animate={{
+                  opacity: 1,
+                  transition: { duration: reduce ? 0 : 0.2 },
+                }}
+                exit={{
+                  opacity: 0,
+                  transition: { duration: reduce ? 0 : 0.15 },
+                }}
+              />
+            </DialogPrimitive.Overlay>
+            <DialogPrimitive.Content
+              asChild
+              forceMount
+              aria-labelledby="caso-titulo"
+              onOpenAutoFocus={(e) => {
+                // Foco al contenedor del diálogo (no al primer botón) para no abrir con un enfoque ruidoso
+                e.preventDefault();
+                (e.currentTarget as HTMLElement).focus();
+              }}
+            >
+              <motion.div
+                tabIndex={-1}
+                className="fixed inset-x-3 inset-y-3 z-[90] flex flex-col overflow-y-auto rounded-[28px] border-[3px] border-ink bg-cream shadow-pop-xl outline-none sm:rounded-[36px] lg:inset-x-20 lg:inset-y-12 lg:grid lg:grid-cols-[500px_1fr] lg:overflow-hidden"
+                {...enter}
+              >
+                {content}
+              </motion.div>
+            </DialogPrimitive.Content>
+          </DialogPrimitive.Portal>
+        )}
+      </AnimatePresence>
+    </DialogPrimitive.Root>
   );
 }

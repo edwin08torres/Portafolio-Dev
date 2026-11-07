@@ -5,7 +5,7 @@
 ---
 
 ## 📖 Descripción
-Soy **Edwin Torrez**, desarrollador web full‑stack con experiencia en tecnologías modernas (React, Next.js, Blazor, .NET, TailwindCSS). En este repositorio está el código fuente de mi portafolio personal, donde muestro:
+Soy **Edwin Torrez**, desarrollador web full‑stack con experiencia en tecnologías modernas (React, Next.js, .NET, TailwindCSS). En este repositorio está el código fuente de mi portafolio personal, donde muestro:
 
 - Una sección **Sobre mí** con mis datos y niveles de habilidad.
 - Un **carrusel** interactivo de tecnologías.
@@ -18,7 +18,7 @@ Soy **Edwin Torrez**, desarrollador web full‑stack con experiencia en tecnolog
 
 | Categoría       | Herramientas / Librerías         |
 |-----------------|----------------------------------|
-| Frameworks      | React, Next.js, Blazor, .NET     |
+| Frameworks      | React, Next.js, .NET     |
 | Estilos         | Tailwind CSS                     |
 | Animaciones     | framer-motion, AOS               |
 | State & Datos   | React Hooks, Context API         |

@@ -1,124 +1,140 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { ArrowDown } from "lucide-react";
 import { useLanguage } from "../../context/LanguageContext";
+import { stats } from "@/data/aboutData";
+import { useLoopPause } from "@/hooks/useLoopPause";
+import { CountUp, MaskReveal, PopBlock, Reveal } from "@/components/common/motion";
+import { motion, useReducedMotion } from "framer-motion";
 
-const KineticRole = () => {
-  const roles = ["FULLSTACK DEVELOPER", "FRONTEND DEVELOPER", "MOBILE DEVELOPER"];
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setIndex((prev) => (prev + 1) % roles.length);
-    }, 3000);
-    return () => clearInterval(timer);
-  }, []);
-
-  return (
-    <div className="relative h-7 sm:h-8 md:h-12 overflow-hidden w-[260px] sm:w-[320px] md:w-[500px]">
-      <AnimatePresence>
-        <motion.span
-          key={index}
-          initial={{ y: "100%" }}
-          animate={{ y: "0%" }}
-          exit={{ y: "-100%" }}
-          transition={{ duration: 0.7, ease: [0.87, 0, 0.13, 1] }}
-          className="absolute top-0 right-0 font-mono text-lg sm:text-2xl md:text-4xl font-black text-[#a3e635] uppercase tracking-widest whitespace-nowrap"
-        >
-          {roles[index]}
-        </motion.span>
-      </AnimatePresence>
-    </div>
-  );
-};
+const Star = ({ className, fill }: { className: string; fill: string }) => (
+  <svg aria-hidden="true" viewBox="0 0 24 24" className={className}>
+    <path
+      d="M12 1l2.6 8.4L23 12l-8.4 2.6L12 23l-2.6-8.4L1 12l8.4-2.6z"
+      fill={fill}
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
 
 export const HomeHeroSection = () => {
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
+  const [projectsStat, experienceStat] = stats;
+  const sectionRef = useLoopPause<HTMLElement>();
+  const reduce = useReducedMotion();
 
   return (
     <section
-      id="home"
-      className="relative w-full h-[100svh] bg-[#050505] overflow-hidden flex flex-col border-b border-zinc-800/80"
+      id="inicio"
+      ref={sectionRef}
+      className="relative mx-auto grid max-w-[1280px] scroll-mt-24 items-center gap-12 px-6 pb-24 pt-14 lg:grid-cols-2 lg:gap-12 lg:pt-[72px]"
     >
-      {/* Marginal Note - Status */}
-      <div className="absolute top-6 right-6 sm:top-8 sm:right-10 lg:top-10 lg:right-16 z-30 flex items-center gap-2 mix-blend-difference">
-        <span className="w-1.5 h-1.5 bg-[#a3e635]" />
-        <span className="text-[10px] font-mono tracking-widest text-zinc-300 uppercase">
-          {t("hero.status")}
-        </span>
-      </div>
-
-      {/* Main Typography - Aggressive Crop */}
-      <div className="absolute inset-0 flex flex-col justify-center select-none pointer-events-none z-0 px-6 sm:px-10 lg:px-16 mt-12 md:mt-0">
-        <motion.h1
-          initial={{ opacity: 0, x: -100 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: [0.87, 0, 0.13, 1] }}
-          className="text-[clamp(4.5rem,17vw,22rem)] font-black uppercase text-white leading-[0.75] tracking-tighter -ml-[2vw] opacity-95"
-        >
-          EDWIN
-          <br />
-          <span className="text-zinc-400">TORREZ</span>
-        </motion.h1>
-      </div>
-
-      {/* Content Layer (z-10) */}
-      <div className="relative z-10 w-full h-full max-w-[1800px] mx-auto px-6 sm:px-10 lg:px-16 pointer-events-none">
-        {/* Top left greeting */}
-        <div className="absolute top-6 left-6 sm:top-8 sm:left-10 lg:top-10 lg:left-16 font-mono text-[10px] tracking-widest text-zinc-500 uppercase">
-          {t("hero.greeting")}
-        </div>
-
-        {/* Kinetic Role & Subtitle - Asymmetric Right */}
-        <div className="absolute top-[20%] sm:top-[22%] lg:top-[20%] right-6 sm:right-10 lg:right-16 flex flex-col items-end text-right pointer-events-auto">
-          <KineticRole />
-          <p className="mt-2 text-[11px] sm:text-xs md:text-sm text-zinc-400 max-w-[280px] leading-relaxed mix-blend-difference">
-            {/* {t("hero.subtitle")}{" "} */}
-            <span className="text-white font-medium">
-              {/* {t("hero.subtitleHighlight")} */}
+      <div className="relative z-[2] flex flex-col gap-7">
+        <h1 className="pop-display text-[clamp(48px,8.4vw,132px)]">
+          <MaskReveal onMount delay={0}>
+            <span className="block">{t("hero.line1")}</span>
+          </MaskReveal>
+          <MaskReveal onMount delay={0.08}>
+            <span className="block">
+              {t("hero.line2")}{" "}
+              <PopBlock
+                onMount
+                drop
+                rotate={-3}
+                delay={0.25}
+                className="rounded-3xl border-4 border-ink bg-cobalt px-[18px] pb-2 text-white shadow-[8px_8px_0_theme(colors.ink)]"
+              >
+                {t("hero.name")}
+              </PopBlock>
             </span>
+          </MaskReveal>
+        </h1>
+
+        <Reveal onMount delay={0.4} y={24}>
+          <p className="max-w-[560px] text-[clamp(20px,2vw,26px)] font-medium leading-[1.4]">
+            {t("hero.introBefore")}
+            <strong className="bg-sun px-1.5">{t("hero.introWeb")}</strong>
+            {t("hero.introMid")}
+            <strong className="bg-bubble px-1.5">{t("hero.introMobile")}</strong>
+            {t("hero.introAfter")}
           </p>
-        </div>
+        </Reveal>
 
-        {/* Actions - Bottom Left */}
-        <div className="absolute bottom-8 sm:bottom-12 left-6 sm:left-10 lg:left-16 flex flex-col sm:flex-row items-start sm:items-center gap-6 pointer-events-auto">
-          <a
-            href="#project"
-            className="bg-[#a3e635] text-black text-[11px] sm:text-xs font-mono font-bold uppercase tracking-widest px-6 sm:px-8 py-3 sm:py-4 flex items-center gap-3 hover:bg-[#b5ff14] transition-colors"
-          >
+        <Reveal onMount delay={0.5} y={24} className="flex flex-wrap gap-3.5">
+          <a href="#proyectos" className="pop-btn pop-btn-dark">
             {t("hero.viewProjects")}
-            <span className="text-sm">→</span>
+            <ArrowDown size={18} strokeWidth={2.5} aria-hidden="true" />
           </a>
-          <a
-            href={language === "en" ? "/doc/Curriculum_EdwinTorrez_EN.pdf" : "/doc/Curriculum_EdwinTorrez_ES.pdf"}
-            download={language === "en" ? "Curriculum_EdwinTorrez_EN.pdf" : "Curriculum_EdwinTorrez_ES.pdf"}
-            className="group flex items-center gap-2 text-[11px] sm:text-xs font-mono font-bold uppercase tracking-widest text-zinc-300 hover:text-[#a3e635] transition-colors"
-          >
-            <span className="border-b border-zinc-500 group-hover:border-[#a3e635] transition-colors pb-1">
-              {t("hero.downloadCv")}
-            </span>
-            <span className="transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">
-              ↗
-            </span>
+          <a href="#contacto" className="pop-btn bg-sun">
+            {t("hero.writeMe")}
           </a>
-        </div>
+        </Reveal>
 
-        {/* Editorial Stats - Anchored Right Edge (Vertical on Desktop, stack on Mobile) */}
-        <div className="hidden sm:flex absolute bottom-24 sm:bottom-28 lg:bottom-28 right-6 sm:right-10 lg:right-16 flex-row md:flex-col gap-6 md:gap-8 pointer-events-auto items-end">
-          {[
-            { value: "10+", label: t("hero.stats.projects") },
-            { value: "5+", label: t("hero.stats.experience") },
-            { value: "3", label: t("hero.stats.stacks") },
-          ].map((stat, i) => (
-            <div key={i} className="flex flex-col items-end">
-              <span className="font-mono text-3xl md:text-4xl lg:text-5xl font-black text-white leading-none tracking-tighter mix-blend-difference">
-                {stat.value}
-              </span>
-              <span className="text-[10px] font-mono text-zinc-500 tracking-widest uppercase mt-1">
-                {stat.label}
-              </span>
-            </div>
-          ))}
-        </div>
+        <Reveal onMount delay={0.6} y={24} className="flex flex-wrap gap-3.5">
+          <div className="pop-box flex items-baseline gap-2.5 rounded-[20px] bg-white px-[22px] py-3.5">
+            <span className="pop-display text-[40px] text-cobalt">
+              <CountUp value={projectsStat.value} suffix="+" />
+            </span>
+            <span className="font-mono text-[13px] font-bold">{t("hero.stats.projects")}</span>
+          </div>
+          <div className="pop-box flex items-baseline gap-2.5 rounded-[20px] bg-white px-[22px] py-3.5">
+            <span className="pop-display text-[40px] text-tomato-text">
+              <CountUp value={experienceStat.value} suffix="+" />
+            </span>
+            <span className="font-mono text-[13px] font-bold">{t("hero.stats.experience")}</span>
+          </div>
+        </Reveal>
+      </div>
+
+      <div className="relative flex min-h-[420px] items-center justify-center sm:min-h-[520px]">
+        <div
+          aria-hidden="true"
+          className="anim-spin absolute h-[300px] w-[300px] rounded-full border-[3px] border-dashed border-ink opacity-[0.35] sm:h-[440px] sm:w-[440px]"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute h-[250px] w-[250px] rounded-full border-[3px] border-ink bg-tomato sm:h-[360px] sm:w-[360px]"
+        />
+
+        {/* Entrada del sticker (escala con rebote); el bucle de balanceo va en el hijo */}
+        <motion.div
+          className="relative h-[295px] w-[260px] sm:h-[420px] sm:w-[370px]"
+          initial={reduce ? false : { scale: 0.5, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ type: "spring", stiffness: 220, damping: 14, delay: 0.3 }}
+        >
+          <div className="anim-rock pop-photo relative h-full w-full rotate-[4deg]">
+            <img
+              src="/edwin-sticker.webp"
+              alt={t("hero.photoAlt")}
+              width={370}
+              height={420}
+              decoding="async"
+              className="pop-photo-shadow block h-full w-full object-contain"
+            />
+            <Star className="anim-twinkle absolute -right-7 top-10 h-[54px] w-[54px] text-ink" fill="#FFFFFF" />
+            <Star className="anim-twinkle-2 absolute -left-5 bottom-[60px] h-10 w-10 text-ink" fill="#FF5B37" />
+            <span className="absolute -bottom-[18px] right-6 -rotate-[4deg] rounded-full bg-ink px-3.5 py-1.5 font-mono text-[13px] font-bold text-sun">
+              &lt;/&gt; Edwin.tsx
+            </span>
+            <span className="anim-hi absolute -left-8 -top-[26px] z-10 -rotate-[8deg] rounded-[22px_22px_22px_4px] border-[3px] border-ink bg-white px-5 py-3 font-display text-[22px] font-black shadow-pop-sm">
+              {t("hero.hello")}
+            </span>
+          </div>
+        </motion.div>
+
+        <span className="anim-bob-1 pop-sticker left-0 top-[120px] -rotate-[8deg] bg-cobalt text-white [--r:-8deg] sm:left-2.5">
+          {t("hero.stickers.fullStack")}
+        </span>
+        <span className="anim-bob-2 pop-sticker right-0 top-[90px] rotate-6 bg-bubble [--r:6deg]">
+          {t("hero.stickers.mobile")}
+        </span>
+        <span className="anim-bob-3 pop-sticker bottom-[70px] left-0 -rotate-[4deg] bg-white [--r:-4deg]">
+          {t("hero.stickers.reactNet")}
+        </span>
+        <span className="anim-bob-1 pop-sticker bottom-[30px] right-5 rotate-[8deg] bg-mint [--r:8deg]">
+          {t("hero.stickers.flutterRn")}
+        </span>
       </div>
     </section>
   );

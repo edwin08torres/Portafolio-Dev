@@ -1,146 +1,131 @@
 {
   "nav": {
     "home": "Home",
-    "about": "About",
+    "about": "About me",
+    "projects": "Projects",
+    "nexol": "NEXOL",
     "experience": "Experience",
     "services": "Services",
-    "projects": "Projects",
+    "contact": "Let's talk",
+    "main": "Main",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "changeLanguage": "Change language",
     "skipToContent": "Skip to content",
     "goBack": "Go back",
     "caseStudy": "Case Study"
   },
   "hero": {
-    "status": "Available for work",
-    "greeting": "Hi, I'm",
-    "subtitle": "Systems Engineer &",
-    "subtitleHighlight": "Front-End Developer",
-    "viewProjects": "View Projects",
-    "downloadCv": "Download CV",
+    "line1": "Hi,",
+    "line2": "I'm",
+    "name": "Edwin",
+    "introBefore": "I build ",
+    "introWeb": "web",
+    "introMid": " and ",
+    "introMobile": "mobile",
+    "introAfter": " apps that feel fast, look flawless and hold up in production.",
+    "viewProjects": "See my projects",
+    "writeMe": "Get in touch",
     "stats": {
-      "projects": "Projects\nDelivered",
-      "experience": "Years\nExperience",
-      "stacks": "Tech\nStacks"
-    }
+      "projects": "projects",
+      "experience": "years of experience"
+    },
+    "photoAlt": "Edwin Torrez",
+    "stickers": {
+      "fullStack": "Full Stack",
+      "mobile": "Mobile",
+      "reactNet": "React · .NET",
+      "flutterRn": "Flutter · RN"
+    },
+    "hello": "Hi there!"
+  },
+  "ribbon": {
+    "phrases": [
+      "PERFORMANCE FIRST",
+      "PIXEL PERFECT",
+      "CLEAN ARCHITECTURE",
+      "REAL TIME",
+      "FROM IDEA TO THE APP STORE"
+    ]
   },
   "about": {
-    "subtitle": "Get to know me",
-    "title": "About",
-    "whoIAm": "Who I Am",
-    "stats": {
-      "projects": "Projects",
-      "experience": "Years Exp."
-    },
-    "description1": "I specialize in building high-performance web and mobile applications — that's where I've spent most of the last <span class=\"text-white font-medium\">five years</span>, and honestly, where I do my best work. Day to day, I architect real-time web interfaces with <span class=\"text-[#a3e635] font-medium\">React and Blazor</span> (powered by <span class=\"text-[#a3e635] font-medium\">SignalR</span>), and engineer mobile features with <span class=\"text-[#a3e635] font-medium\">React Native and Flutter/Dart</span>, from live geolocation to push notification infrastructure.",
-    "description2": "I care deeply about what happens under the hood: solving architectural puzzles, optimizing memory consumption, and managing complex state are what keep me engaged. I deliver complete end-to-end solutions, from robust scalable backends (.NET/Node.js) and data extraction, to pixel-perfect mobile and web interfaces. That includes the full release cycle: configuring and deploying to <span class=\"text-[#a3e635] font-medium\">App Store Connect and Google Play Console</span>, integrating subscriptions with <span class=\"text-[#a3e635] font-medium\">RevenueCat</span>, and handling payments with platforms like <span class=\"text-[#a3e635] font-medium\">Square</span>. Whether it's for enterprise systems or personal projects, I build software that feels as <span class=\"text-white font-medium\">solid under the hood as it looks on screen</span>.",
+    "tag": "01 — About me",
+    "titleBefore": "I care about what happens ",
+    "titleHighlight": "beneath",
+    "titleAfter": " the screen.",
+    "description1": "For more than <strong>five</strong> years I've been building products end to end: mobile apps with <strong>React Native and Flutter</strong> (and native code in <strong>Swift and Kotlin</strong> when needed), websites with <strong>React and Next.js</strong>, and backends with <strong>NestJS, .NET, PostgreSQL and Redis</strong>.",
+    "description2": "At NEXOL I built a complete ecosystem: a point of sale that <strong>keeps selling offline</strong> (Electron and SQLite), dashboards with <strong>real-time data over WebSockets</strong> and <strong>live GPS tracking with Mapbox</strong>. And I own the whole cycle: Docker, CI/CD with Fastlane and publishing on the App Store and Google Play.",
     "principles": [
       {
-        "title": "Performance First",
-        "desc": "Every ms counts. I optimize for speed from the start."
+        "title": "Performance first",
+        "desc": "Every millisecond counts."
       },
       {
-        "title": "Pixel Perfect",
+        "title": "Pixel perfect",
         "desc": "Design fidelity is non-negotiable."
       },
       {
-        "title": "Clean Architecture",
-        "desc": "Scalable patterns, not spaghetti code."
-      }
-    ],
-    "coreStack": "Core Stack",
-    "githubActivity": "GitHub Activity"
-  },
-  "experience": {
-    "title": "Experience",
-    "subtitle": "Career Path",
-    "items": [
-      {
-        "company": "Fusion Pax",
-        "role": "Mobile Developer",
-        "period": "2026 – Present",
-        "location": "Remote",
-        "type": "Part-time Contract",
-        "description": "I spearhead cross-platform mobile development using Flutter and Dart, focusing on delivering fluid, native-feeling UIs across iOS and Android. My work encompasses real-time data sync, push notification infrastructure, and complete release management.",
-        "bullets": [
-          "Cross-platform mobile application development natively for iOS and Android using Flutter, ensuring fluid interfaces and complex animations.",
-          "Integration of real-time Uber-style geolocation systems for live fleet tracking and ride assignment.",
-          "Push notification infrastructure using Firebase Cloud Messaging (FCM), including topic configuration and targeted notifications.",
-          "Complete management of application lifecycles, from development to publication on the App Store and Google Play."
-        ]
-      },
-      {
-        "company": "Grupo Monge",
-        "role": "FullStack Developer",
-        "period": "2023 – Present",
-        "location": "Managua, Nicaragua",
-        "type": "Hybrid",
-        "description": "As a FullStack Developer, I am dedicated to building and optimizing user interfaces and backend processes from scratch, ensuring smooth experiences and compliance with strict financial regulations. I lead the creation of interactive components and the integration of dynamic conversion funnels that connect directly with the company's customers.",
-        "bullets": [
-          "Developed dynamic landing pages integrated with WhatsApp messaging flows, rendering personalized product recommendations in real time.",
-          "Built interactive views with React and Blazor powering customer-facing virtual assistants and internal recruitment dashboards.",
-          "Standardized frontend components across multiple repositories, ensuring compliance with SUGEF 10-07 regulatory requirements in notification flows.",
-          "Enterprise Architecture: Designed and scaled backend services implementing structured design patterns, Clean Architecture, and Vertical Slice, significantly improving maintainability."
-        ]
-      },
-      {
-        "company": "LogaCode",
-        "role": "Frontend Developer",
-        "period": "2025 – 2026",
-        "location": "Remote",
-        "type": "Part-time Contract",
-        "description": "In this role, I focused on the development and extreme optimization of high-performance mobile applications. I worked on the implementation of scalable architectures, focusing on efficient global state management, multimedia cache handling, and secure authentication flows.",
-        "bullets": [
-          "Memory consumption optimization on devices by implementing infinite lists with FlatList in React Native for video feeds (Reels).",
-          "Complex state management with Redux and Zustand for session persistence and real-time sales transaction control.",
-          "Construction of modular interfaces and integration of secure authentication flows using Firebase."
-        ]
-      },
-      {
-        "company": "Freelance",
-        "role": "Freelance Frontend Developer",
-        "period": "Jan 2019 – Dec 2022",
-        "location": "Remote",
-        "type": "Self-employed",
-        "description": "During my time as an independent developer, I dedicated myself to the design and rapid deployment of web solutions focused on load speed, SEO, and user experience. I completed end-to-end projects, from optimized landing pages to complex interfaces for Point of Sale (POS) systems in close integration with the backend.",
-        "bullets": [
-          "Design and rapid deployment of responsive landing pages using React, Vite, Tailwind CSS, and Vercel, with a high focus on SEO and load speed metrics.",
-          "Construction of web applications for POS systems dedicated to inventory control and invoicing.",
-          "Client integration with APIs in .NET and SQL Server, managing state with Zustand to guarantee fast loading times in the UI.",
-          "Web Scraping & Automation: Designed and implemented structured data mass-extraction processes by deploying bots on the Apify platform."
-        ]
-      }
-    ]
-  },
-  "services": {
-    "subtitle": "What I offer",
-    "title": "Services",
-    "desc": "End-to-end development solutions tailored to your project needs.",
-    "items": [
-      {
-        "title": "Web Development",
-        "description": "Responsive, performant web apps built with React, Next.js, and TailwindCSS. From landing pages to full-scale platforms."
-      },
-      {
-        "title": "Mobile Development",
-        "description": "Cross-platform mobile applications for iOS and Android using Flutter and React Native. Expertise in live GPS tracking with Mapbox GL, push notifications with Firebase FCM, and complete deployment management in App Store Connect and Google Play Console."
-      },
-      {
-        "title": "Backend & Real-Time APIs",
-        "description": "Robust REST APIs, microservices, and real-time systems using NestJS, Socket.IO, and .NET. Scalable multi-tenant architecture and data modeling with PostgreSQL and Prisma."
-      },
-      {
-        "title": "Cloud, DevOps & Desktop",
-        "description": "Modern infrastructure deployment with Railway, containerization with Docker, automated CI/CD pipelines, and cross-platform desktop application development with Electron."
+        "title": "Clean architecture",
+        "desc": "Code that scales without tangling."
       }
     ]
   },
   "projects": {
-    "subtitle": "My work",
-    "title": "Featured Projects",
-    "desc": "A selection of web work for businesses and personal projects, focused on UX and performance.",
-    "viewGallery": "View Gallery",
-    "viewCase": "Case Study",
-    "liveDemo": "Live Demo",
-    "sourceCode": "Source Code",
+    "tag": "02 — Projects",
+    "titleBefore": "Things I ",
+    "titleHighlight": "built",
+    "intro": "Apps live on the stores, real-time platforms and systems that real businesses use today.",
+    "viewGallery": "Gallery",
+    "viewCase": "View case",
+    "liveDemo": "Live demo",
+    "sourceCode": "Source code",
+    "more": "More projects",
+    "newTab": "(opens in a new tab)",
+    "cards": {
+      "legal-track-usa": {
+        "type": "Mobile app",
+        "description": "Cross-platform app to follow immigration cases in real time, with exam study guides and a community."
+      },
+      "trackdeli-pos": {
+        "type": "Own product",
+        "description": "Desktop point of sale for local businesses: sales, batch-based inventory, credit payments and profit reports. It keeps selling offline and syncs when it's back online."
+      },
+      "dulces-momentos": {
+        "type": "POS system",
+        "description": "Complete point of sale for a bakery: orders, product catalog and real-time reports."
+      },
+      "mopetco-grooming": {
+        "type": "Website",
+        "description": "Mobile dog grooming website with online appointment booking."
+      }
+    },
+    "rows": {
+      "trackdeli-web": {
+        "type": "Web platform"
+      },
+      "trackdeli-app": {
+        "type": "Mobile app"
+      },
+      "mimas-tatas-foundation": {
+        "type": "Web app"
+      },
+      "silent-hill-tribute": {
+        "type": "Interactive experience"
+      },
+      "logic-tkl-915": {
+        "type": "Product page"
+      },
+      "coffee-shop-landing": {
+        "type": "Landing page"
+      },
+      "mopetco-booking": {
+        "type": "Booking system"
+      },
+      "itinia": {
+        "title": "Itinia — Travel app",
+        "type": "Flutter · Google Play"
+      }
+    },
     "items": {
       "legal-track-usa": {
         "title": "Legal Track USA",
@@ -153,18 +138,18 @@
         "details": "### The Challenge\nCreate a visually rich, interactive web tribute to Silent Hill that feels like navigating through the game itself — with fog, tension, and narrative depth baked into every scroll interaction.\n\n### Solution\n- **Frontend:** React + TypeScript + TailwindCSS\n- **Animations:** GSAP ScrollTrigger for pinned sections, parallax, zoom transitions, and stacking card reveals\n- **Cinematic Preloader:** Custom timeline animation with skip functionality\n- **Immersive Audio:** Web Audio API for ambient pink noise, drone, and hover sound effects\n- **3D Tilt Cards:** Cursor-following perspective transforms with radial shine overlay on desktop\n- **Mobile Carousel:** Touch-swipeable character cards with dot navigation\n- **Bestiary Scrollytelling:** Scroll-driven creature reveals with pinned viewport and animated overlays\n- **Film Grain Overlay:** SVG fractalNoise texture for VHS atmosphere\n- **Fog & Vignette:** Layered video fog (desktop) and radial gradient vignette\n- **Section Navigation:** Lateral dot nav with labels and smooth scroll-to\n- **Scroll Progress Bar:** Real-time scroll position indicator\n\n### Impact\nA showcase project demonstrating advanced GSAP animation techniques, immersive UI design, and mobile-responsive storytelling — built to impress in a developer portfolio."
       },
       "trackdeli-web": {
-        "title": "TrackDeli — Web Platform",
+        "title": "NEXOL Web",
         "description": "A multi-tenant SaaS admin platform for local delivery businesses, featuring live dispatch management, real-time GPS dashboards, and a public tracking portal for end customers.",
         "details": "### The Challenge\nBuild a full web platform serving three different audiences from one shared architecture: business owners managing orders and riders, a super-admin overseeing every tenant on the platform, and end customers tracking their delivery in real time — all without exposing any tenant's data to another. The hardest part was the dispatch logic itself: automatically offering an order to the nearest available rider with a countdown, falling back to the next rider on rejection or timeout, while keeping every connected client in sync via WebSockets.\n\n### Solution\n- **Frontend:** React + TypeScript + Vite monorepo (Turborepo) with three apps — Admin, SuperAdmin, and public Tracking\n- **Backend:** NestJS + Prisma ORM + PostgreSQL, with strict multi-tenant isolation at the query level\n- **Real-Time:** Socket.IO Gateway with room-based isolation (`business:{id}`, `order:{id}`) for live rider positions, order status changes, and dispatch offers\n- **Maps:** Mapbox GL JS with custom-styled markers, live route rendering, and client-side interpolation for smooth avatar movement — matching the feel of Uber/InDrive rather than choppy GPS jumps\n- **Recurring Customers:** Phone-scoped customer records per business with a self-service geolocation confirmation flow sent via WhatsApp, avoiding manual address re-entry on repeat orders\n- **UX Details:** A custom \"dynamic island\" toast system with error-priority queueing, replacing traditional corner toasts across the whole admin\n\n### Impact\nA single backend now powers three distinct experiences with zero data leakage between tenants, live dispatch that automatically routes around unresponsive riders, and a public tracking link customers can open without any login."
       },
       "trackdeli-app": {
-        "title": "TrackDeli — Rider App",
+        "title": "NEXOL Rider App",
         "description": "A Flutter mobile app for delivery riders, featuring automatic order dispatch, real-time negotiable quotes, and turn-by-turn GPS navigation synced live with the customer-facing web.",
         "details": "### The Challenge\nDeliver a rider experience on par with major ride-hailing apps: smooth live GPS tracking (not choppy point-to-point jumps), automatic route recalculation when a rider deviates, and a dual order-assignment model — automatic cascading dispatch for delivery companies with their own fleet, and a negotiable quoting system for independent riders bidding on open orders.\n\n### Solution\n- **Mobile:** Flutter + Dart, Riverpod for reactive state, GoRouter with auth guards\n- **Maps & GPS:** `mapbox_maps_flutter` with custom canvas-rendered markers, animated heading rotation, and client-side position interpolation for fluid movement between GPS fixes\n- **Networking:** Dio with silent JWT refresh token interceptors and a request queue during token renewal\n- **Push Notifications:** Firebase Cloud Messaging with dedicated Android notification channels, automatic cleanup of invalid/expired device tokens, and a custom in-app \"dynamic island\" banner for foreground alerts\n- **Real-Time:** Dedicated Socket.IO namespace for GPS telemetry, with a heartbeat mechanism keeping the connection alive even when the rider is stationary\n\n### Impact\nRiders get one app that adapts to two different business models (fleet dispatch vs. open marketplace), with live tracking accurate and smooth enough to match the UX of established ride-hailing apps."
       },
       "trackdeli-pos": {
-        "title": "TrackDeli POS",
-        "description": "A desktop point-of-sale application built with Electron, integrating real thermal printer and cash drawer hardware, sharing the same backend as the TrackDeli delivery platform.",
+        "title": "NEXOL POS",
+        "description": "A desktop point-of-sale application built with Electron, integrating real thermal printer and cash drawer hardware, sharing the same backend as the NEXOL delivery platform.",
         "details": "### The Challenge\nBuild a standalone desktop POS for local businesses that talks to real hardware — an ESC/POS thermal printer, a cash drawer, and a USB barcode scanner — while sharing the exact same backend and data model as the web and mobile delivery platform, so a business can run in-store sales and delivery orders from one unified system.\n\n### Solution\n- **Desktop Shell:** Electron + Vite, with hardware access isolated to the main process and exposed to the React renderer via IPC\n- **Hardware Integration:** `node-thermal-printer` for ESC/POS receipt printing and cash drawer control; barcode scanner input handled as raw USB HID keypress events\n- **Frontend:** React + TypeScript + Tailwind CSS, sharing the same design system and API client patterns as the web admin\n- **Auto-Updates:** `electron-updater` distributing new versions via GitHub Releases, so every business receives updates automatically without an in-person visit\n- **Shared Backend:** Same NestJS API and PostgreSQL database as the rest of the platform — sales, cash register shifts, and inventory live alongside delivery orders under the same business account\n\n### Impact\nLocal businesses get a real point-of-sale system — categories, inventory, cash register reconciliation, invoicing — without needing separate software or a separate account from their delivery operations."
       },
       "mopetco-grooming": {
@@ -197,15 +182,166 @@
         "description": "A donation web platform featuring an item catalog, request cart, user authentication, and full bilingual support.",
         "details": "### The Challenge\nMima's & Tata's Foundation needed a modern, intuitive, and accessible digital platform to connect donors with community members in need. The key requirements included managing a dynamic donation catalog, allowing beneficiaries to request specific items through a seamless cart experience, safeguarding user authentication with strict validation, and ensuring full English/Spanish bilingual accessibility.\n\n### Solution\n- **Frontend Architecture:** Next.js with TypeScript for high performance and type safety\n- **GraphQL API Integration:** Efficient query caching and mutation execution for donation requests and user interactions\n- **Global State with Zustand:** Lightweight, reactive store managing the dynamic request cart across sessions\n- **Bilingual Support (i18n):** Native multilingual interface providing seamless English and Spanish experiences\n- **Secure Authentication:** Input validation and secure session handling for user accounts\n\n### Impact\nStreamlined the donation lifecycle by digitizing item requests into a structured catalog, significantly reducing fulfillment response times and expanding community outreach across language barriers."
       }
+    },
+    "modal": {
+      "caseTag": "Case study",
+      "tabs": {
+        "overview": "Overview",
+        "challenge": "Challenge",
+        "solution": "Solution",
+        "impact": "Impact"
+      },
+      "headings": {
+        "challenge": "The challenge",
+        "solution": "The solution",
+        "impact": "Impact"
+      },
+      "prev": "Previous",
+      "next": "Next",
+      "close": "Close",
+      "gallery": "Gallery",
+      "capture": "Capture",
+      "prevCapture": "Previous capture",
+      "nextCapture": "Next capture",
+      "closeGallery": "Close gallery",
+      "viewCapture": "View"
     }
   },
+  "nexol": {
+    "tag": "03 — My company",
+    "titleBefore": "I'm also the ",
+    "titleHighlight": "CEO",
+    "titleAfter": " of NEXOL",
+    "text": "A software company in Managua building tools for local businesses: point of sale, delivery, payments and appointments. What I build there shows up in several of the projects above.",
+    "cta": "Meet NEXOL",
+    "chips": [
+      "NEXOL POS",
+      "NEXOL Delivery",
+      "NEXOL Payments",
+      "NEXOL Appointments",
+      "Custom websites"
+    ],
+    "newTab": "(opens in a new tab)"
+  },
+  "experience": {
+    "tag": "04 — Experience",
+    "titleBefore": "Where I've ",
+    "titleHighlight": "played",
+    "cards": [
+      {
+        "tag": "Jan 2026 – Present · Remote",
+        "bullets": [
+          "iOS and Android apps with Flutter and Dart.",
+          "Real-time geolocation for fleet tracking.",
+          "Push notifications and store releases."
+        ]
+      },
+      {
+        "tag": "Jan 2023 – Present",
+        "bullets": [
+          "Dynamic landing pages connected to WhatsApp.",
+          "Virtual assistants and recruiting dashboards with React and Angular.",
+          ".NET services with Clean Architecture and Vertical Slice."
+        ]
+      },
+      {
+        "tag": "Jun 2025 – Jun 2026 · Remote",
+        "bullets": [
+          "Reels-style feed with infinite lists in React Native.",
+          "Complex state with Redux and Zustand.",
+          "Subscriptions with RevenueCat and push with OneSignal."
+        ]
+      }
+    ],
+    "items": [
+      {
+        "company": "Fusion Pax",
+        "role": "Mobile Developer",
+        "period": "Jan 2026 – Present",
+        "location": "Remote",
+        "type": "Part-time Contract",
+        "description": "I spearhead cross-platform mobile development using Flutter and Dart, focusing on delivering fluid, native-feeling UIs across iOS and Android. My work encompasses real-time data sync, push notification infrastructure, and complete release management.",
+        "bullets": [
+          "Cross-platform mobile application development natively for iOS and Android using Flutter, ensuring fluid interfaces and complex animations.",
+          "Integration of real-time Uber-style geolocation systems for live fleet tracking and ride assignment.",
+          "Push notification infrastructure using Firebase Cloud Messaging (FCM), including topic configuration and targeted notifications.",
+          "Complete management of application lifecycles, from development to publication on the App Store and Google Play."
+        ]
+      },
+      {
+        "company": "Grupo Monge",
+        "role": "FullStack Developer",
+        "period": "Jan 2023 – Present",
+        "location": "Managua, Nicaragua",
+        "type": "Hybrid",
+        "description": "As a FullStack Developer, I am dedicated to building and optimizing user interfaces and backend processes from scratch, ensuring smooth experiences and compliance with strict financial regulations. I lead the creation of interactive components and the integration of dynamic conversion funnels that connect directly with the company's customers.",
+        "bullets": [
+          "Developed dynamic landing pages integrated with WhatsApp messaging flows, rendering personalized product recommendations in real time.",
+          "Built interactive views with React and Angular powering customer-facing virtual assistants and internal recruitment dashboards.",
+          "Standardized frontend components across multiple repositories, ensuring compliance with SUGEF 10-07 regulatory requirements in notification flows.",
+          "Enterprise Architecture: Designed and scaled backend services implementing structured design patterns, Clean Architecture, and Vertical Slice, significantly improving maintainability."
+        ]
+      },
+      {
+        "company": "LogaCode",
+        "role": "Frontend Developer",
+        "period": "Jun 2025 – Jun 2026",
+        "location": "Remote",
+        "type": "Part-time Contract",
+        "description": "In this role, I focused on the development and extreme optimization of high-performance mobile applications. I worked on the implementation of scalable architectures, focusing on efficient global state management, multimedia cache handling, and secure authentication flows.",
+        "bullets": [
+          "Memory consumption optimization on devices by implementing infinite lists with FlatList in React Native for video feeds (Reels).",
+          "Complex state management with Redux and Zustand for session persistence and real-time sales transaction control.",
+          "Construction of modular interfaces and integration of secure authentication flows using Firebase."
+        ]
+      },
+      {
+        "company": "Freelance",
+        "role": "Freelance Frontend Developer",
+        "period": "Jan 2019 – Dec 2022",
+        "location": "Remote",
+        "type": "Self-employed",
+        "description": "During my time as an independent developer, I dedicated myself to the design and rapid deployment of web solutions focused on load speed, SEO, and user experience. I completed end-to-end projects, from optimized landing pages to complex interfaces for Point of Sale (POS) systems in close integration with the backend.",
+        "bullets": [
+          "Design and rapid deployment of responsive landing pages using React, Vite, Tailwind CSS, and Vercel, with a high focus on SEO and load speed metrics.",
+          "Construction of web applications for POS systems dedicated to inventory control and invoicing.",
+          "Client integration with APIs in .NET and SQL Server, managing state with Zustand to guarantee fast loading times in the UI.",
+          "Web Scraping & Automation: Designed and implemented structured data mass-extraction processes by deploying bots on the Apify platform."
+        ]
+      }
+    ]
+  },
+  "services": {
+    "tag": "05 — What I do",
+    "titleBefore": "End ",
+    "titleHighlight": "to end",
+    "items": [
+      {
+        "title": "Web",
+        "description": "Fast apps and sites with React, Next.js and Tailwind."
+      },
+      {
+        "title": "Mobile",
+        "description": "iOS and Android with Flutter and React Native, with native code in Swift and Kotlin."
+      },
+      {
+        "title": "Backend and real time",
+        "description": "APIs with NestJS and .NET, PostgreSQL, Redis and WebSockets."
+      },
+      {
+        "title": "Cloud and desktop",
+        "description": "Docker, CI/CD with Fastlane, Sentry and desktop apps with Electron."
+      }
+    ]
+  },
   "footer": {
-    "ctaTitle1": "Let's ",
-    "ctaTitleHighlight": "Work",
-    "ctaTitle2": " Together",
-    "ctaText": "Have a project in mind or just want to say hello?\nI'd love to hear from you.",
-    "sendEmail": "Send me an Email",
-    "rights": "All rights reserved.",
-    "builtBy": "Edwin Torrez — Built with React & ❤️"
+    "ctaTitle1": "Let's work",
+    "ctaTitleHighlight": "together",
+    "ctaText": "Got a project in mind, or just want to say hi? I'd love to hear from you.",
+    "sendEmail": "Email me",
+    "stickerIdea": "Got an idea?",
+    "stickerFast": "I reply fast",
+    "copyright": "Edwin Torrez",
+    "madeWith": "Made with React, coffee and plenty of love"
   }
 }

@@ -1,3 +1,10 @@
+const ink = "#121212";
+const cobalt = "#2D4BFF";
+const tomato = "#FF5B37";
+const mint = "#8BE3C0";
+const sun = "#FFD43B";
+const bubble = "#FF9ECF";
+
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: ["class"],
@@ -5,8 +12,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"Space Grotesk"', "system-ui", "sans-serif"],
-        mono: ['"JetBrains Mono"', "monospace"],
+        sans: ['"Instrument Sans"', "system-ui", "sans-serif"],
+        display: ['"Unbounded"', "system-ui", "sans-serif"],
+        mono: ['"Space Mono"', "monospace"],
       },
       animation: {
         "fade-in": "fadeIn 1s ease-in-out forwards",
@@ -148,7 +156,35 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      boxShadow: {
+        "pop-sm": `4px 4px 0 ${ink}`,
+        pop: `6px 6px 0 ${ink}`,
+        "pop-md": `8px 8px 0 ${ink}`,
+        "pop-lg": `10px 10px 0 ${ink}`,
+        "pop-cobalt": `8px 8px 0 ${cobalt}`,
+        "pop-tomato": `8px 8px 0 ${tomato}`,
+        "pop-mint": `8px 8px 0 ${mint}`,
+        "pop-xl": `14px 14px 0 ${ink}`,
+        "shot-sun": `12px 12px 0 ${sun}`,
+        "shot-mint": `12px 12px 0 ${mint}`,
+        "shot-bubble": `12px 12px 0 ${bubble}`,
+        "shot-cobalt": `12px 12px 0 ${cobalt}`,
+        "shot-tomato": `12px 12px 0 ${tomato}`,
+      },
       colors: {
+        cream: "#FFF3DD",
+        ink,
+        cobalt,
+        tomato: { DEFAULT: tomato, text: "#E0401C" },
+        sun,
+        bubble,
+        mint,
+        nexol: {
+          navy: "#1D2B5C",
+          fog: "#F4E1DE",
+          text: "#E6D3D0",
+          green: "#3DD68C",
+        },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
